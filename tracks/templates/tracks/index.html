@@ -5,7 +5,7 @@
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="http://cdn.jsdelivr.net/qtip2/2.2.0/jquery.qtip.js"></script>
   {% load staticfiles %}
-  <!--<script src="{% static 'webapps/clinical_timeline.js' %}"></script> -->
+  <script src="{% static 'tracks/clinical_timeline.js' %}"></script>
   <link href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.css" type="text/css" rel="stylesheet" />
   <style type="text/css">
     .axis path,
@@ -41,13 +41,43 @@
     	max-width: 600px;
 	}
   </style>
+  <script type="text/javascript">
+
+    $(document).ready(function(){
+        
+        var params = {
+            //type:"diagnostic,treatment,lab_test",
+            //cancer_study_id:cancerStudyId,
+            //patient_id:patientId
+        };
+        
+        $.post("{% static 'tracks/example_data.json' %}", 
+            params,
+            function(data){                
+                var timeData = parepareTimeLineData.prepare(data);
+                if (timeData.length===0) return;
+
+                var width = 1000;
+                var timeline = clinicalTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
+                var svg = d3.select("#timeline").append("svg").attr("width", width).datum(timeData).call(timeline);
+                $("#timeline-container").show();
+            }
+            ,"json"
+        );
+    });
+  </script>
+  <title>::lifetracker::</title>
+</head>
+
+<body>
+  <div id="timeline-container" style="display:hidden">
+  <div id="timeline">
   
 </head>
 
 <body>
   <div id="timeline-container" style="display:hidden">
   <div id="timeline">
-    <h1>Track name</h1> 
   </div>
   </div>
 </body>
