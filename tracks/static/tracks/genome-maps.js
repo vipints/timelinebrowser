@@ -23,10 +23,10 @@ function GenomeMaps(targetId, args) {
     var _this = this;
     this.id = "GenomeMaps" + Math.round(Math.random() * 10000);
     this.suiteId = 9;
-    this.title = "Genome Maps";
+    this.title = "Time line visualization";
     this.description = "Genomic data visualization";
     this.wum = true;
-    this.version = "3.0.4";
+    this.version = "alpha";
 
 	this.trackIdCounter = 1;
 	
