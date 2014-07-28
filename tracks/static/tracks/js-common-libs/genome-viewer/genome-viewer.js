@@ -233,13 +233,13 @@ GenomeViewer.prototype.render = function(){
 	containerPort.insert(1, this._getBottomBar());
 	container.insert(0, this._drawKaryotypePanel().hide());//the good one
 	//container.insert(1, this._drawKaryotypePanel());
-	container.insert(1, this._drawChromosomePanel());
+	//container.insert(1, this._drawChromosomePanel());
 	container.insert(2, tracksPanel);
 	container.insert(2, regionPanel);//rendered after trackspanel but inserted with minor index
 
-	Ext.getCmp(this.id+"chromosomeMenuButton").setText("Chromosome "+this.region.chromosome);
-	Ext.getCmp(this.id+"chromosomePanel").setTitle("Chromosome "+this.region.chromosome);
-	Ext.getCmp(this.id+'tbCoordinate').setValue(this.region.toString());
+	//Ext.getCmp(this.id+"chromosomeMenuButton").setText("Chromosome "+this.region.chromosome);
+	//Ext.getCmp(this.id+"chromosomePanel").setTitle("Chromosome "+this.region.chromosome);
+	//Ext.getCmp(this.id+'tbCoordinate').setValue(this.region.toString());
 };
 GenomeViewer.prototype.setMenuBar = function(toolbar) {
 	this.toolbar = toolbar;
@@ -406,7 +406,8 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		id : this.id+'quickSearch',
 		displayField: 'displayId',
 		valueField: 'displayId',
-		emptyText:'Quick search: gene, snp',
+		emptyText:'Quick search: ',
+		//emptyText:'Quick search: gene, snp',
 		hideTrigger: true,
 		width:150,
 		store: searchResults,
@@ -458,15 +459,15 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		        	 menu: this._getSpeciesMenu()			
 		         },{
 		        	 id: this.id + "chromosomeMenuButton",
-		        	 text : 'Chromosome',
-		        	 menu: this._getChromosomeMenu()			
+		        	 //text : 'Chromosome',
+		        	 //menu: this._getChromosomeMenu()			
 		         },
 		         '-',
 		         {
 		        	 id:this.id+"karyotypeButton",
-		        	 text : 'Karyotype',
-		        	 enableToggle:true,
-		        	 pressed:false,
+		        	 //text : 'Karyotype',
+		        	 //enableToggle:true,
+		        	 //pressed:false,
 		        	 toggleHandler:function() {
 		        		 if(this.pressed){
 		        			 Ext.getCmp(_this.id+"karyotypePanel").show();
@@ -477,7 +478,8 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		         },
 		         {
 		        	 id:this.id+"ChromosomeToggleButton",
-		        	 text : 'Chromosome',
+		        	 text : 'Detailed Information Panel',
+		        	 //text : 'Chromosome',
 		        	 enableToggle:true,
 		        	 pressed:true,
 		        	 toggleHandler:function() {
@@ -490,9 +492,9 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		         },
 		         {
 		        	 id:this.id+"RegionToggleButton",
-		        	 text : 'Region',
-		        	 enableToggle:true,
-		        	 pressed:this.regionPanelHidden,
+		        	 //text : 'Region',
+		        	 //enableToggle:true,
+		        	 //pressed:this.regionPanelHidden,
 		        	 toggleHandler:function() {
 		        		 if(this.pressed){
 		        			 Ext.getCmp(_this.id+"regionPanel").show();
@@ -549,7 +551,7 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		         {
 		        	 id:this.id+"positionLabel",
 		        	 xtype : 'label',
-		        	 text : 'Position:',
+		        	 text : 'Time frame:',
 		        	 margins : '0 0 0 10'
 		         },{
 		        	 id : this.id+'tbCoordinate',
