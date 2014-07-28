@@ -109,6 +109,7 @@ var TRACKS ={"group1":[
 //					          {"id":"Cytoband", "disabled":false, "checked":true},
 					          {"id":"Sequence", "disabled":false, "checked":true},
 					          {"id":"Gene/Transcript", "disabled":false, "checked":true},
+					          {"id":"Blood Cell Count", "disabled":false, "checked":true},
 			                  {"id":"CpG islands", "disabled":false, "checked":false}
 			                  ]
 					  },
