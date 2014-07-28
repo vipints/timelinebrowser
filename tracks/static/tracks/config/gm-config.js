@@ -39,10 +39,14 @@ if(window.location.host.indexOf("fsalavert")!=-1 ||
 
 /** List of available species in the cellbase service **/
 var AVAILABLE_SPECIES = [
+                        {	"name":"Patient_1", "species":"hsa", "icon":"",
+							"region":{"chromosome":"13","start":32889599,"end":32889739}
+						}
+                        /**
                         {	"name":"Homo sapiens 37.p7", "species":"hsa", "icon":"",
 							"region":{"chromosome":"13","start":32889599,"end":32889739}
 						}
-                        /**{	"name":"Mus musculus m37", "species":"mmu", "icon":"",
+                        {	"name":"Mus musculus m37", "species":"mmu", "icon":"",
 							"region":{"chromosome":"1","start":18422009,"end":18422009}
 						},
                         {	"name":"Rattus norvegicus 3.4", "species":"rno", "icon":"",
