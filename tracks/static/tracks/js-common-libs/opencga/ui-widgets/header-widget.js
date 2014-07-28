@@ -250,25 +250,25 @@ HeaderWidget.prototype = {
                     text:''
                 },'->',{
                     id: this.id + "homeButton",
-                    text: 'home',
+                    //text: 'home',
                     handler: function () {
                         window.location.href = _this.homeLink;
                     }
                 },{
                     id: this.id + "helpButton",
-                    text: 'documentation',
+                    //text: 'documentation',
                     handler: function () {
                         window.open(_this.helpLink);
                     }
                 },{
                     id: this.id + "tutorialButton",
-                    text: 'tutorial',
+                    //text: 'tutorial',
                     handler: function () {
                         window.open(_this.tutorialLink);
                     }
                 },{
                     id: this.id + "aboutButton",
-                    text: 'about',
+                    //text: 'about',
                     handler: function () {
                         Ext.create('Ext.window.Window', {
                             id: _this.id + "aboutWindow",
@@ -311,7 +311,7 @@ HeaderWidget.prototype = {
                     }
                 },{
                     id: this.id+'btnSignin',
-                    text: '<span class="emph">sign in</span>',
+                    //text: '<span class="emph">sign in</span>',
                     handler: function (){
                         _this.loginWidget.draw();
                     }

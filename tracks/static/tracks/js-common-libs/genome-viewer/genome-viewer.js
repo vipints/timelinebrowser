@@ -184,9 +184,9 @@ GenomeViewer.prototype.render = function(){
 			_this.onRegionChange.notify({sender:"trackSvgLayout"});
 		});
 		_this.trackSvgLayout.onMousePosition.addEventListener(function(sender,data){
-			Ext.getCmp(_this.id+"mouseLabel").setText('<span class="ssel">Position: '+Utils.formatNumber(data.mousePos)+'</span>');
-			$('#'+_this.id+"mouseLabel").qtip({content:'Mouse position',style:{width:95},position: {my:"bottom center",at:"top center"}});
-			Ext.getCmp(_this.id+"mouseNucleotidLabel").setText(data.baseHtml);
+			//Ext.getCmp(_this.id+"mouseLabel").setText('<span class="ssel">Position: '+Utils.formatNumber(data.mousePos)+'</span>');
+			//$('#'+_this.id+"mouseLabel").qtip({content:'Mouse position',style:{width:95},position: {my:"bottom center",at:"top center"}});
+			//Ext.getCmp(_this.id+"mouseNucleotidLabel").setText(data.baseHtml);
 		});
 		Ext.getCmp(_this.id+"windowSize").setText('<span class="emph">'+_this.trackSvgLayout.windowSize+'</span>');
 		_this.trackSvgLayout.onWindowSize.addEventListener(function(sender,data){
@@ -1007,17 +1007,17 @@ GenomeViewer.prototype._getBottomBar = function() {
 	var mouseLabel = Ext.create('Ext.toolbar.TextItem', {
 		id:this.id+"mouseLabel",
 		width:110,
-		text:'<span class="ssel">Position: -</span>'
+		//text:'<span class="ssel">Position: -</span>'
 	});
 	var mouseNucleotidLabel = Ext.create('Ext.toolbar.TextItem', {
 		id:this.id+"mouseNucleotidLabel",
 		width:10,
-		text:'-'
+		//text:'-'
 	});
 	var windowSize = Ext.create('Ext.toolbar.TextItem', {
 		id:this.id+"windowSize",
 		width:150,
-		text:'<span class="emph">Window size: -</span>'
+		//text:'<span class="emph">Window size: -</span>'
 	});
 	
 	var taskbar = Ext.create('Ext.toolbar.Toolbar', {

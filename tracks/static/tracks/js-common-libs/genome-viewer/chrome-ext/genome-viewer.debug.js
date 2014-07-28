@@ -2152,7 +2152,7 @@ ListPanel.prototype._localize = function() {
 	
 	var panel = Ext.create('Ext.window.Window', {
 		id:this.id+"karyotypePanel",
-		title:"Karyotype",
+		//title:"Karyotype",
 		width:1020,
 		height:410,
 		bodyStyle: 'background:#fff;',
@@ -7834,7 +7834,7 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		         '-',
 		         {
 		        	 id:this.id+"karyotypeButton",
-		        	 text : 'Karyotype',
+		        	 //text : 'Karyotype',
 		        	 enableToggle:true,
 		        	 pressed:false,
 		        	 toggleHandler:function() {
@@ -8194,7 +8194,7 @@ GenomeViewer.prototype._drawKaryotypePanel = function() {
 	var panel =  Ext.create('Ext.panel.Panel', {
 		id:this.id+"karyotypePanel",
 		height : 200,
-		title:'Karyotype',
+		//title:'Karyotype',
 		border:false,
 		margin:'0 0 1 0',
 		cls:'border-bot panel-border-top',
