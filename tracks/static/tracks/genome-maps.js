@@ -23,7 +23,7 @@ function GenomeMaps(targetId, args) {
     var _this = this;
     this.id = "GenomeMaps" + Math.round(Math.random() * 10000);
     this.suiteId = 9;
-    this.title = "Time line visualization";
+    this.title = "LifeTracker";
     this.description = "Genomic data visualization";
     this.wum = true;
     this.version = "alpha";
@@ -211,7 +211,7 @@ GenomeMaps.prototype.draw = function(){
 		this.headerWidget.setDescription(this.genomeViewer.speciesName);
 
 		this.genomeViewer.afterRender.addEventListener(function(sender,event){
-			Ext.getCmp(_this.genomeViewer.id+"versionLabel").setText('<span class="info">Genome Maps v'+_this.version+'</span>');
+			Ext.getCmp(_this.genomeViewer.id+"versionLabel").setText('<span class="info">Tracks v '+_this.version+'</span>');
 			_this._setOverviewTracks();
 			_this.genomeViewer.addSidePanelItems(_this.getSidePanelItems());
 			_this.genomeViewer.onSvgRemoveTrack.addEventListener(function(sender,trackId){
