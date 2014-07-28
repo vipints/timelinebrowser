@@ -322,7 +322,7 @@ GenomeMaps.prototype.addTrack = function(trackType, trackTitle, objectid, host) 
 	var id = this.genTrackId();
 	//console.log(trackId);
 	switch (trackType) {
-	case "Gene/Transcript":
+	/**case "Gene/Transcript":
 		var geneTrack = new TrackData(id,{
 			adapter: new CellBaseAdapter({
 				category: "genomic",
@@ -350,9 +350,12 @@ GenomeMaps.prototype.addTrack = function(trackType, trackTitle, objectid, host) 
 			featureTypes:FEATURE_TYPES
 		});
 		break;
+    **/
 	case "Cytoband":
 		
 		break;
+
+    /**
 	case "Sequence":
 		var seqtrack = new TrackData(id,{
 			adapter: new SequenceAdapter({
@@ -547,6 +550,7 @@ GenomeMaps.prototype.addTrack = function(trackType, trackTitle, objectid, host) 
 			featureTypes:FEATURE_TYPES
 		});
 		break;
+    **/
 //	case "Histone":
 //		
 //		break;
@@ -556,7 +560,7 @@ GenomeMaps.prototype.addTrack = function(trackType, trackTitle, objectid, host) 
 //	case "Open Chromatin":
 //		
 //		break;
-	case "Conserved regions":
+	/**case "Conserved regions":
 		var conservedTrack = new TrackData(id,{
 			adapter: new CellBaseAdapter({
 				category: "genomic",
@@ -579,9 +583,9 @@ GenomeMaps.prototype.addTrack = function(trackType, trackTitle, objectid, host) 
 			visibleRange:{start:0,end:100},
 			featureTypes:FEATURE_TYPES
 		});
-		break;
+		break;**/
 		
-	case "bam":
+	/**case "bam":
 		var bamTrack = new TrackData(id,{
 			adapter: new BamAdapter({
 				category: "bam",
@@ -636,7 +640,7 @@ GenomeMaps.prototype.addTrack = function(trackType, trackTitle, objectid, host) 
             visibleRange:{start:0,end:100},
             featureTypes:FEATURE_TYPES
         });
-        break;
+        break;**/
 	default:
 		return null;
 	}
@@ -1047,7 +1051,7 @@ GenomeMaps.prototype.getSidePanelItems = function() {
                                     title:'<p class="info">'+data.query[i]+'</p>',collapsible:true,collapsed:collapsed,titleCollapse:true,
                                     columns: [{text: 'id',dataIndex: id, width:243}],
                                     dockedItems: [{xtype: 'pagingtoolbar',store: st, dock: 'top',beforePageText:''/*displayInfo: true*/
-                                    }],
+                                   }],
                                     listeners:{
                                         itemclick:function(este, record, item, index, e, eOpts){
                                             _this.genomeViewer.region.load(record.data);
@@ -1111,13 +1115,14 @@ GenomeMaps.prototype.getSidePanelItems = function() {
         {text:"BED", iconCls:"icon-blue-box", leaf:true},
         {text:"VCF", iconCls:"icon-blue-box", leaf:true}
     ];
+
     var importTree = this._createTracksTreePanel('Import data',[
         { text: 'Browse remote data', id:'opencga', iconCls:'icon-box', expanded:true, children: [] },
         { text: 'Browse local data <span class="tip">(light server required)</span>', id:'localopencga', iconCls:"icon-box", expanded:true, children: [] },
         { text: 'Load local data (<500MB)', id:'load', iconCls:'icon-box', expanded:true, children:localChilds}
     ]);
 
-    return [activeTracksPanel,curatedTree,importTree,/*pluginsTree,*/searchSidePanel];
+    return [activeTracksPanel/*,curatedTree,importTree,pluginsTree,searchSidePanel*/];
 
 		//,{
 			//title:"Settings",
