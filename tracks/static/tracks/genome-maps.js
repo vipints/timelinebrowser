@@ -278,7 +278,7 @@ GenomeMaps.prototype._setOverviewTracks= function(){
 		})
 	});
 
-	this.genomeViewer.trackSvgLayoutOverview.addTrack(geneTrack,{
+	/**this.genomeViewer.trackSvgLayoutOverview.addTrack(geneTrack,{
 		id:"gene1",
 		type:"gene",
 		title:"Gene",
@@ -289,7 +289,7 @@ GenomeMaps.prototype._setOverviewTracks= function(){
 		visibleRange:{start:0,end:100},
 		titleVisibility:'hidden',
 		featureTypes:FEATURE_TYPES
-	});
+	});**/
 };
 
 GenomeMaps.prototype.genTrackId = function() {
@@ -322,6 +322,7 @@ GenomeMaps.prototype.addTrack = function(trackType, trackTitle, objectid, host) 
 	var id = this.genTrackId();
 	//console.log(trackId);
 	switch (trackType) {
+
 	/**case "Gene/Transcript":
 		var geneTrack = new TrackData(id,{
 			adapter: new CellBaseAdapter({
@@ -349,10 +350,37 @@ GenomeMaps.prototype.addTrack = function(trackType, trackTitle, objectid, host) 
 			visibleRange:{start:0,end:100},
 			featureTypes:FEATURE_TYPES
 		});
-		break;
-    **/
+		break;**/
+
 	case "Cytoband":
 		
+		break;
+
+	case "Blood Cell Count":
+		var bccTrack = new TrackData(id,{
+			adapter: new CellBaseAdapter({
+				category: "genomic",
+				subCategory: "region",
+				resource: "bcc",
+				species: this.genomeViewer.species,
+				featureCache:{
+					gzip: true,
+					chunkSize:10000
+				},
+				featureConfig:FEATURE_CONFIG.bcc
+			})
+		});
+		this.genomeViewer.addTrack(bccTrack,{
+			id:id,
+			type:trackType,
+			title:trackTitle,
+			featuresRender:"MultiFeatureRender",
+			histogramZoom:70,
+			labelZoom:80,
+			height:150,
+			visibleRange:{start:0,end:100},
+			featureTypes:FEATURE_TYPES
+		});
 		break;
 
     /**
