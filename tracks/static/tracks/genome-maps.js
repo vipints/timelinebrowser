@@ -24,7 +24,7 @@ function GenomeMaps(targetId, args) {
     this.id = "GenomeMaps" + Math.round(Math.random() * 10000);
     this.suiteId = 9;
     this.title = "LifeTracker";
-    this.description = "Genomic data visualization";
+    this.description = "Data visualization";
     this.wum = true;
     this.version = "alpha";
 
@@ -211,7 +211,7 @@ GenomeMaps.prototype.draw = function(){
 		this.headerWidget.setDescription(this.genomeViewer.speciesName);
 
 		this.genomeViewer.afterRender.addEventListener(function(sender,event){
-			Ext.getCmp(_this.genomeViewer.id+"versionLabel").setText('<span class="info">Tracks v '+_this.version+'</span>');
+			Ext.getCmp(_this.genomeViewer.id+"versionLabel").setText('<span class="info">LifeTracker v '+_this.version+'</span>');
 			_this._setOverviewTracks();
 			_this.genomeViewer.addSidePanelItems(_this.getSidePanelItems());
 			_this.genomeViewer.onSvgRemoveTrack.addEventListener(function(sender,trackId){
@@ -356,21 +356,21 @@ GenomeMaps.prototype.addTrack = function(trackType, trackTitle, objectid, host) 
 		
 		break;
 
-	case "Blood Cell Count":
-		var bccTrack = new TrackData(id,{
+	case "ORD Name":
+		var ordnameTrack = new TrackData(id,{
 			adapter: new CellBaseAdapter({
 				category: "genomic",
 				subCategory: "region",
-				resource: "bcc",
+				resource: "ordname",
 				species: this.genomeViewer.species,
 				featureCache:{
 					gzip: true,
 					chunkSize:10000
 				},
-				featureConfig:FEATURE_CONFIG.bcc
+				featureConfig:FEATURE_CONFIG.ordname
 			})
 		});
-		this.genomeViewer.addTrack(bccTrack,{
+		this.genomeViewer.addTrack(ordnameTrack,{
 			id:id,
 			type:trackType,
 			title:trackTitle,
@@ -378,6 +378,33 @@ GenomeMaps.prototype.addTrack = function(trackType, trackTitle, objectid, host) 
 			histogramZoom:70,
 			labelZoom:80,
 			height:150,
+			visibleRange:{start:0,end:100},
+			featureTypes:FEATURE_TYPES
+		});
+		break;
+
+	case "ORD Type CD":
+		var ordtypeTrack = new TrackData(id,{
+			adapter: new CellBaseAdapter({
+				category: "genomic",
+				subCategory: "region",
+				resource: "ordtype",
+				species: this.genomeViewer.species,
+				featureCache:{
+					gzip: true,
+					chunkSize:10000
+				},
+				featureConfig:FEATURE_CONFIG.ordtype
+			})
+		});
+		this.genomeViewer.addTrack(ordtypeTrack,{
+			id:id,
+			type:trackType,
+			title:trackTitle,
+			featuresRender:"MultiFeatureRender",
+			histogramZoom:70,
+			labelZoom:80,
+			height:100,
 			visibleRange:{start:0,end:100},
 			featureTypes:FEATURE_TYPES
 		});

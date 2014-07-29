@@ -174,7 +174,7 @@ function TrackSvgLayout(parent, args) {//parent is a DOM div element
 		"font-size":10,
 		"fill":"white"
 	});
-	this.windowSize = "Window size: "+this.region.length()+" nts";
+	//this.windowSize = "Window size: "+this.region.length()+" nts";
 	this.viewNtsText.textContent = this.windowSize;
 	this._setTextPosition();
 	
@@ -853,7 +853,7 @@ TrackSvgLayout.prototype._setTextPosition = function(){
 	this.firstPositionText.textContent = Utils.formatNumber(this.visualRegion.start);
 	this.lastPositionText.textContent = Utils.formatNumber(this.visualRegion.end);
 
-	this.viewNtsText.textContent = "Window size: "+this.visualRegion.length()+" nts";
+	//this.viewNtsText.textContent = "Window size: "+this.visualRegion.length()+" nts";
 	this.windowSize = this.viewNtsText.textContent;
 };
 

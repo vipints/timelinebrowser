@@ -39,8 +39,8 @@ if(window.location.host.indexOf("fsalavert")!=-1 ||
 
 /** List of available species in the cellbase service **/
 var AVAILABLE_SPECIES = [
-                        {	"name":"Patient_1", "species":"hsa", "icon":"",
-							"region":{"chromosome":"13","start":32889599,"end":32889739}
+                        {	"name":"Patient_ID_1", "species":"hsa", "icon":"",
+							"region":{"year":"2012","start":1,"end":12}
 						}
                         /**
                         {	"name":"Homo sapiens 37.p7", "species":"hsa", "icon":"",
@@ -109,7 +109,8 @@ var TRACKS ={"group1":[
 //					          {"id":"Cytoband", "disabled":false, "checked":true},
 					          {"id":"Sequence", "disabled":false, "checked":true},
 					          {"id":"Gene/Transcript", "disabled":false, "checked":true},
-					          {"id":"Blood Cell Count", "disabled":false, "checked":true},
+					          {"id":"ORD Name", "disabled":false, "checked":true},
+					          {"id":"ORD Type CD", "disabled":false, "checked":true},
 			                  {"id":"CpG islands", "disabled":false, "checked":false}
 			                  ]
 					  },
