@@ -1038,8 +1038,8 @@ GenomeViewer.prototype._getBottomBar = function() {
 		height:28,
 		items : [/*scaleLabel, */
 		         '-',mouseLabel,mouseNucleotidLabel,windowSize,
-		         geneLegendPanel.getButton(GENE_BIOTYPE_COLORS),
-		         snpLegendPanel.getButton(SNP_BIOTYPE_COLORS),
+		         /*geneLegendPanel.getButton(GENE_BIOTYPE_COLORS),
+		         snpLegendPanel.getButton(SNP_BIOTYPE_COLORS),*/
 		         '->',versionLabel]
 	});
 	
