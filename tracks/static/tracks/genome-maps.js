@@ -253,7 +253,7 @@ GenomeMaps.prototype.getRegionByFeature = function(name, feature){
 	if(f != null){
 		return {chromosome:f.chromosome, start:f.start, end:f.end}
 	}
-	return {};
+	return {}
 };
 
 //deprecated

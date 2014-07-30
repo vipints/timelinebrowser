@@ -20,6 +20,7 @@ OPENCGA_HOST = "http://ws-beta.bioinfo.cipf.es/opencga/rest";
 OPENCGA_LOCALHOST = "http://localhost:61976/opencga/rest";
 
 /** Devel only: custom URL check **/
+/**
 if(window.location.host.indexOf("fsalavert")!=-1 ||
    window.location.host.indexOf("rsanchez")!=-1 ||
    window.location.host.indexOf("imedina")!=-1 ||
@@ -40,12 +41,12 @@ OPENCGA_HOST = "http://ws-beta.bioinfo.cipf.es/opencga/rest";
 //	OPENCGA_HOST = "http://rsanchez:8080/dqs/rest";
 //	OPENCGA_HOST = "http://imedina:8080/dqs/rest";
 }
-
+**/
 
 /** List of available species in the cellbase service **/
 var AVAILABLE_SPECIES = [
                         {	"name":"", "species":"hsa", "icon":"",
-							"region":{"Patient_ID":"1","start":1,"end":12}
+							"region":{"patient_id":"1","start":1,"end":12}
 						}
                         /**
                         {	"name":"Homo sapiens 37.p7", "species":"hsa", "icon":"",
