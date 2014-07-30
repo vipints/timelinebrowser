@@ -11,9 +11,12 @@
  * WUM_HOST = "http://ws.bioinfo.cipf.es/wum/rest";
  *
  **/
+
 CELLBASE_HOST = "http://ws.bioinfo.cipf.es/cellbase/rest";
 //OPENCGA_HOST = "http://ws.bioinfo.cipf.es/opencga/rest";
+//CELLBASE_HOST = "http://ws-beta.bioinfo.cipf.es/cellbase/rest";
 OPENCGA_HOST = "http://ws-beta.bioinfo.cipf.es/opencga/rest";
+//OPENCGA_HOST = "http://ws-beta.bioinfo.cipf.es/opencgabeta/rest";
 OPENCGA_LOCALHOST = "http://localhost:61976/opencga/rest";
 
 /** Devel only: custom URL check **/
@@ -24,13 +27,15 @@ if(window.location.host.indexOf("fsalavert")!=-1 ||
    window.location.href.indexOf("http://bioinfo.cipf.es/apps-beta")!=-1
 ){
 
-    CELLBASE_HOST = "http://ws-beta.bioinfo.cipf.es/cellbase/rest";
+   //CELLBASE_HOST = "http://ws-beta.bioinfo.cipf.es/cellbase/rest";
+CELLBASE_HOST = "http://ws.bioinfo.cipf.es/cellbase/rest";
 //	CELLBASE_HOST = "http://fsalavert:8080/cellbase/rest";
 	//CELLBASE_HOST = "http://rsanchez:8080/cellbase/rest";
 	//CELLBASE_HOST = "http://imedina:8080/cellbase/rest";
 	//CELLBASE_HOST = "http://ralonso:8080/naranjoma-ws/rest";
 
-	OPENCGA_HOST = "http://ws-beta.bioinfo.cipf.es/opencgabeta/rest";
+    //OPENCGA_HOST = "http://ws-beta.bioinfo.cipf.es/opencgabeta/rest";
+OPENCGA_HOST = "http://ws-beta.bioinfo.cipf.es/opencga/rest";
 //  OPENCGA_HOST = "http://fsalavert:8080/opencga/rest";
 //	OPENCGA_HOST = "http://rsanchez:8080/dqs/rest";
 //	OPENCGA_HOST = "http://imedina:8080/dqs/rest";
