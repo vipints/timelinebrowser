@@ -174,9 +174,9 @@ HeaderWidget.prototype = {
                     this.aboutText = '';
                     break;
                 case 9://GenomeMaps
-                    this.homeLink="http://www.genomemaps.org";
-                    this.helpLink="http://wiki.opencb.org/projects/visualization/doku.php?id=genome-maps:overview";
-                    this.tutorialLink="http://wiki.opencb.org/projects/visualization/doku.php?id=genome-maps:tutorial";
+                    //this.homeLink="http://www.genomemaps.org";
+                    //this.helpLink="http://wiki.opencb.org/projects/visualization/doku.php?id=genome-maps:overview";
+                    //this.tutorialLink="http://wiki.opencb.org/projects/visualization/doku.php?id=genome-maps:tutorial";
                     this.aboutText = 'Genome Maps is built with open and free technologies like HTML5 and SVG inline, ' +
                         'so no plug-in is needed in modern internet browsers. We’ve focused on providing the ' +
                         'best user experience possible with a modern drag navigation and many features included.<br><br>' +
@@ -248,41 +248,46 @@ HeaderWidget.prototype = {
                     xtype:'tbtext',
                     id:this.id+"assemblyTextItem",
                     text:''
-                },'->',{
-                    id: this.id + "homeButton",
+                },'->'
+                //{
+                    //id: this.id + "homeButton",
                     //text: 'home',
-                    handler: function () {
-                        window.location.href = _this.homeLink;
-                    }
-                },{
-                    id: this.id + "helpButton",
+                    //handler: function () {
+                    //''    window.location.href = _this.homeLink;
+                    //}
+                //},
+                //{
+                    //id: this.id + "helpButton",
                     //text: 'documentation',
-                    handler: function () {
-                        window.open(_this.helpLink);
-                    }
-                },{
-                    id: this.id + "tutorialButton",
+                    //handler: function () {
+                    //    window.open(_this.helpLink);
+                    //}
+                //}
+                //{
+                    //id: this.id + "tutorialButton",
                     //text: 'tutorial',
-                    handler: function () {
-                        window.open(_this.tutorialLink);
-                    }
-                },{
-                    id: this.id + "aboutButton",
+                    //handler: function () {
+                    //    window.open(_this.tutorialLink);
+                    //}
+                //}
+                //{
+                    //id: this.id + "aboutButton",
                     //text: 'about',
-                    handler: function () {
-                        Ext.create('Ext.window.Window', {
-                            id: _this.id + "aboutWindow",
-                            bodyStyle: 'background:#fff; color:#333;',
-                            bodyPadding: 10,
-                            title: 'About',
-                            height: 340,
-                            width: 500,
-                            modal: true,
-                            layout: 'fit',
-                            html: _this.aboutText
-                        }).show();
-                    }
-                }]
+                    //handler: function () {
+                    //    Ext.create('Ext.window.Window', {
+                    //        id: _this.id + "aboutWindow",
+                    //        bodyStyle: 'background:#fff; color:#333;',
+                    //        bodyPadding: 10,
+                    //        title: 'About',
+                    //        height: 340,
+                    //        width: 500,
+                    //        modal: true,
+                    //        layout: 'fit',
+                    //        html: _this.aboutText
+                    //    }).show();
+                   // }
+                //}
+                ]
             });
 
             var userbar = new Ext.create('Ext.toolbar.Toolbar', {
@@ -312,9 +317,9 @@ HeaderWidget.prototype = {
                 },{
                     id: this.id+'btnSignin',
                     //text: '<span class="emph">sign in</span>',
-                    handler: function (){
-                        _this.loginWidget.draw();
-                    }
+                    //handler: function (){
+                    //    _this.loginWidget.draw();
+                    //}
                 },{
                     id: this.id+'btnEdit',
                     text: '<span class="emph">profile</span>',
