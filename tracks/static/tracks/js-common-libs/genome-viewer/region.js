@@ -58,7 +58,8 @@ Region.prototype.parse = function(str){
 Region.prototype.load = function(obj){
 	this.start = obj.start;
 	this.end = obj.end;
-	this.chromosome = obj.chromosome;
+	//this.chromosome = obj.chromosome;
+	this.chromosome = obj.patient_id;
 };
 
 Region.prototype.center = function(){
