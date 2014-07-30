@@ -237,7 +237,7 @@ GenomeViewer.prototype.render = function(){
 	container.insert(2, tracksPanel);
 	container.insert(2, regionPanel);//rendered after trackspanel but inserted with minor index
 
-	//Ext.getCmp(this.id+"chromosomeMenuButton").setText("Chromosome "+this.region.chromosome);
+	Ext.getCmp(this.id+"chromosomeMenuButton").setText("Patient "+this.region.chromosome);
 	//Ext.getCmp(this.id+"chromosomePanel").setTitle("Chromosome "+this.region.chromosome);
 	//Ext.getCmp(this.id+'tbCoordinate').setValue(this.region.toString());
 };
@@ -454,28 +454,29 @@ GenomeViewer.prototype._getNavigationBar = function() {
 //		enableOverflow:true,//if the field is hidden getValue() reads "" because seems the hidden field is a different object
 		items : [
 		         {
-		        	 id:this.id+"speciesMenuButton",
-		        	 text : this.speciesName,
-		        	 menu: this._getSpeciesMenu()			
-		         },{
 		        	 id: this.id + "chromosomeMenuButton",
-		        	 //text : 'Chromosome',
-		        	 //menu: this._getChromosomeMenu()			
+		        	 text : 'Patient',
+		        	 menu: this._getChromosomeMenu()			
 		         },
+                 //{
+		        	 //id:this.id+"speciesMenuButton",
+		        	 //text : this.speciesName,
+		        	 //menu: this._getSpeciesMenu()			
+		         //},
 		         '-',
-		         {
-		        	 id:this.id+"karyotypeButton",
+		         //{
+		        	 //id:this.id+"karyotypeButton",
 		        	 //text : 'Karyotype',
 		        	 //enableToggle:true,
 		        	 //pressed:false,
-		        	 toggleHandler:function() {
-		        		 if(this.pressed){
-		        			 Ext.getCmp(_this.id+"karyotypePanel").show();
-		        		 }else{
-		        			 Ext.getCmp(_this.id+"karyotypePanel").hide();
-		        		 }
-		        	 }
-		         },
+		        	 //toggleHandler:function() {
+		        	//	 if(this.pressed){
+		        	//		 Ext.getCmp(_this.id+"karyotypePanel").show();
+		        	//	 }else{
+		        	//		 Ext.getCmp(_this.id+"karyotypePanel").hide();
+		        //		 }
+		        //	 }
+		        // },
 		         {
 		        	 id:this.id+"ChromosomeToggleButton",
 		        	 text : 'Detailed Information Panel',
@@ -490,19 +491,19 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		        		 }
 		        	 }
 		         },
-		         {
-		        	 id:this.id+"RegionToggleButton",
+		         //{
+		        	 //id:this.id+"RegionToggleButton",
 		        	 //text : 'Region',
 		        	 //enableToggle:true,
 		        	 //pressed:this.regionPanelHidden,
-		        	 toggleHandler:function() {
-		        		 if(this.pressed){
-		        			 Ext.getCmp(_this.id+"regionPanel").show();
-		        		 }else{
-		        			 Ext.getCmp(_this.id+"regionPanel").hide();
-		        		 }
-		        	 }
-		         },
+		        	 //toggleHandler:function() {
+		        	//	 if(this.pressed){
+		        	//		 Ext.getCmp(_this.id+"regionPanel").show();
+		        	//	 }else{
+		        	//		 Ext.getCmp(_this.id+"regionPanel").hide();
+		        	//	 }
+		        	// }
+		         //},
 		         '-',
 //		         {
 //		        	 id:this.id+"left1posButton",

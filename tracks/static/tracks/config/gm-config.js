@@ -39,8 +39,8 @@ if(window.location.host.indexOf("fsalavert")!=-1 ||
 
 /** List of available species in the cellbase service **/
 var AVAILABLE_SPECIES = [
-                        {	"name":"Patient_ID_1", "species":"hsa", "icon":"",
-							"region":{"year":"2012","start":1,"end":12}
+                        {	"name":"", "species":"hsa", "icon":"",
+							"region":{"Patient_ID":"1","start":1,"end":12}
 						}
                         /**
                         {	"name":"Homo sapiens 37.p7", "species":"hsa", "icon":"",
