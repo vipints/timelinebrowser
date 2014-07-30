@@ -83,7 +83,6 @@ function GenomeViewer(targetId, species, args) {
 		}
 	}
 
-	
 
 	//Events i send
 	this.onSpeciesChange = new Event();
@@ -239,7 +238,7 @@ GenomeViewer.prototype.render = function(){
 
 	Ext.getCmp(this.id+"chromosomeMenuButton").setText("Patient "+this.region.chromosome);
 	//Ext.getCmp(this.id+"chromosomePanel").setTitle("Chromosome "+this.region.chromosome);
-	//Ext.getCmp(this.id+'tbCoordinate').setValue(this.region.toString());
+	Ext.getCmp(this.id+'tbCoordinate').setValue(this.region.toString());
 };
 GenomeViewer.prototype.setMenuBar = function(toolbar) {
 	this.toolbar = toolbar;
@@ -714,6 +713,10 @@ GenomeViewer.prototype._updateChrStore = function(){
  			return (a - b);
  		};
  		data.result.sort(sortfunction);
+
+        //TODO automated rendering of number of patients from a group 
+        data.result = [1, 2, 3 ,4, 5]
+
 		for (var i = 0; i < data.result.length; i++) {
 			chromosomeData.push({'name':data.result[i]});
 		}
