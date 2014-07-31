@@ -1040,8 +1040,8 @@ GenomeViewer.prototype._getBottomBar = function() {
 		cls: 'bio-hiddenbar',
 		width:610,
 		height:28,
-		items : [/*scaleLabel, */
-		         '-',mouseLabel,mouseNucleotidLabel,windowSize,
+		items : [/*scaleLabel,
+		         '-'*/,mouseLabel,mouseNucleotidLabel,windowSize,
 		         /*geneLegendPanel.getButton(GENE_BIOTYPE_COLORS),
 		         snpLegendPanel.getButton(SNP_BIOTYPE_COLORS),*/
 		         '->',versionLabel]
