@@ -234,7 +234,7 @@ GenomeViewer.prototype.render = function(){
 	//container.insert(1, this._drawKaryotypePanel());
 	//container.insert(1, this._drawChromosomePanel());
 	container.insert(2, tracksPanel);
-	container.insert(2, regionPanel);//rendered after trackspanel but inserted with minor index
+	container.insert(1, regionPanel);//rendered after trackspanel but inserted with minor index
 
 	Ext.getCmp(this.id+"chromosomeMenuButton").setText("Patient "+this.region.chromosome);
 	//Ext.getCmp(this.id+"chromosomePanel").setTitle("Chromosome "+this.region.chromosome);
@@ -405,7 +405,7 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		id : this.id+'quickSearch',
 		displayField: 'displayId',
 		valueField: 'displayId',
-		emptyText:'Quick search: ',
+		emptyText:'Patient search: ',
 		//emptyText:'Quick search: gene, snp',
 		hideTrigger: true,
 		width:150,
@@ -452,17 +452,25 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		height:35,
 //		enableOverflow:true,//if the field is hidden getValue() reads "" because seems the hidden field is a different object
 		items : [
+		         searchCombo,
 		         {
+		        	 id : this.id+'GoToGeneButton',
+		        	 iconCls:'icon-find',
+		        	 handler : function() {
+		        		 _this._handleNavigationBar('GoToGene');
+		        	 }
+		         },
+		        /** {
 		        	 id: this.id + "chromosomeMenuButton",
 		        	 text : 'Patient',
 		        	 menu: this._getChromosomeMenu()			
-		         },
+		         },**/
                  //{
 		        	 //id:this.id+"speciesMenuButton",
 		        	 //text : this.speciesName,
 		        	 //menu: this._getSpeciesMenu()			
 		         //},
-		         '-',
+		         //'-',
 		         //{
 		        	 //id:this.id+"karyotypeButton",
 		        	 //text : 'Karyotype',
@@ -476,7 +484,7 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		        //		 }
 		        //	 }
 		        // },
-		         {
+		        /** {
 		        	 id:this.id+"ChromosomeToggleButton",
 		        	 text : 'Detailed Information Panel',
 		        	 //text : 'Chromosome',
@@ -489,7 +497,7 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		        			 Ext.getCmp(_this.id+"chromosomePanel").hide();
 		        		 }
 		        	 }
-		         },
+		         },**/
 		         //{
 		        	 //id:this.id+"RegionToggleButton",
 		        	 //text : 'Region',
@@ -503,7 +511,7 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		        	//	 }
 		        	// }
 		         //},
-		         '-',
+		         '->',
 //		         {
 //		        	 id:this.id+"left1posButton",
 //		        	 text : '<',
@@ -540,7 +548,7 @@ GenomeViewer.prototype._getNavigationBar = function() {
 //		        			 buffer : 300
 		        		 }
 		        	 }
-		         },'-',
+		         },'->',
 //		         {
 //		        	 id:this.id+"right1posButton",
 //		        	 text : '>',
@@ -572,14 +580,13 @@ GenomeViewer.prototype._getNavigationBar = function() {
 		        	 handler : function() {
 		        		 _this._handleNavigationBar('Go');
 		        	 }
-		         },'->',
+		         }
 //		         {
 //		        	 id : this.id+'searchLabel',
 //		        	 xtype : 'label',
 //		        	 text : 'Quick search:',
 //		        	 margins : '0 0 0 10'
 //		         },
-		         searchCombo,
 //		         {
 //		        	 id : this.id+'quickSearch',
 //		        	 xtype : 'textfield',
@@ -599,13 +606,7 @@ GenomeViewer.prototype._getNavigationBar = function() {
 //					     }
 //		        	 }
 //		         },
-		         {
-		        	 id : this.id+'GoToGeneButton',
-		        	 iconCls:'icon-find',
-		        	 handler : function() {
-		        		 _this._handleNavigationBar('GoToGene');
-		        	 }
-		         }]
+                 ]
 	});
 	return navToolbar;
 
@@ -906,7 +907,7 @@ GenomeViewer.prototype._drawRegionPanel = function() {
 		id:this.id+"regionPanel",
 		//style:'background:whitesmoke',
 		height : 150,
-		title:'Region overview',
+		title:'Patient overview',
 		border:true,
         hidden:!this.regionPanelHidden,
 		margin:'0 0 1 0',
