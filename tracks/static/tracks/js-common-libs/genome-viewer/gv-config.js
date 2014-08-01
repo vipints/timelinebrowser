@@ -22,6 +22,56 @@ FEATURE_CONFIG = {
 		//options:[
 		//]
 	},
+	samples:{
+		filters:[{
+			name:"samples_type",
+			text:"Samples Type",
+			values:["Fresh Frozen", "Direct", "FFPE"],
+			selection:"multi"
+		}]
+		//options:[
+		//]
+	},
+	mutations:{
+		filters:[{
+			name:"mutation_type",
+			text:"Mutation Type",
+			values:["IMPACT", "Whole genome"],
+			selection:"multi"
+		}]
+		//options:[
+		//]
+	},
+	reports:{
+		filters:[{
+			name:"reports_type",
+			text:"Reports Type",
+			values:["Diagnostic", "Medication", "Clinical notes"],
+			selection:"multi"
+		}]
+		//options:[
+		//]
+	},
+	labtest:{
+		filters:[{
+			name:"labtest_type",
+			text:"Lab Test Type",
+			values:["PSA", "HGB", "Phos"],
+			selection:"multi"
+		}]
+		//options:[
+		//]
+	},
+	treatment:{
+		filters:[{
+			name:"treatment_type",
+			text:"Treatment Type",
+			values:["Radiation", "Medical therapy"],
+			selection:"multi"
+		}]
+		//options:[
+		//]
+	},
 	bam:{
 		//filters:[{
 				//name:"view",

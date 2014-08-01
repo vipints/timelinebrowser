@@ -113,11 +113,16 @@ var TRACKS ={"group1":[
 			          {"category":"Core",
 					   "tracks":[
 //					          {"id":"Cytoband", "disabled":false, "checked":true},
-					          {"id":"Sequence", "disabled":false, "checked":true},
-					          {"id":"Gene/Transcript", "disabled":false, "checked":true},
-					          {"id":"ORD Name", "disabled":false, "checked":true},
-					          {"id":"ORD Type CD", "disabled":false, "checked":true},
-			                  {"id":"CpG islands", "disabled":false, "checked":false}
+//					          {"id":"Sequence", "disabled":false, "checked":true},
+//					          {"id":"Gene/Transcript", "disabled":false, "checked":true},
+//					          {"id":"ORD Name", "disabled":false, "checked":true},
+//					          {"id":"ORD Type CD", "disabled":false, "checked":true},
+//			                  {"id":"CpG islands", "disabled":false, "checked":false}
+                            {"id":"Specimens", "disabled":false, "checked":true},                                                                     
+                            {"id":"Mutations", "disabled":false, "checked":true},
+                            {"id":"Reports", "disabled":false, "checked":true},
+                            {"id":"Lab Tests", "disabled":false, "checked":true},
+                            {"id":"Treatments", "disabled":false, "checked":true}
 			                  ]
 					  },
 					  {"category":"Variation",

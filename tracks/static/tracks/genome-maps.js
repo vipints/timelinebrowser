@@ -23,7 +23,7 @@ function GenomeMaps(targetId, args) {
     var _this = this;
     this.id = "GenomeMaps" + Math.round(Math.random() * 10000);
     this.suiteId = 9;
-    this.title = "LifeTracker";
+    this.title = "PatientTracker";
     this.description = "Data visualization";
     this.wum = true;
     this.version = "alpha";
@@ -211,7 +211,7 @@ GenomeMaps.prototype.draw = function(){
 		this.headerWidget.setDescription(this.genomeViewer.speciesName);
 
 		this.genomeViewer.afterRender.addEventListener(function(sender,event){
-			Ext.getCmp(_this.genomeViewer.id+"versionLabel").setText('<span class="info">LifeTracker v '+_this.version+'</span>');
+			Ext.getCmp(_this.genomeViewer.id+"versionLabel").setText('<span class="info">PatientTracker v '+_this.version+'</span>');
 			_this._setOverviewTracks();
 			_this.genomeViewer.addSidePanelItems(_this.getSidePanelItems());
 			_this.genomeViewer.onSvgRemoveTrack.addEventListener(function(sender,trackId){
@@ -356,7 +356,7 @@ GenomeMaps.prototype.addTrack = function(trackType, trackTitle, objectid, host) 
 		
 		break;
 
-	case "ORD Name":
+/**	case "ORD Name":
 		var ordnameTrack = new TrackData(id,{
 			adapter: new CellBaseAdapter({
 				category: "genomic",
@@ -398,6 +398,141 @@ GenomeMaps.prototype.addTrack = function(trackType, trackTitle, objectid, host) 
 			})
 		});
 		this.genomeViewer.addTrack(ordtypeTrack,{
+			id:id,
+			type:trackType,
+			title:trackTitle,
+			featuresRender:"MultiFeatureRender",
+			histogramZoom:70,
+			labelZoom:80,
+			height:100,
+			visibleRange:{start:0,end:100},
+			featureTypes:FEATURE_TYPES
+		});
+		break;**/
+
+	case "Specimens":
+		var samplesTrack = new TrackData(id,{
+			adapter: new CellBaseAdapter({
+				category: "genomic",
+				subCategory: "region",
+				resource: "samples",
+				species: this.genomeViewer.species,
+				featureCache:{
+					gzip: true,
+					chunkSize:10000
+				},
+				featureConfig:FEATURE_CONFIG.samples
+			})
+		});
+		this.genomeViewer.addTrack(samplesTrack,{
+			id:id,
+			type:trackType,
+			title:trackTitle,
+			featuresRender:"MultiFeatureRender",
+			histogramZoom:70,
+			labelZoom:80,
+			height:100,
+			visibleRange:{start:0,end:100},
+			featureTypes:FEATURE_TYPES
+		});
+		break;
+
+	case "Mutations":
+		var mutationsTrack = new TrackData(id,{
+			adapter: new CellBaseAdapter({
+				category: "genomic",
+				subCategory: "region",
+				resource: "mutations",
+				species: this.genomeViewer.species,
+				featureCache:{
+					gzip: true,
+					chunkSize:10000
+				},
+				featureConfig:FEATURE_CONFIG.mutations
+			})
+		});
+		this.genomeViewer.addTrack(mutationsTrack,{
+			id:id,
+			type:trackType,
+			title:trackTitle,
+			featuresRender:"MultiFeatureRender",
+			histogramZoom:70,
+			labelZoom:80,
+			height:100,
+			visibleRange:{start:0,end:100},
+			featureTypes:FEATURE_TYPES
+		});
+		break;
+
+	case "Reports":
+		var reportsTrack = new TrackData(id,{
+			adapter: new CellBaseAdapter({
+				category: "genomic",
+				subCategory: "region",
+				resource: "reports",
+				species: this.genomeViewer.species,
+				featureCache:{
+					gzip: true,
+					chunkSize:10000
+				},
+				featureConfig:FEATURE_CONFIG.reports
+			})
+		});
+		this.genomeViewer.addTrack(reportsTrack,{
+			id:id,
+			type:trackType,
+			title:trackTitle,
+			featuresRender:"MultiFeatureRender",
+			histogramZoom:70,
+			labelZoom:80,
+			height:100,
+			visibleRange:{start:0,end:100},
+			featureTypes:FEATURE_TYPES
+		});
+		break;
+
+	case "Lab Tests":
+		var labtestTrack = new TrackData(id,{
+			adapter: new CellBaseAdapter({
+				category: "genomic",
+				subCategory: "region",
+				resource: "labtest",
+				species: this.genomeViewer.species,
+				featureCache:{
+					gzip: true,
+					chunkSize:10000
+				},
+				featureConfig:FEATURE_CONFIG.labtest
+			})
+		});
+		this.genomeViewer.addTrack(labtestTrack,{
+			id:id,
+			type:trackType,
+			title:trackTitle,
+			featuresRender:"MultiFeatureRender",
+			histogramZoom:70,
+			labelZoom:80,
+			height:100,
+			visibleRange:{start:0,end:100},
+			featureTypes:FEATURE_TYPES
+		});
+		break;
+
+	case "Treatments":
+		var treatmentTrack = new TrackData(id,{
+			adapter: new CellBaseAdapter({
+				category: "genomic",
+				subCategory: "region",
+				resource: "treatment",
+				species: this.genomeViewer.species,
+				featureCache:{
+					gzip: true,
+					chunkSize:10000
+				},
+				featureConfig:FEATURE_CONFIG.treatment
+			})
+		});
+		this.genomeViewer.addTrack(treatmentTrack,{
 			id:id,
 			type:trackType,
 			title:trackTitle,
