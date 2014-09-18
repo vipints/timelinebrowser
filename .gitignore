@@ -1,3 +1,2 @@
-timelinebrowser/*.pyc 
-tracks/*.pyc 
+*.pyc 
 *.swap
