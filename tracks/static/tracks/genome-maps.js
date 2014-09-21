@@ -121,6 +121,9 @@ GenomeMaps.prototype = {
             CELLBASE_HOST = url_cbhost;
         }
 
+        console.log(url_cbhost)
+        var DEFAULT_SPECIES = ''
+
         speciesObj = DEFAULT_SPECIES;
         var urlSpecies = url.param('species');
         if (typeof urlSpecies !== 'undefined' && urlSpecies != '') {
@@ -159,6 +162,8 @@ GenomeMaps.prototype = {
 //        region.url = url.param('region');
 
         //visualiaztion URL paramaters
+        CONFPANELHIDDEN = false;
+        REGIONPANELHIDDEN = true;
         var confPanelHidden = CONFPANELHIDDEN;
         if (url.param('confpanel') === 'false') {
             confPanelHidden = true;
@@ -304,8 +309,8 @@ GenomeMaps.prototype = {
 //            zoom: urlZoom,
 //            confPanelHidden: confPanelHidden,
 //            regionPanelHidden: regionPanelHidden,
-            availableSpecies: AVAILABLE_SPECIES,
-            popularSpecies: POPULAR_SPECIES,
+            //availableSpecies: AVAILABLE_SPECIES,
+            //popularSpecies: POPULAR_SPECIES,
             drawNavigationBar: false,
             drawStatusBar: false,
 //            height: this.height - this.headerWidget.height,
@@ -356,8 +361,8 @@ GenomeMaps.prototype = {
         genomeViewer.addOverviewTrack(gene);
 
 
-        genomeViewer.chromosomePanel.hide();
-        genomeViewer.karyotypePanel.hide();
+        //genomeViewer.chromosomePanel.hide();
+        //genomeViewer.karyotypePanel.hide();
 
 
         return genomeViewer;
@@ -422,7 +427,7 @@ GenomeMaps.prototype = {
             targetId: targetId,
             availableSpecies: this.genomeViewer.availableSpecies,
             species: this.genomeViewer.species,
-            popularSpecies: POPULAR_SPECIES,
+            //popularSpecies: POPULAR_SPECIES,
             region: this.genomeViewer.region,
             width: this.genomeViewer.width,
             svgCanvasWidthOffset: this.genomeViewer.trackPanelScrollWidth + this.genomeViewer.sidePanelWidth,
@@ -785,14 +790,14 @@ GenomeMaps.prototype._loadInitialPluginTrackConfig = function () {
 GenomeMaps.prototype.getSidePanelItems = function () {
     var _this = this;
 
-    var tracks = this._loadInitialTracksConfig({addTrack: true});
+    //var tracks = this._loadInitialTracksConfig({addTrack: true});
     var pluginTracks = this._loadInitialPluginTrackConfig();
 
     var activeSt = Ext.create('Ext.data.TreeStore', {
         fields: ['text', 'trackId', 'trackType'],
         root: {
             expanded: true,
-            children: tracks.activeTracks
+            //children: tracks.activeTracks
         }
     });
     this.activeSt = activeSt;
@@ -1240,8 +1245,8 @@ GenomeMaps.prototype.getSidePanelItems = function () {
         title: 'Add new tracks from CellBase and DAS',
         id: 'curated',
         nodes: [
-            { text: "CellBase", iconCls: "icon-box", id: 'cellbase', expanded: true, children: tracks.cellbaseTracks },
-            { text: "DAS", iconCls: "icon-box", id: 'das', expanded: true, children: this._loadInitialDasTrackConfig()}
+            //{ text: "CellBase", iconCls: "icon-box", id: 'cellbase', expanded: true, children: tracks.cellbaseTracks },
+            //{ text: "DAS", iconCls: "icon-box", id: 'das', expanded: true, children: this._loadInitialDasTrackConfig()}
         ]
     });
 

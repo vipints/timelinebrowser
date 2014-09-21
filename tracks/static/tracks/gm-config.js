@@ -13,11 +13,12 @@
  **/
 CELLBASE_VERSION = "v3";
 //CELLBASE_HOST = "http://ws.bioinfo.cipf.es/cellbase/rest";
-CELLBASE_HOST = "http://www.ebi.ac.uk/cellbase/webservices/rest";
-OPENCGA_HOST = "http://ws.bioinfo.cipf.es/opencga/rest";
-OPENCGA_LOCALHOST = "http://localhost:61976/opencga/rest";
+//CELLBASE_HOST = "http://www.ebi.ac.uk/cellbase/webservices/rest";
+//OPENCGA_HOST = "http://ws.bioinfo.cipf.es/opencga/rest";
+//OPENCGA_LOCALHOST = "http://localhost:61976/opencga/rest";
 
 /** Devel only: custom URL check **/
+/**
 if (
     window.location.host.indexOf("localhost") != -1 ||
         window.location.host.indexOf("fsalavert") != -1 ||
@@ -27,14 +28,10 @@ if (
         window.location.protocol === "file:"
     ) {
 
-//    CELLBASE_HOST = "http://ws-beta.bioinfo.cipf.es/cellbase/rest";
-    //CELLBASE_HOST = "http://rsanchez:8080/cellbase/rest";
-    //CELLBASE_HOST = "http://imedina:8080/cellbase/rest";
 
     OPENCGA_HOST = "http://ws-beta.bioinfo.cipf.es/opencga-staging/rest";
-//    OPENCGA_HOST = "http://fsalavert:8080/opencga/rest";
 }
-
+**/
 
 /*Panel settings*/
 CONFPANELHIDDEN = false;
