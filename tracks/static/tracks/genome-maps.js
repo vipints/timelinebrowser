@@ -107,11 +107,11 @@ GenomeMaps.prototype = {
             $.cookie("gm_settings", JSON.stringify(value), {expires: 365});
         });
 
-        this._config();
+        //this._config();
 
         this.rendered = true;
     },
-    _config: function () {
+    /*_config: function () {
 
         this.region = new Region();
 
@@ -172,8 +172,7 @@ GenomeMaps.prototype = {
         if (url.param('regionpanel') === 'false') {
             regionPanelHidden = false;
         }
-
-    },
+    },*/
     draw: function () {
         var _this = this;
         if (!this.rendered) {
@@ -206,19 +205,20 @@ GenomeMaps.prototype = {
         });
 
 
-        var text = _this.species.text + ' <span style="color: #8396b2">' + _this.species.assembly + '</span>';
+        //var text = _this.species.text + ' <span style="color: #8396b2">' + _this.species.assembly + '</span>';
+        var text = "Human"
         this.headerWidget.setDescription(text);
 
         //check login
-        if ($.cookie('bioinfo_sid') != null) {
+        /*if ($.cookie('bioinfo_sid') != null) {
             this.sessionInitiated();
         } else {
             this.sessionFinished();
-        }
+        }*/
 
 
-        if (this.checkExampleAccount) {
-            /*Load example account info*/
+        /*if (this.checkExampleAccount) {
+            //Load example account info
             OpencgaManager.getAccountInfo({
                 accountId: 'example',
                 sessionId: 'example',
@@ -227,7 +227,7 @@ GenomeMaps.prototype = {
                     _this._loadOpencgaTracks(data, 'example');
                 }
             });
-        }
+        }*/
         /**/
 
         /*****************************************/
@@ -301,7 +301,7 @@ GenomeMaps.prototype = {
             autoRender: true,
             sidePanel: false,
             region: this.region,
-            species: speciesObj,
+            //species: speciesObj,
             border: false,
             version: this.version,
             resizable: false,
@@ -328,7 +328,8 @@ GenomeMaps.prototype = {
         });
         genomeViewer.draw();
 
-        var renderer = new FeatureRenderer(FEATURE_TYPES.gene);
+        //var renderer = new FeatureRenderer(FEATURE_TYPES.gene);
+        var renderer = new FeatureRenderer();
         renderer.on({
             'feature:click': function (event) {
                 console.log(event)
@@ -345,7 +346,7 @@ GenomeMaps.prototype = {
 
             renderer: renderer,
 
-            dataAdapter: new CellBaseAdapter({
+            /*dataAdapter: new CellBaseAdapter({
                 category: "genomic",
                 subCategory: "region",
                 resource: "gene",
@@ -356,7 +357,7 @@ GenomeMaps.prototype = {
                 cacheConfig: {
                     chunkSize: 50000
                 }
-            })
+            })*/
         });
         genomeViewer.addOverviewTrack(gene);
 
@@ -775,6 +776,8 @@ GenomeMaps.prototype._updateLocalOpencgaTracks = function () {
 };
 
 GenomeMaps.prototype._loadInitialPluginTrackConfig = function () {
+    var GENOME_MAPS_REGISTERED_PLUGINS = {};
+    var GENOME_MAPS_AVAILABLE_PLUGINS = {};
     var plugins_cat = GENOME_MAPS_AVAILABLE_PLUGINS;
     var pluginChilds = [];
     for (var i = 0, leni = plugins_cat.length; i < leni; i++) {
