@@ -32,7 +32,7 @@ function GmStatusBar(args) {
     _.extend(this, args);
 
     //set new region object
-    this.region = new Region(this.region);
+    //this.region = new Region(this.region);
 
     this.rendered = false;
     if (this.autoRender) {
@@ -52,8 +52,8 @@ GmStatusBar.prototype = {
         $(this.targetDiv).append(this.div);
         $(this.div).css({height:'26px'});
 
-        var geneLegendPanel = new LegendPanel({title: 'Gene legend'});
-        var snpLegendPanel = new LegendPanel({title: 'SNP legend'});
+        //var geneLegendPanel = new LegendPanel({title: 'Gene legend'});
+        //var snpLegendPanel = new LegendPanel({title: 'SNP legend'});
 
         var taskbar = Ext.create('Ext.toolbar.Toolbar', {
 //            id: this.id + 'uxTaskbar',
@@ -82,8 +82,8 @@ GmStatusBar.prototype = {
                     xtype: 'tbtext',
                     width:100
                 },
-                geneLegendPanel.getButton(GENE_BIOTYPE_COLORS),
-                snpLegendPanel.getButton(SNP_BIOTYPE_COLORS),
+                //geneLegendPanel.getButton(GENE_BIOTYPE_COLORS),
+                //snpLegendPanel.getButton(SNP_BIOTYPE_COLORS),
                 {
                     id: this.id + 'version',
                     xtype: 'tbtext',

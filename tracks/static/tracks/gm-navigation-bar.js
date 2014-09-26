@@ -37,7 +37,7 @@ function GmNavigationBar(args) {
 
 
     //set new region object
-    this.region = new Region(this.region);
+    //this.region = new Region(this.region);
 
     this.currentChromosomeList = [];
 
