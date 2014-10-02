@@ -24,20 +24,19 @@ function GenomeMaps(args) {
     _.extend(this, Backbone.Events);
 
     var _this = this;
-    this.id = Utils.genId("GenomeMaps");
+    this.id = Utils.genId("PatientTracker");
 
     //set default args
     this.suiteId = 9;
-    this.title = 'Genome Maps';
-    this.description = "Genomic data visualization";
-    this.version = "3.1.7";
+    this.title = 'PatientTracker';
+    this.description = "Patient data visualization";
+    this.version = "0.0.1";
     this.border = true;
     this.trackIdCounter = 1;
     this.resizable = true;
     this.targetId;
     this.width;
     this.height;
-
 
     this.checkAccountFileIndexes = true;
     this.checkExampleAccount = true;
@@ -61,16 +60,17 @@ GenomeMaps.prototype = {
             console.log('targetId not found in DOM');
             return;
         }
-        console.log("Initializing GenomeMaps");
+        console.log("Initializing PatientTracker");
+
         this.targetDiv = $('#' + this.targetId)[0];
         this.div = $('<div id="genome-maps"></div>')[0];
         $(this.targetDiv).append(this.div);
 
         $(this.div).append('<div id="gm-header-widget"></div>');
         $(this.div).append('<div id="gm-genome-viewer"></div>');
-        $(this.div).append('<div id="gm-dummy" style="height:22px;background-color: #eee"></div>');
+        $(this.div).append('<div id="gm-dummy" style="height:25px;background-color: #eee"><span class="appName">PatientTracker</span></div>');
 //        $(this.genomeViewer.trackListPanel.div).css({
-//            'margin-bottom':'22px',
+//            'margin-bottom':'25px',
 //            'background':'gray'
 //        });
         this.width = ($(this.div).width());
@@ -107,11 +107,11 @@ GenomeMaps.prototype = {
             $.cookie("gm_settings", JSON.stringify(value), {expires: 365});
         });
 
-        //this._config();
+        this._config();
 
         this.rendered = true;
     },
-    /*_config: function () {
+    _config: function () {
 
         this.region = new Region();
 
@@ -121,7 +121,9 @@ GenomeMaps.prototype = {
             CELLBASE_HOST = url_cbhost;
         }
 
-        console.log(url_cbhost)
+        console.log(url_cbhost);
+        console.log("I am here now! ... ");
+
         var DEFAULT_SPECIES = ''
 
         speciesObj = DEFAULT_SPECIES;
@@ -172,7 +174,7 @@ GenomeMaps.prototype = {
         if (url.param('regionpanel') === 'false') {
             regionPanelHidden = false;
         }
-    },*/
+    },
     draw: function () {
         var _this = this;
         if (!this.rendered) {
