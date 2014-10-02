@@ -31,15 +31,15 @@ function GenomeMaps(args) {
     this.title = 'PatientTracker';
     this.description = "Patient data visualization";
     this.version = "0.0.1";
-    this.border = true;
+    this.border = false;
     this.trackIdCounter = 1;
     this.resizable = true;
     this.targetId;
     this.width;
     this.height;
 
-    this.checkAccountFileIndexes = true;
-    this.checkExampleAccount = true;
+    //this.checkAccountFileIndexes = true;
+    //this.checkExampleAccount = true;
 
     //set instantiation args, must be last
     _.extend(this, args);
@@ -69,10 +69,6 @@ GenomeMaps.prototype = {
         $(this.div).append('<div id="gm-header-widget"></div>');
         $(this.div).append('<div id="gm-genome-viewer"></div>');
         $(this.div).append('<div id="gm-dummy" style="height:25px;background-color: #eee"><span class="appName">PatientTracker</span></div>');
-//        $(this.genomeViewer.trackListPanel.div).css({
-//            'margin-bottom':'25px',
-//            'background':'gray'
-//        });
         this.width = ($(this.div).width());
 
         if (this.border) {
@@ -121,9 +117,6 @@ GenomeMaps.prototype = {
             CELLBASE_HOST = url_cbhost;
         }
 
-        console.log(url_cbhost);
-        console.log("I am here now! ... ");
-
         var DEFAULT_SPECIES = ''
 
         speciesObj = DEFAULT_SPECIES;
@@ -132,8 +125,13 @@ GenomeMaps.prototype = {
             speciesObj = Utils.getSpeciesFromAvailable(AVAILABLE_SPECIES, urlSpecies) || speciesObj;
         }
         this.species = speciesObj;
+
+        console.log("In BTWN ... ");
+        console.log(urlSpecies);
+        console.log("I am here now! ... ");
+
         this.region.load(speciesObj.region);
-        //console.log(speciesObj);
+
 
         var regionStr = url.param('region');
         if (regionStr != null) {
