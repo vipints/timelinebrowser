@@ -112,6 +112,11 @@ GenomeMaps.prototype = {
         this.region = new Region();
 
         var url = $.url();
+
+        //console.log("In BTWN ... ");
+        //console.log(url);
+        //console.log("I am here now! ... ");
+
         var url_cbhost = url.param('CELLBASE_HOST');
         if (url_cbhost != null) {
             CELLBASE_HOST = url_cbhost;
@@ -126,12 +131,7 @@ GenomeMaps.prototype = {
         }
         this.species = speciesObj;
 
-        console.log("In BTWN ... ");
-        console.log(urlSpecies);
-        console.log("I am here now! ... ");
-
         this.region.load(speciesObj.region);
-
 
         var regionStr = url.param('region');
         if (regionStr != null) {
