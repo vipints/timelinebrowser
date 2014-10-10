@@ -639,13 +639,13 @@ TrackListPanel.prototype = {
         var insertPosition = length - 1;
         this.tracksIndex[track.id] = insertPosition;
 
-
+        /*Commented by patienttracker 
         if (typeof track.dataAdapter.host === 'undefined') {
             track.dataAdapter.host = this.cellBaseHost;
         }
         if (typeof track.dataAdapter.version === 'undefined') {
             track.dataAdapter.version = this.cellBaseVersion;
-        }
+        }*/
         track.set('pixelBase', this.pixelBase);
         track.set('region', this.visualRegion);
         track.set('width', this.width);

@@ -112,20 +112,16 @@ GenomeMaps.prototype = {
         this.region = new Region();
 
         var url = $.url();
-
-        //console.log("In BTWN ... ");
-        //console.log(url);
-        //console.log("I am here now! ... ");
-
         var url_cbhost = url.param('CELLBASE_HOST');
         if (url_cbhost != null) {
             CELLBASE_HOST = url_cbhost;
         }
 
-        var DEFAULT_SPECIES = ''
+        //var DEFAULT_SPECIES = ''
 
         speciesObj = DEFAULT_SPECIES;
         var urlSpecies = url.param('species');
+        
         if (typeof urlSpecies !== 'undefined' && urlSpecies != '') {
             speciesObj = Utils.getSpeciesFromAvailable(AVAILABLE_SPECIES, urlSpecies) || speciesObj;
         }
@@ -176,18 +172,20 @@ GenomeMaps.prototype = {
     draw: function () {
         var _this = this;
         if (!this.rendered) {
-            console.info('Genome Maps is not rendered yet');
+            console.info('PatientTracker is not rendered yet');
             return;
         }
 
-        /* Header Widget */
-        this.headerWidget = this._createHeaderWidget('gm-header-widget');
+        /* Header Widget  login disabled on PatientTracker*/ 
+        //this.headerWidget = this._createHeaderWidget('gm-header-widget');
 
         /* Genome Viewer  */
         this.genomeViewer = this._createGenomeViewer('gm-genome-viewer');
+        console.log("Inside draw function");
 
         /* Navigation Bar */
         this.navigationBar = this._createNavigationBar(this.genomeViewer.getNavigationPanelId());
+
 
         /* Side Panel  */
         this.sidePanel = this._createSidePanel(this.genomeViewer.getRightSidePanelId());

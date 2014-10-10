@@ -38,9 +38,9 @@ function FeatureTrack(args) {
     //set instantiation args, must be last
     _.extend(this, args);
 
-
-    this.resource = this.dataAdapter.resource;
-    this.species = this.dataAdapter.species;
+    //commented by patienttracker 
+    //this.resource = this.dataAdapter.resource;
+    //this.species = this.dataAdapter.species;
 
     this.dataType = 'features';
 };

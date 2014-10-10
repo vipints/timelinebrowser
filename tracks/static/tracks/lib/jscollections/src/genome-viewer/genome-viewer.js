@@ -28,7 +28,8 @@ function GenomeViewer(args) {
 
     //set default args
     this.autoRender = true;
-    this.version = 'Powered by <a target="_blank" href="http://www.genomemaps.org/">Genome Maps</a>';
+    //this.version = 'Powered by <a target="_blank" href="http://www.genomemaps.org/">Genome Maps</a>';
+    this.version = '';
     this.target;
 
     this.width;
@@ -111,7 +112,7 @@ function GenomeViewer(args) {
 GenomeViewer.prototype = {
     render: function () {
         var _this = this;
-        console.log("Initializing Genome Viewer");
+        console.log("Initializing Viewer");
 
         //HTML skel
         this.div = document.createElement('div');
@@ -199,16 +200,15 @@ GenomeViewer.prototype = {
             this.navigationBar = this._createNavigationBar(this.navigationbarDiv);
         }
 
+        /*karyotype Panel patienttracker commented*/
+        //if (this.drawKaryotypePanel) {
+        //    this.karyotypePanel = this._drawKaryotypePanel(this.karyotypeDiv);
+        //}
 
-        /*karyotype Panel*/
-        if (this.drawKaryotypePanel) {
-            this.karyotypePanel = this._drawKaryotypePanel(this.karyotypeDiv);
-        }
-
-        /* Chromosome Panel */
-        if (this.drawChromosomePanel) {
-            this.chromosomePanel = this._drawChromosomePanel(this.chromosomeDiv);
-        }
+        /* Chromosome Panel patienttracker commented*/
+        //if (this.drawChromosomePanel) {
+        //    this.chromosomePanel = this._drawChromosomePanel(this.chromosomeDiv);
+        //}
 
         /* Region Panel, is a TrackListPanel Class */
         if (this.drawOverviewTrackListPanel) {
@@ -221,7 +221,6 @@ GenomeViewer.prototype = {
         if (this.drawStatusBar) {
             this.statusBar = this._createStatusBar(this.statusbarDiv);
         }
-
 
         this.on('region:change region:move', function (event) {
             if (event.sender != _this) {
@@ -261,7 +260,6 @@ GenomeViewer.prototype = {
         /****************************/
         /****************************/
 
-
         this.rendered = true;
     },
     draw: function () {
@@ -291,6 +289,7 @@ GenomeViewer.prototype = {
         }
 
         var chromosomes;
+        /* commented by patienttracker 
         if (typeof this.chromosomeList !== 'undefined') {
             chromosomes = saveChromosomes(this.chromosomeList);
         } else {
@@ -309,7 +308,8 @@ GenomeViewer.prototype = {
                     console.log('Could not get chromosome list');
                 }
             });
-        }
+        } */
+        chromosomes = this.species.chromosomes;
         return chromosomes;
     },
     /**/
