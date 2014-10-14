@@ -309,8 +309,10 @@ GenomeMaps.prototype = {
 //            regionPanelHidden: regionPanelHidden,
             //availableSpecies: AVAILABLE_SPECIES,
             //popularSpecies: POPULAR_SPECIES,
-            drawNavigationBar: false,
-            drawStatusBar: false,
+            //drawNavigationBar: false,
+            drawNavigationBar: true,
+            //drawStatusBar: false,
+            drawStatusBar: true,
 //            height: this.height - this.headerWidget.height,
 //            width: this.width-18,
             handlers: {
