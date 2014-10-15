@@ -181,11 +181,10 @@ GenomeMaps.prototype = {
 
         /* Genome Viewer  */
         this.genomeViewer = this._createGenomeViewer('gm-genome-viewer');
-        console.log("Inside draw function");
 
         /* Navigation Bar */
+        //disabled by PatientTracker
         this.navigationBar = this._createNavigationBar(this.genomeViewer.getNavigationPanelId());
-
 
         /* Side Panel  */
         this.sidePanel = this._createSidePanel(this.genomeViewer.getRightSidePanelId());
@@ -193,19 +192,20 @@ GenomeMaps.prototype = {
         /* Genome Viewer  */
         this.statusBar = this._createStatusBar('status');
 
-
         //TEST SCROLL BAR
-        var centerHeight = $(window).height() - ($(this.navigationBar.div).height() + $(this.statusBar.div).height() + this.headerWidget.height) - 7;
+        //disabled by PatientTracker
+        //var centerHeight = $(window).height() - ($(this.navigationBar.div).height() + $(this.statusBar.div).height() + this.headerWidget.height) - 7;
+        var centerHeight = $(window).height() - ($(this.navigationBar.div).height() + $(this.statusBar.div).height()) - 7;
         $(this.genomeViewer.centerPanelDiv).css({
 //            height: centerHeight,
 //            'overflow-y': 'scroll',
 //            'overflow-x': 'hidden',
         });
 
-
+        // disabled by PatientTracker
         //var text = _this.species.text + ' <span style="color: #8396b2">' + _this.species.assembly + '</span>';
         var text = "Human"
-        this.headerWidget.setDescription(text);
+        //this.headerWidget.setDescription(text);
 
         //check login
         /*if ($.cookie('bioinfo_sid') != null) {
@@ -328,7 +328,6 @@ GenomeMaps.prototype = {
         });
         genomeViewer.draw();
 
-        //var renderer = new FeatureRenderer(FEATURE_TYPES.gene);
         var renderer = new FeatureRenderer();
         renderer.on({
             'feature:click': function (event) {
@@ -359,8 +358,9 @@ GenomeMaps.prototype = {
                 }
             })*/
         });
-        genomeViewer.addOverviewTrack(gene);
 
+        // commented by patient tracker
+        //genomeViewer.addOverviewTrack(gene);
 
         //genomeViewer.chromosomePanel.hide();
         //genomeViewer.karyotypePanel.hide();
@@ -376,7 +376,8 @@ GenomeMaps.prototype = {
             var speciesCode = Utils.getSpeciesCode(this.species.text).substr(0, 3);
 
             CellBaseManager.get({
-                host: 'http://ws.bioinfo.cipf.es/cellbase/rest',
+                //host: 'http://ws.bioinfo.cipf.es/cellbase/rest',
+                host: 'https://www.ebi.ac.uk/cellbase/webservices/rest',
                 species: speciesCode,
                 version: 'latest',
                 category: 'feature',
