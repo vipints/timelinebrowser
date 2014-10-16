@@ -117,6 +117,7 @@ GenomeMaps.prototype = {
             CELLBASE_HOST = url_cbhost;
         }
 
+        //commented by PatientTracker
         //var DEFAULT_SPECIES = ''
 
         speciesObj = DEFAULT_SPECIES;
