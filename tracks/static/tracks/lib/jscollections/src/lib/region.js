@@ -97,4 +97,3 @@ Region.prototype = {
         return str;
     }
 };
-

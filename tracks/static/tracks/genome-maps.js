@@ -93,6 +93,7 @@ GenomeMaps.prototype = {
 
         //SAVE CONFIG IN COOKIE
         $(window).unload(function () {
+            console.log("trying to save in cookie");
             var value = {
                 species: {
                     name: _this.genomeViewer.speciesName,
@@ -108,7 +109,7 @@ GenomeMaps.prototype = {
         this.rendered = true;
     },
     _config: function () {
-
+        
         this.region = new Region();
 
         var url = $.url();
@@ -129,7 +130,8 @@ GenomeMaps.prototype = {
         this.species = speciesObj;
 
         this.region.load(speciesObj.region);
-
+        
+        /* commented by PatientTracker
         var regionStr = url.param('region');
         if (regionStr != null) {
             this.region.parse(regionStr);
@@ -148,6 +150,7 @@ GenomeMaps.prototype = {
         if (urlSnp != null && urlSnp != "") {
             this.region.load(this.getRegionByFeature(urlSnp, "snp"));
         }
+        */
 
         //	if($.cookie("gm_settings")){
         //		var species = JSON.parse($.cookie("gm_settings")).species;

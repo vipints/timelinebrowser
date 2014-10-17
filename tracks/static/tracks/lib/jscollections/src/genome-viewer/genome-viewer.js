@@ -20,6 +20,7 @@
  */
 
 function GenomeViewer(args) {
+
     // Using Underscore 'extend' function to extend and add Backbone Events
     _.extend(this, Backbone.Events);
 
@@ -28,7 +29,6 @@ function GenomeViewer(args) {
 
     //set default args
     this.autoRender = true;
-    //this.version = 'Powered by <a target="_blank" href="http://www.genomemaps.org/">Genome Maps</a>';
     this.version = '';
     this.target;
 
@@ -166,7 +166,6 @@ GenomeViewer.prototype = {
         /****************************/
         /****************************/
         /****************************/
-
 
         this.chromosomes = this.getChromosomes();
 

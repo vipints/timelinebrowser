@@ -18,7 +18,7 @@
 //OPENCGA_LOCALHOST = "http://localhost:61976/opencga/rest";
 
 /** Devel only: custom URL check **/
-/**
+/*
 if (
     window.location.host.indexOf("localhost") != -1 ||
         window.location.host.indexOf("fsalavert") != -1 ||
@@ -31,7 +31,7 @@ if (
 
     OPENCGA_HOST = "http://ws-beta.bioinfo.cipf.es/opencga-staging/rest";
 }
-**/
+*/
 
 /*Panel settings*/
 CONFPANELHIDDEN = false;
