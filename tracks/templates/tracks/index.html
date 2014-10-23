@@ -25,14 +25,14 @@
             });
         });
         </script>
-
     </head>
 
     <body>
     <div id="pt-header" style="height:25px;background-color: #eee">
         <span class="appName">PatientTracker</span>
         <form id="tfnewsearch" method="get" action="">
-            <input type="text" id="tfq2b" class="tftextinput2" name="q" size="21" maxlength="60" value="Quick search"><input type="submit" value=">" class="tfbutton2">
+            <input type="text" id="tfq2b" class="tftextinput" name="q" size="20" maxlength="60" placeholder="Quick search">
+            <input type="submit" value="&nbsp;" class="tfbutton">
         </form>
         <div class="tfclear"></div>
     </div>
@@ -41,7 +41,22 @@
         <div data-options="region:'south',split:false" style="height:25px;background-color: #eee"></div>
 
         <div data-options="region:'east',split:true" title="Description" style="width:250px;"></div>
-        <div data-options="region:'west',split:true" title="Configuration" style="width:200px;"></div>
+
+        <div data-options="region:'west',split:true" title="Configuration" style="width:200px;">
+            <div class="easyui-accordion" data-options="fit:true,border:false">
+            <div title="Diagnostics" style="padding:10px;">
+                Lab test <br>
+                Other 
+            </div>
+            <div title="Treatment" data-options="selected:true" style="padding:10px;">
+                Medication <br>
+                Other
+            </div>
+            <div title="Status" style="padding:10px">
+              sub track content
+            </div>
+            </div>
+        </div>
 
         <div data-options="region:'center',title:'Overview'">
         </div>
