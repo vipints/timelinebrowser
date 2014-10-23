@@ -5,36 +5,45 @@
         <title>Patient Maps Demo</title>
 
         {% load staticfiles %}
+
+        <!--style sheets--> 
         <link rel="stylesheet" type="text/css" href="{% static 'tracks/themes/gray/easyui.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'tracks/themes/icon.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'tracks/demo.css' %}">
+        <!--style sheets--> 
+
         <script type="text/javascript" src="{% static 'tracks/jquery.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'tracks/jquery.easyui.min.js' %}"></script>
+        
+        <!-- --> 
+        <script type="text/javascript">
+        $(function() {
+            $("#tfq2b").click(function() {
+                if ($("#tfq2b").val() == "Quick search"){
+                    $("#tfq2b").val(""); 
+                }
+            });
+        });
+        </script>
 
     </head>
 
     <body>
-    <!--<div style="margin:20px 0;"></div>-->
-    <div id="pt-header" style="height:25px;background-color: #eee"><span class="appName">PatientTracker</span></div>
-    <div class="easyui-layout" style="width:700px;height:350px;">
-        <div data-options="region:'north'" style="height:50px"></div>
-        <div data-options="region:'south',split:true" style="height:50px;"></div>
-        <div data-options="region:'east',split:true" title="East" style="width:100px;"></div>
-        <div data-options="region:'west',split:true" title="West" style="width:100px;"></div>
-        <div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
-            <table class="easyui-datagrid"
-                    data-options="url:'datagrid_data1.json',method:'get',border:false,singleSelect:true,fit:true,fitColumns:true">
-                <thead>
-                    <tr>
-                        <th data-options="field:'itemid'" width="80">Item ID</th>
-                        <th data-options="field:'productid'" width="100">Product ID</th>
-                        <th data-options="field:'listprice',align:'right'" width="80">List Price</th>
-                        <th data-options="field:'unitcost',align:'right'" width="80">Unit Cost</th>
-                        <th data-options="field:'attr1'" width="150">Attribute</th>
-                        <th data-options="field:'status',align:'center'" width="60">Status</th>
-                    </tr>
-                </thead>
-            </table>
+    <div id="pt-header" style="height:25px;background-color: #eee">
+        <span class="appName">PatientTracker</span>
+        <form id="tfnewsearch" method="get" action="">
+            <input type="text" id="tfq2b" class="tftextinput2" name="q" size="21" maxlength="60" value="Quick search"><input type="submit" value=">" class="tfbutton2">
+        </form>
+        <div class="tfclear"></div>
+    </div>
+
+    <div class="easyui-layout" style="height:350px;">
+        <div data-options="region:'south',split:false" style="height:25px;background-color: #eee"></div>
+
+        <div data-options="region:'east',split:true" title="Description" style="width:250px;"></div>
+        <div data-options="region:'west',split:true" title="Configuration" style="width:200px;"></div>
+
+        <div data-options="region:'center',title:'Overview'">
         </div>
     </div>
     </body>

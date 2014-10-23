@@ -19,3 +19,29 @@ h2 {
 .demo-tip{
 	display:none;
 }
+.appName {
+    font-family:Verdana;
+    font-weight:bold;
+    font-size:160%
+    text-decoration: none;
+    color: #596F8F;
+    font-size: 20px;
+    position:absolute;
+    text-shadow: 0 1px 0 white;
+}
+.tfbutton {
+        background-image: url('styles/img/find.png');
+        background-repeat: no-repeat;
+        margin: 0;
+        cursor: pointer;
+        border: none;
+}
+.tfclear{
+    clear:both;
+}
+#tfnewsearch{
+    float:right;
+}
+.tftextinput{
+        font-family: Verdana;
+}
