@@ -32,11 +32,22 @@
     <!--PatientTracker header--> 
     <div id="pt-header" style="height:25px;background-color: #eee">
         <span class="appName">PatientTracker</span>
-        <form id="tfnewsearch" method="get" action="">
+
+        <!--
+		<form id="tfnewsearch" method="get" action="">
             <input type="text" id="tfq2b" class="tftextinput" name="q" size="20" maxlength="60" placeholder="Quick search">
             <input type="submit" value="&nbsp;" class="tfbutton">
         </form>
         <div class="tfclear"></div>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'tracks/themes/bootstrap.min.css' %}">
+        <script type="text/javascript" src="{% static 'tracks/styles/jscollections/bootstrap.min.js' %}"></script>
+		<div class="col-md-4">
+  			<input class="form-control" type="search" size="20" maxlength="40" placeholder="Quick search"/>
+  			<span class="glyphicon glyphicon-search"></span>
+		</div>
+		--> 
+
     </div>
     <!--PatientTracker header--> 
 
