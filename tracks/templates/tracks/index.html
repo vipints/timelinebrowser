@@ -15,6 +15,7 @@
         <script type="text/javascript" src="{% static 'tracks/jquery/jquery.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'tracks/jquery/jquery.easyui.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'tracks/d3/d3.v3.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'tracks/src/patient_tracker.js' %}"></script>
         
         <!-- --> 
         <script type="text/javascript">
@@ -26,6 +27,28 @@
             });
         });
         </script>
+
+        <!--patient_tracker.js --> 
+		<script type="text/javascript">
+    		$(document).ready(function(){
+
+				var params = {};
+        		$.post("{% static 'tracks/tmp/dataset_1540879.json' %}", 
+            		params,
+            		function(data){                
+                		var timeData = prepareTimeLineData.prepare(data);
+                		if (timeData.length===0) return;
+
+                		var width = 1000;
+                		var timeline = clinicalTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
+                		var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
+                		$("#pt_overview_panel").show();
+            		}
+            		,"json"
+        		);
+			});
+        </script>
+
     </head>
 
     <body>
@@ -86,17 +109,18 @@
         <!--configuration panel-->
 
         <!--display/overview panel-->
-        <div data-options="region:'center',title:'Overview'">
-            <div class="easyui-layout" data-options="fit:true">
+        <div id="pt_overview_panel" data-options="region:'center',title:'Overview'">
+            <div id="timeline_container" class="easyui-layout" data-options="fit:true">
                 <!--TODO the hight should be fixed-->
-                <div data-options="region:'north',split:true,border:false" style="height:75px">
+                <!--<div id="pt_overview_panel" data-options="region:'north',split:true,border:false" style="height:75px">
 					<script type="text/javascript">
-						d3.select("body").append("p").text("New region definition!");
+						d3.select("").append("p").text("New region definition!");
 					</script>
-				</div>
+				</div>-->
             </div>
         </div>
         <!--display/overview panel-->
+
     </div>
     </body>
 </html>
