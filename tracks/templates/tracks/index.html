@@ -12,8 +12,9 @@
         <link rel="stylesheet" type="text/css" href="{% static 'tracks/demo.css' %}">
         <!--style sheets--> 
 
-        <script type="text/javascript" src="{% static 'tracks/jquery.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'tracks/jquery.easyui.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'tracks/jquery/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'tracks/jquery/jquery.easyui.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'tracks/d3/d3.v3.min.js' %}"></script>
         
         <!-- --> 
         <script type="text/javascript">
@@ -51,7 +52,7 @@
 	--> 
     <!--PatientTracker header--> 
 
-    <div class="easyui-layout" style="height:650px;">
+    <div class="easyui-layout" style="height:350px;">
         <!--header-->
 		<div data-options="region:'north'" style="height:30px;background-color: #eee">
         	<span class="appName">PatientTracker</span>
@@ -59,7 +60,9 @@
         <!--header-->
 
         <!--footer-->
-        <div data-options="region:'south',split:false" style="height:25px;background-color: #eee"></div>
+        <div data-options="region:'south'" style="height:25px;background-color: #eee">
+			<span class="version_info">version 0.0.1</span>
+		</div>
         <!--footer-->
 
         <div data-options="region:'east',split:true" title="Description" style="width:250px;"></div>
@@ -86,7 +89,11 @@
         <div data-options="region:'center',title:'Overview'">
             <div class="easyui-layout" data-options="fit:true">
                 <!--TODO the hight should be fixed-->
-                <div data-options="region:'north',split:true,border:false" style="height:75px"></div>
+                <div data-options="region:'north',split:true,border:false" style="height:75px">
+					<script type="text/javascript">
+						d3.select("body").append("p").text("New region definition!");
+					</script>
+				</div>
             </div>
         </div>
         <!--display/overview panel-->
