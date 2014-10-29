@@ -19,7 +19,7 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.css" type="text/css" rel="stylesheet" />
         <script src="http://cdn.jsdelivr.net/qtip2/2.2.0/jquery.qtip.js"></script>
         
-        <!-- --> 
+        <!-- 
         <script type="text/javascript">
         $(function() {
             $("#tfq2b").click(function() {
@@ -29,7 +29,43 @@
             });
         });
         </script>
+		-->
 
+		  <style type="text/css">
+			.axis path,
+			.axis line {
+			  fill: none;
+			  stroke: black;
+			  shape-rendering: crispEdges;
+			}
+
+			.axis text {
+			  font-family: sans-serif;
+			  font-size: 10px;
+			}
+
+			.timeline-label {
+			  font-family: sans-serif;
+			  font-size: 12px;
+			}
+			
+			#timeline_container .axis {
+			  transform: translate(0px,20px);
+			  -ms-transform: translate(0px,20px); /* IE 9 */
+			  -webkit-transform: translate(0px,20px); /* Safari and Chrome */
+			  -o-transform: translate(0px,20px); /* Opera */
+			  -moz-transform: translate(0px,20px); /* Firefox */
+			}
+
+			.coloredDiv {
+			  height:20px; width:20px; float:left;
+			}
+			
+			.qtip-wide {
+				max-width: 600px;
+			}
+		  </style>
+ 
         <!--patient_tracker.js --> 
 		<script type="text/javascript">
     		$(document).ready(function(){

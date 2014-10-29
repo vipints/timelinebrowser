@@ -18,8 +18,8 @@
         margin = {left: 150, right:30, top: 20, bottom:6},
         stacked = false,
         rotateTicks = false,
-        itemHeight = 20,
-        itemMargin = 5
+        itemHeight = 25,
+        itemMargin = 8
       ;
 
     function timeline (gParent) {
@@ -454,6 +454,7 @@
             timePointsData.forEach(function(timePointData){
                 times.push(formatATimePoint(timePointData));
             });
+			console.log(times);
             return times;
         }
         
@@ -512,41 +513,15 @@
             console.log(timelineDataByType);
 
             var ret = [];
-            
-            /*if ("SPECIMEN" in timelineDataByType) {
-                var specimens = filter(timelineDataByType["SPECIMEN"],"SpecimenType","TISSUE");
-                var eventGroups = separateEvents(sortByDate(specimens), "SpecimenPreservationType");
-                for (var type in eventGroups) {
-                    ret.push({
-                        label:type,
-                        display:"circle",
-                        class:"timeline-speciman",
-                        times:formatTimePoints(eventGroups[type])});
-                }
-            }*/
-            
-            /*
-            if ("STATUS" in timelineDataByType) {
-                ret.push({
-                    label:"Status",
-                    display:"circle",
-                    class:"timeline-status",
-                    times:formatTimePoints(timelineDataByType["STATUS"])});
-            }
-            */
-
-            //if ("Diagnostic" in timelineDataByType) {
-                //var eventGroup = sortByDate(timelineDataByType["Diagnostic"]);
                 
-                for (var eventCode in timelineDataByType) { 
-                    var eventGroup = sortByDate(timelineDataByType[eventCode]);
-                    ret.push({
-                        label:eventCode,
-                        display:"circle",
-                        class:"timeline-eventcode",
-                        times:combineTimePointsByTime(formatTimePoints(eventGroup))});
-                }
-            //}
+			for (var eventCode in timelineDataByType) { 
+				var eventGroup = sortByDate(timelineDataByType[eventCode]);
+				ret.push({
+					label:eventCode,
+					display:"circle",
+					class:"timeline-eventcode",
+					times:combineTimePointsByTime(formatTimePoints(eventGroup))});
+			}
 
             /*if ("Medication" in timelineDataByType) {
                 var eventGroup = sortByDate(timelineDataByType["Medication"]);
@@ -557,60 +532,6 @@
                     times:combineTimePointsByTime(formatTimePoints(eventGroup))});
             }*/
 
-            
-            
-            
-            
-            /*
-            if ("LAB_TEST" in timelineDataByType) {
-                var lab_tests = filter(timelineDataByType["LAB_TEST"],"TEST","PSA");
-                var eventGroups = separateEvents(sortByDate(lab_tests),"TEST");
-                for (var test in eventGroups) {
-                   ret.push({
-                        label:test,
-                        display:"circle",
-                        class:"timeline-lab_test",
-                        times:formatTimePoints(eventGroups[test])});
-                }
-            }
-            
-            if ("TREATMENT" in timelineDataByType) {
-                var agentStartDates = {};
-                timelineDataByType["TREATMENT"].forEach(function(treatment) {
-                    var agent = getTreatmentAgent(treatment);
-                    var startDate = treatment["startDate"];
-                    if (agent in agentStartDates) {
-                        if (agentStartDates[agent] > startDate) {
-                            agentStartDates[agent] = startDate;
-                        }
-                    } else {
-                        agentStartDates[agent] = startDate;
-                    }
-                });
-                
-                var treatments = timelineDataByType["TREATMENT"].sort(function(a,b){
-                    if (a["startDate"]===b["startDate"]) {
-                        var agentA = getTreatmentAgent(a);
-                        var agentB = getTreatmentAgent(b);
-                        var agentStartDateA = agentStartDates[agentA];
-                        var agentStartDateB = agentStartDates[agentB];
-                        if (agentStartDateA===agentStartDateB) {
-                            return agentA.localeCompare(agentB);
-                        }
-                        
-                        return agentStartDateA - agentStartDateB;
-                    }
-                    return a["startDate"]-b["startDate"];
-                });
-                var treatmentGroups = separateEventsByTime(treatments,true);
-                for (var i in treatmentGroups) {
-                    ret.push({
-                        label:i==0?"Treatment":"",
-                        display:"rect",
-                        class:"timeline-treatment",
-                        times:formatTimePoints(treatmentGroups[i])});
-                }
-            }*/
             console.log(ret);  
             return ret;
 //            return [
