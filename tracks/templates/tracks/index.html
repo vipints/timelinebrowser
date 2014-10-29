@@ -71,16 +71,16 @@
     		$(document).ready(function(){
 
 				var params = {};
-        		$.post("{% static 'tracks/tmp/dataset_1540879.json' %}", 
+        		$.post("{% static 'tracks/tmp/dataset_22228.json' %}", 
             		params,
             		function(data){                
                 		var timeData = prepareTimeLineData.prepare(data);
                 		if (timeData.length===0) return;
 
-                		var width = 650;
+                		var width = 1500;
                 		var timeline = clinicalTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
                 		var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
-                		$("#pt_overview_panel").show();
+                		$("#pt_display_panel").show();
             		}
             		,"json"
         		);
@@ -113,8 +113,8 @@
 	--> 
     <!--PatientTracker header--> 
 
-    <div class="easyui-layout" style="height:550px;">
-        <!--header-->
+    <div class="easyui-layout" style="height:950px;">
+        <!--header TODO: search box-->
 		<div data-options="region:'north'" style="height:30px;background-color: #eee">
         	<span class="appName">PatientTracker</span>
 		</div>
@@ -126,35 +126,46 @@
 		</div>
         <!--footer-->
 
-        <div data-options="region:'east',split:true" title="Description" style="width:250px;"></div>
+        <!--description panel-->
+        <div data-options="region:'east',split:true" title="Description" style="width:250px;">
+            <table style="width:100%" border="0" text-align="left">
+                <tr></tr>
+                <tr>
+                    <td>GUID</td>
+                    <td>4000107106068001</td>
+                </tr>
+            </table>
+        </div>
+        <!--description panel-->
 
         <!--configuration panel-->
         <div data-options="region:'west',split:true" title="Configuration" style="width:200px;">
             <div class="easyui-accordion" data-options="fit:true,border:false">
             <div title="Diagnostics" style="padding:10px;">
-                <input type="checkbox"> Lab test <br>
-                <input type="checkbox"> Other 
+                <input type="checkbox">Mammogram, Unilateral</br>
+                <input type="checkbox">Other </br> 
             </div>
-            <div title="Treatment" data-options="selected:true" style="padding:10px;">
-                <input type="checkbox">  Medication <br>
-                <input type="checkbox">  Other
+            <div title="Treatments" data-options="selected:true" style="padding:10px;">
+                <input type="checkbox">Breast Medicine Visit</br> 
+                <input type="checkbox">Comprehensive Metabolic Panel</br> 
+                <input type="checkbox">CBC with Automated Diff</br> 
+                <input type="checkbox">Bone Imaging, Whole Body</br> 
+                <input type="checkbox">Other</br> 
             </div>
-            <div title="Status" style="padding:10px">
-              sub track content
-            </div>
+                <div title="Status" style="padding:10px">
+                  sub track content
+                </div>
             </div>
         </div>
         <!--configuration panel-->
 
         <!--display/overview panel-->
-        <div id="pt_overview_panel" data-options="region:'center',title:'Overview'">
-            <div id="timeline_container" class="easyui-layout" data-options="fit:true">
-                <!--TODO the hight should be fixed-->
-                <!--<div id="pt_overview_panel" data-options="region:'north',split:true,border:false" style="height:75px">
-					<script type="text/javascript">
-						d3.select("").append("p").text("New region definition!");
-					</script>
-				</div>-->
+        <div id="pt_display_panel" data-options="region:'center',title:'Overview'">
+            <div id="timeline_container1" class="easyui-layout" data-options="fit:true">
+                <!--TODO the hight should be fixed, The region panel and display panel seperation-->
+                
+                <div id="timeline_container" data-options="region:'north',split:true,border:false" style="height:800px">
+				</div>
             </div>
         </div>
         <!--display/overview panel-->

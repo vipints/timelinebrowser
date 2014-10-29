@@ -15,7 +15,7 @@
         opacityPropertyName = null,
         beginning = 0,
         ending = 0,
-        margin = {left: 150, right:30, top: 20, bottom:6},
+        margin = {left: 250, right:30, top: 20, bottom:6},
         stacked = false,
         rotateTicks = false,
         itemHeight = 25,
@@ -88,7 +88,7 @@
       gParent.append('text')
           .attr("class", "timeline-label")
           .attr("transform", "translate("+ 0 +","+ (margin.top)+")")
-          .text("Months to diagnosis");
+          .text("Time since admission (Months)");
 
       // draw the chart
       g.each(function(d, i) {
@@ -454,7 +454,6 @@
             timePointsData.forEach(function(timePointData){
                 times.push(formatATimePoint(timePointData));
             });
-			console.log(times);
             return times;
         }
         
@@ -510,8 +509,6 @@
                 timelineDataByType[type].push(data);
             });
             
-            console.log(timelineDataByType);
-
             var ret = [];
                 
 			for (var eventCode in timelineDataByType) { 
@@ -532,7 +529,6 @@
                     times:combineTimePointsByTime(formatTimePoints(eventGroup))});
             }*/
 
-            console.log(ret);  
             return ret;
 //            return [
 //                    {label:"Diagnostics", display:"circle", times: [{"starting_time": 0, "tooltip":"First diagonosis"},{"starting_time": 200}, {"starting_time": 500}]},
