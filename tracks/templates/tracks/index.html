@@ -5,7 +5,6 @@
         <title>Patient Maps Demo</title>
 
         {% load staticfiles %}
-
         <!--style sheets--> 
         <link rel="stylesheet" type="text/css" href="{% static 'tracks/themes/gray/easyui.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'tracks/themes/icon.css' %}">
@@ -16,6 +15,9 @@
         <script type="text/javascript" src="{% static 'tracks/jquery/jquery.easyui.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'tracks/d3/d3.v3.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'tracks/src/patient_tracker.js' %}"></script>
+
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.css" type="text/css" rel="stylesheet" />
+        <script src="http://cdn.jsdelivr.net/qtip2/2.2.0/jquery.qtip.js"></script>
         
         <!-- --> 
         <script type="text/javascript">
@@ -39,7 +41,7 @@
                 		var timeData = prepareTimeLineData.prepare(data);
                 		if (timeData.length===0) return;
 
-                		var width = 1000;
+                		var width = 650;
                 		var timeline = clinicalTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
                 		var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
                 		$("#pt_overview_panel").show();
@@ -75,7 +77,7 @@
 	--> 
     <!--PatientTracker header--> 
 
-    <div class="easyui-layout" style="height:350px;">
+    <div class="easyui-layout" style="height:550px;">
         <!--header-->
 		<div data-options="region:'north'" style="height:30px;background-color: #eee">
         	<span class="appName">PatientTracker</span>
