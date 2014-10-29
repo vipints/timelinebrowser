@@ -504,14 +504,16 @@
             var timelineDataByType = {};
             
             timelineData.forEach(function(data) {
-                var type = data["eventType"];
+                var type = data["eventData"];
                 if (!(type in timelineDataByType)) timelineDataByType[type] = [];
                 timelineDataByType[type].push(data);
             });
             
+            console.log(timelineDataByType);
+
             var ret = [];
             
-            if ("SPECIMEN" in timelineDataByType) {
+            /*if ("SPECIMEN" in timelineDataByType) {
                 var specimens = filter(timelineDataByType["SPECIMEN"],"SpecimenType","TISSUE");
                 var eventGroups = separateEvents(sortByDate(specimens), "SpecimenPreservationType");
                 for (var type in eventGroups) {
@@ -521,8 +523,9 @@
                         class:"timeline-speciman",
                         times:formatTimePoints(eventGroups[type])});
                 }
-            }
+            }*/
             
+            /*
             if ("STATUS" in timelineDataByType) {
                 ret.push({
                     label:"Status",
@@ -530,16 +533,35 @@
                     class:"timeline-status",
                     times:formatTimePoints(timelineDataByType["STATUS"])});
             }
-            
-            if ("DIAGNOSTIC" in timelineDataByType) {
-                var eventGroup = sortByDate(timelineDataByType["DIAGNOSTIC"],"DIAGNOSTIC_TYPE");
+            */
+
+            //if ("Diagnostic" in timelineDataByType) {
+                //var eventGroup = sortByDate(timelineDataByType["Diagnostic"]);
+                
+                for (var eventCode in timelineDataByType) { 
+                    var eventGroup = sortByDate(timelineDataByType[eventCode]);
+                    ret.push({
+                        label:eventCode,
+                        display:"circle",
+                        class:"timeline-eventcode",
+                        times:combineTimePointsByTime(formatTimePoints(eventGroup))});
+                }
+            //}
+
+            /*if ("Medication" in timelineDataByType) {
+                var eventGroup = sortByDate(timelineDataByType["Medication"]);
                 ret.push({
-                    label:"Diagnostics",
+                    label:"Medication",
                     display:"circle",
-                    class:"timeline-diagnostic",
+                    class:"timeline-medication",
                     times:combineTimePointsByTime(formatTimePoints(eventGroup))});
-            }
+            }*/
+
             
+            
+            
+            
+            /*
             if ("LAB_TEST" in timelineDataByType) {
                 var lab_tests = filter(timelineDataByType["LAB_TEST"],"TEST","PSA");
                 var eventGroups = separateEvents(sortByDate(lab_tests),"TEST");
@@ -588,8 +610,8 @@
                         class:"timeline-treatment",
                         times:formatTimePoints(treatmentGroups[i])});
                 }
-            }
-            
+            }*/
+            console.log(ret);  
             return ret;
 //            return [
 //                    {label:"Diagnostics", display:"circle", times: [{"starting_time": 0, "tooltip":"First diagonosis"},{"starting_time": 200}, {"starting_time": 500}]},
