@@ -87,6 +87,27 @@
 			});
         </script>
 
+        <!--setting the autoheight--> 
+        <script type="text/javascript">
+            $(function(){
+                $('#pt_layout').layout();
+                setHeight();
+            });
+            
+            function setHeight(){
+                var c = $('#pt_layout');
+                var p = c.layout('panel','center');    // get the center panel
+                var oldHeight = p.panel('panel').outerHeight();
+                p.panel('resize', {height:'auto'});
+}
+            //var newHeight = p.panel('panel').outerHeight();
+            //c.layout('resize',{
+            //    height: (c.height() + newHeight - oldHeight)
+            //});
+        }            
+        </script>
+
+
     </head>
 
     <body>
@@ -113,7 +134,7 @@
 	--> 
     <!--PatientTracker header--> 
 
-    <div class="easyui-layout" style="height:950px;">
+    <div class="easyui-layout" style="height:750px;" id="pt_layout">
         <!--header TODO: search box-->
 		<div data-options="region:'north'" style="height:30px;background-color: #eee">
         	<span class="appName">PatientTracker</span>
