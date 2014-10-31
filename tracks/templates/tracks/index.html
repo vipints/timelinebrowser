@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Patient Maps Demo</title>
+        <title>Patient Tracks Demo</title>
 
         {% load staticfiles %}
         <!--style sheets--> 
@@ -31,7 +31,7 @@
         </script>
 		-->
 
-		  <style type="text/css">
+		<style type="text/css">
 			.axis path,
 			.axis line {
 			  fill: none;
@@ -64,7 +64,7 @@
 			.qtip-wide {
 				max-width: 600px;
 			}
-		  </style>
+		</style>
  
         <!--patient_tracker.js --> 
 		<script type="text/javascript">
@@ -87,54 +87,27 @@
 			});
         </script>
 
-        <!--setting the autoheight--> 
-        <script type="text/javascript">
-            $(function(){
-                $('#pt_layout').layout();
-                setHeight();
-            });
-            
-            function setHeight(){
-                var c = $('#pt_layout');
-                var p = c.layout('panel','center');    // get the center panel
-                var oldHeight = p.panel('panel').outerHeight();
-                p.panel('resize', {height:'auto'});
-}
-            //var newHeight = p.panel('panel').outerHeight();
-            //c.layout('resize',{
-            //    height: (c.height() + newHeight - oldHeight)
-            //});
-        }            
-        </script>
-
-
     </head>
 
-    <body>
+    <body class="easyui-layout">
     
-    <!--PatientTracker header--> 
-    <!--
-    <div id="pt-header" style="height:25px;background-color: #eee">
-        <span class="appName">PatientTracker</span>
+        <!--PatientTracker header--> 
+        <!--
+            <form id="tfnewsearch" method="get" action="">
+                <input type="text" id="tfq2b" class="tftextinput" name="q" size="20" maxlength="60" placeholder="Quick search">
+                <input type="submit" value="&nbsp;" class="tfbutton">
+            </form>
+            <div class="tfclear"></div>
 
-		<form id="tfnewsearch" method="get" action="">
-            <input type="text" id="tfq2b" class="tftextinput" name="q" size="20" maxlength="60" placeholder="Quick search">
-            <input type="submit" value="&nbsp;" class="tfbutton">
-        </form>
-        <div class="tfclear"></div>
+            <link rel="stylesheet" type="text/css" href="{% static 'tracks/themes/bootstrap.min.css' %}">
+            <script type="text/javascript" src="{% static 'tracks/styles/jscollections/bootstrap.min.js' %}"></script>
+            <div class="col-md-4">
+                <input class="form-control" type="search" size="20" maxlength="40" placeholder="Quick search"/>
+                <span class="glyphicon glyphicon-search"></span>
+            </div>
+        --> 
+        <!--PatientTracker header--> 
 
-        <link rel="stylesheet" type="text/css" href="{% static 'tracks/themes/bootstrap.min.css' %}">
-        <script type="text/javascript" src="{% static 'tracks/styles/jscollections/bootstrap.min.js' %}"></script>
-		<div class="col-md-4">
-  			<input class="form-control" type="search" size="20" maxlength="40" placeholder="Quick search"/>
-  			<span class="glyphicon glyphicon-search"></span>
-		</div>
-
-    </div>
-	--> 
-    <!--PatientTracker header--> 
-
-    <div class="easyui-layout" style="height:750px;" id="pt_layout">
         <!--header TODO: search box-->
 		<div data-options="region:'north'" style="height:30px;background-color: #eee">
         	<span class="appName">PatientTracker</span>
@@ -184,13 +157,11 @@
         <div id="pt_display_panel" data-options="region:'center',title:'Overview'">
             <div id="timeline_container1" class="easyui-layout" data-options="fit:true">
                 <!--TODO the hight should be fixed, The region panel and display panel seperation-->
-                
                 <div id="timeline_container" data-options="region:'north',split:true,border:false" style="height:800px">
 				</div>
             </div>
         </div>
         <!--display/overview panel-->
 
-    </div>
     </body>
 </html>
