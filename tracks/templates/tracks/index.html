@@ -155,10 +155,14 @@
 
         <!--display/overview panel-->
         <div id="pt_display_panel" data-options="region:'center',title:'Overview'">
-            <div id="timeline_container1" class="easyui-layout" data-options="fit:true">
-                <!--TODO the hight should be fixed, The region panel and display panel seperation-->
-                <div id="timeline_container" data-options="region:'north',split:true,border:false" style="height:800px">
-				</div>
+            <div id="timeline_display_panel" class="easyui-layout" data-options="fit:true">
+                <!--The region panel-->
+                <div id="timeline_overview_display" data-options="region:'north',split:true,border:false" style="height:100px"></div>
+                <!--The region panel-->
+
+                <!--The display panel-->
+                <div id="timeline_container" data-options="region:'center',border:false"></div>
+                <!--The display panel-->
             </div>
         </div>
         <!--display/overview panel-->
