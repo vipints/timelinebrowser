@@ -1,6 +1,6 @@
 (function() {
   
-  clinicalTimeline = function() {
+  patientTimeline = function() {
     var orient = "top",
         daysPerMonth = 365.242199/12,
         width = null,
