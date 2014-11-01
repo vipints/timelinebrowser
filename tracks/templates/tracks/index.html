@@ -77,8 +77,9 @@
                 		var timeData = prepareTimeLineData.prepare(data);
                 		if (timeData.length===0) return;
 
+                        //This width has to be set automatically
                 		var width = 1500;
-                		var timeline = clinicalTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
+                		var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
                 		var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
                 		$("#pt_display_panel").show();
             		}
