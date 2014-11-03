@@ -4,5 +4,5 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the Similarity Search index.")
-    #return render(request, 'tracks/index.html')
+    #return HttpResponse("Hello, world. You're at the Similarity Search index.")
+    return render(request, 'search/index.html')
