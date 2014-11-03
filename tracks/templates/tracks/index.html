@@ -71,7 +71,7 @@
     		$(document).ready(function(){
 
 				var params = {};
-        		$.post("{% static 'tracks/tmp/dataset_22228.json' %}", 
+        		$.post("{% static 'tracks/tmp/dataset_17.json' %}", 
             		params,
             		function(data){                
                 		var timeData = prepareTimeLineData.prepare(data);
@@ -112,6 +112,15 @@
         <!--header TODO: search box-->
 		<div data-options="region:'north'" style="height:30px;background-color: #eee">
         	<span class="appName">PatientTracker</span>
+            <div align="right">
+                <input class="easyui-searchbox" data-options="prompt:'Quick Search: Patient ID',searcher:doSearch" style="width:250px"></input>
+                <!-- TODO searchbox with correct form submission to fetch the correct patient record--> 
+                <script>
+                    function doSearch(value){
+                        alert('You input: ' + value);
+                    }
+                </script>
+            </div>
 		</div>
         <!--header-->
 
