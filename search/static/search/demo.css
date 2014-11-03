@@ -1,0 +1,44 @@
+*{
+	font-size:12px;
+}
+body {
+    font-family:verdana,helvetica,arial,sans-serif;
+    padding:20px;
+    font-size:12px;
+    margin:0;
+}
+h2 {
+    font-size:18px;
+    font-weight:bold;
+    margin:0;
+    margin-bottom:15px;
+}
+.demo-info{
+	padding:0 0 12px 0;
+}
+.demo-tip{
+	display:none;
+}
+.appName {
+    font-family:Verdana;
+    font-weight:bold;
+    font-size:160%
+    text-decoration: none;
+    color: #596F8F;
+    font-size: 20px;
+    position:absolute;
+    text-shadow: 0 1px 0 white;
+}
+.version_info {
+    font-family:Verdana;
+    color: #596F8F;
+    position:absolute;
+	bottom: 0;
+	right: 0;
+}
+#tfnewsearch{
+    float:right;
+}
+.tftextinput{
+        font-family: Verdana;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Similarity Search Demo</title>
+
+        {% load staticfiles %}
+        <!--style sheets--> 
+        <link rel="stylesheet" type="text/css" href="{% static 'search/themes/gray/easyui.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'search/themes/icon.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'search/demo.css' %}">
+        <!--style sheets--> 
+
+        <script type="text/javascript" src="{% static 'search/jquery/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'search/jquery/jquery.easyui.min.js' %}"></script>
+        
+    </head>
+
+    <body class="easyui-layout">
+
+        <!--header-->
+        <div data-options="region:'north'" style="height:30px;background-color: #eee">
+            <span class="appName">Similarity Search</span>
+        </div>
+        <!--header-->
+        <div style="margin:40px 0;"></div>
+
+        <!--footer-->
+        <div data-options="region:'south'" style="height:25px;background-color: #eee">
+            <span class="version_info">version 0.0.1</span>
+        </div>
+        <!--footer-->
+
+        <div style="height:150px" align="center">
+            <input class="easyui-searchbox" data-options="prompt:'Quick Search',menu:'#mm',searcher:doSearch" style="width:300px;height:30px;"></input>
+            <div id="mm">      
+                <div data-options="name:'words'">Similar Words</div>
+                <div data-options="name:'text'">Similar Text</div>
+                <div data-options="name:'document'">Similar Document</div>
+                <div data-options="name:'patient'">Similar Patient</div>
+            </div>
+            <script>
+                function doSearch(value,name){
+                    alert('You input: ' + value+'('+name+')');
+                }
+            </script>
+        </div>
+        <div>
+            <p>This Panel Content will be based on the the query search. Use the dropdown button to see the different option to search.</p>
+        </div>
+
+    </body>
+
+</html>
