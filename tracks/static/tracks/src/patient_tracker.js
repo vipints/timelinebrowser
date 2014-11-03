@@ -8,7 +8,7 @@
         tickFormat = { format: d3.time.format("%I %p"), 
           tickTime: d3.time.hours, 
           tickNumber: 1, 
-          tickSize: 6 },
+          tickSize: 1 },
         nColors = 20;
         colorCycle = d3.scale.category20().domain(d3.range(0,nColors)),
         colorPropertyName = null,
@@ -62,7 +62,9 @@
 
         beginning = minTime;
         ending = maxTime;
-        
+        console.log(beginning);
+        console.log(ending);
+
         setTickFormat();
 
       var scaleFactor = (1/(ending - beginning)) * (width - margin.left - margin.right);
@@ -185,13 +187,13 @@
       function setTickFormat() {
           var tickValues = [];
           if (beginning<0) {
-              for (var i=-1; i*6*daysPerMonth>=beginning; i++) {
-                  tickValues.push(i*6*daysPerMonth);
+              for (var i=-1; i*1*daysPerMonth>=beginning; i++) {
+                  tickValues.push(i*1*daysPerMonth);
               }
           }
-          
-          for (var i=0; i*6*daysPerMonth<=ending; i++) {
-              tickValues.push(i*6*daysPerMonth);
+          // time tickform to each month 
+          for (var i=0; i*1*daysPerMonth<=ending; i++) {
+              tickValues.push(i*1*daysPerMonth);
           }
           
           tickFormat = {
@@ -345,8 +347,11 @@
         function getStartStopDates(timePointData) {
             var startDate = timePointData["startDate"];
             var stopDate = timePointData["stopDate"];
+            //TODO handling events spanning in two months
+            var eventMonth = timePointData["eventMon"];
+            var eventYear = timePointData["eventYear"];
             if (checkNullOrUndefined(stopDate)) stopDate = startDate;
-            return [startDate, stopDate];
+            return [startDate, stopDate, eventMonth, eventYear];
         }
         
         function getTreatmentAgent(treatment) {
@@ -423,14 +428,16 @@
         
         function formatATimePoint(timePointData) {
             var dates = getStartStopDates(timePointData);
-            
+
             var tooltip = [];
-            tooltip.push("<td>date</td><td>"+dates[0]+(dates[1]===dates[0]?"":" - "+dates[1])+"</td>");
+            tooltip.push("<td>date</td><td>"+dates[0]+", "+dates[2]+", "+dates[3]+(dates[1]===dates[0]?"":" - "+dates[1] + ", "+dates[2] +", "+dates[3])+"</td>");
+
             if ("eventData" in timePointData) {
                 var eventData = timePointData["eventData"];
-                for (var key in eventData) {
-                    tooltip.push("<td>"+key+"</td><td>"+eventData[key]+"</td>");
-                }
+                tooltip.push("<td>key</td><td>"+eventData+"</td>");
+                //for (var key in eventData) {
+                //    tooltip.push("<td>"+key+"</td><td>"+eventData[key]+"</td>");
+                //}
             }
             
             var ret = {
@@ -454,6 +461,7 @@
             timePointsData.forEach(function(timePointData){
                 times.push(formatATimePoint(timePointData));
             });
+            console.log(times);
             return times;
         }
         
@@ -508,7 +516,7 @@
                 if (!(type in timelineDataByType)) timelineDataByType[type] = [];
                 timelineDataByType[type].push(data);
             });
-            
+
             var ret = [];
                 
 			for (var eventCode in timelineDataByType) { 
