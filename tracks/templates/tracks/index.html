@@ -78,7 +78,7 @@
                 		if (timeData.length===0) return;
 
                         //This width has to be set automatically
-                		var width = 1500;
+                		var width = 800;
                 		var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
                 		var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
                 		$("#pt_display_panel").show();
@@ -98,14 +98,6 @@
                 <input type="text" id="tfq2b" class="tftextinput" name="q" size="20" maxlength="60" placeholder="Quick search">
                 <input type="submit" value="&nbsp;" class="tfbutton">
             </form>
-            <div class="tfclear"></div>
-
-            <link rel="stylesheet" type="text/css" href="{% static 'tracks/themes/bootstrap.min.css' %}">
-            <script type="text/javascript" src="{% static 'tracks/styles/jscollections/bootstrap.min.js' %}"></script>
-            <div class="col-md-4">
-                <input class="form-control" type="search" size="20" maxlength="40" placeholder="Quick search"/>
-                <span class="glyphicon glyphicon-search"></span>
-            </div>
         --> 
         <!--PatientTracker header--> 
 
@@ -149,8 +141,8 @@
                 <input type="checkbox">Mammogram, Unilateral</br>
                 <input type="checkbox">Other </br> 
             </div>
-            <div title="Treatments" data-options="selected:true" style="padding:10px;">
-                <input type="checkbox">Breast Medicine Visit</br> 
+            <div title="Treatments" id="treatment_tag" data-options="selected:true" style="padding:10px;">
+                <input id="trtrack1" type="checkbox">Breast Medicine Visit</br> 
                 <input type="checkbox">Comprehensive Metabolic Panel</br> 
                 <input type="checkbox">CBC with Automated Diff</br> 
                 <input type="checkbox">Bone Imaging, Whole Body</br> 
