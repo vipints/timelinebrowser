@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Similarity Search Demo</title>
+        <title>ClinSim Search Demo</title>
 
         {% load staticfiles %}
         <!--style sheets--> 
@@ -20,7 +20,7 @@
 
         <!--header-->
         <div data-options="region:'north'" style="height:30px;background-color: #eee">
-            <span class="appName">Similarity Search</span>
+            <span class="appName">ClinSim Search</span>
         </div>
         <!--header-->
         <div style="margin:40px 0;"></div>
@@ -30,9 +30,12 @@
             <span class="version_info">version 0.0.1</span>
         </div>
         <!--footer-->
-
-        <div style="height:150px" align="center">
-            <input class="easyui-searchbox" data-options="prompt:'Quick Search',menu:'#mm',searcher:doSearch" style="width:300px;height:30px;"></input>
+    
+        <!--search box-->
+        <div style="height:100px" align="center">
+            <!--<form id="tfnewsearch" method="get" action="">
+            </form>-->
+            <input class="easyui-searchbox" data-options="prompt:'Quick Search',menu:'#mm',searcher:doSearch" style="width:400px;height:30px;"></input>
             <div id="mm">      
                 <div data-options="name:'words'">Similar Words</div>
                 <div data-options="name:'text'">Similar Text</div>
@@ -41,14 +44,26 @@
             </div>
             <script>
                 function doSearch(value,name){
-                    alert('You input: ' + value+'('+name+')');
+                    //alert('You input: ' + value+'('+name+')');
+
+                    $.ajax({
+                      type: "POST",
+                      url: "python.py",
+                      data: { type: name, query: value}
+                    })
+                      .done(function( html ) {
+                        $( "#results" ).append( html );
+                      });
                 }
             </script>
         </div>
-        <div>
-            <p>This Panel Content will be based on the the query search. Use the dropdown button to see the different option to search.</p>
+        <!--search box-->
+
+        <!--help message-->
+        <div align="center">
+            <p>Tips: Use the dropdown button to select the search category.</p>
         </div>
+        <!--help message-->
 
     </body>
-
 </html>
