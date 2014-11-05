@@ -14,7 +14,7 @@ def pretty(s):
         if i==0:
             s[i]=str.upper(s[i])
 
-    return str(s)
+    return ''.join(s)
 
 def init_rec():
     
