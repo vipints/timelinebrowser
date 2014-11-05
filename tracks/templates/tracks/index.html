@@ -72,23 +72,14 @@
 
                 
 				var params = {};
-<<<<<<< HEAD
-
-        		$.post("{% static 'tracks/tmp/dataset_1000.json' %}", 
-=======
         		$.post("{% static 'tracks/tmp/dataset_887695.json' %}", 
->>>>>>> c7262a03bf6d3548836e16659976e9709138c684
             		params,
             		function(data){                
                 		var timeData = prepareTimeLineData.prepare(data);
                 		if (timeData.length===0) return;
 
                         //This width has to be set automatically
-<<<<<<< HEAD
-                		var width = 3500;
-=======
                 		var width = 1600;
->>>>>>> c7262a03bf6d3548836e16659976e9709138c684
                 		var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
                 		var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
                 		$("#pt_display_panel").show();
@@ -121,12 +112,7 @@
 
         <!--header TODO: search box-->
 		<div data-options="region:'north'" style="height:30px;background-color: #eee">
-<<<<<<< HEAD
-
-        	<span class="appName">PatientTracker</span>
-=======
         	<span class="appName">Patient Visualizer</span>
->>>>>>> c7262a03bf6d3548836e16659976e9709138c684
             <div align="right">
 
                 <!--This is not a good way, don't allow to read the content of directory, security failure-->
