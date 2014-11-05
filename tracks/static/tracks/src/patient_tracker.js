@@ -119,7 +119,7 @@
               return (d.ending_time - d.starting_time) * scaleFactor;
             })
             .attr("r", itemHeight/2)
-            .attr("height", 3)
+            .attr("height", 4)
             .attr("fill", function(d, i){ 
               if( colorPropertyName ){ 
                   if (d[colorPropertyName]&&d[colorPropertyName].indexOf('#')===0) 
@@ -186,14 +186,26 @@
       
       function setTickFormat() {
           var tickValues = [];
+		  var num_months=0 ;
+		  
+          for (var i=0; i*1*daysPerMonth<=ending; i++) {
+			  num_months+=1 ;
+          } ;
+		  step=1
+		  if (num_months>=100) {
+				  step=6
+			  }
+		  if (num_months>=200) {
+				  step=12
+			  }
           if (beginning<0) {
-              for (var i=-1; i*1*daysPerMonth>=beginning; i++) {
-                  tickValues.push(i*1*daysPerMonth);
+              for (var i=-1; i*step*daysPerMonth>=beginning; i++) {
+                  tickValues.push(i*step*daysPerMonth);
               }
           }
           // time tickform to each month 
-          for (var i=0; i*1*daysPerMonth<=ending; i++) {
-              tickValues.push(i*1*daysPerMonth);
+          for (var i=0; i*step*daysPerMonth<=ending; i++) {
+              tickValues.push(i*step*daysPerMonth);
           }
           
           tickFormat = {

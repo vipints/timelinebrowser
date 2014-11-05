@@ -71,14 +71,14 @@
     		$(document).ready(function(){
 
 				var params = {};
-        		$.post("{% static 'tracks/tmp/dataset_17.json' %}", 
+        		$.post("{% static 'tracks/tmp/dataset_887695.json' %}", 
             		params,
             		function(data){                
                 		var timeData = prepareTimeLineData.prepare(data);
                 		if (timeData.length===0) return;
 
                         //This width has to be set automatically
-                		var width = 800;
+                		var width = 1500;
                 		var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
                 		var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
                 		$("#pt_display_panel").show();
@@ -103,7 +103,7 @@
 
         <!--header TODO: search box-->
 		<div data-options="region:'north'" style="height:30px;background-color: #eee">
-        	<span class="appName">PatientTracker</span>
+        	<span class="appName">Patient Visualizer</span>
             <div align="right">
                 <input class="easyui-searchbox" data-options="prompt:'Quick Search: Patient ID',searcher:doSearch" style="width:250px"></input>
                 <!-- TODO searchbox with correct form submission to fetch the correct patient record--> 
