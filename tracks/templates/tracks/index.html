@@ -78,7 +78,7 @@
                 		if (timeData.length===0) return;
 
                         //This width has to be set automatically
-                		var width = 1500;
+                		var width = 1600;
                 		var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
                 		var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
                 		$("#pt_display_panel").show();
@@ -137,6 +137,11 @@
         <!--configuration panel-->
         <div data-options="region:'west',split:true" title="Configuration" style="width:200px;">
             <div class="easyui-accordion" data-options="fit:true,border:false">
+            <div title="Electronic Medical Record" style="padding:10px;">
+              <input type="checkbox">Asmpap/breast exam checklist</br>
+              <input type="checkbox">Asmpreadmit</br> 
+              <input type="checkbox">Pathology</br> 
+            </div>
             <div title="Diagnostics" style="padding:10px;">
                 <input type="checkbox">Mammogram, Unilateral</br>
                 <input type="checkbox">Other </br> 
