@@ -37,7 +37,8 @@ for i in ptids:
     patient_1_rec = order_records[order_records['ORD_PT_DEIDENTIFICATION_ID'] == i]
 
     data = [] 
-    counter = 1 
+    counter = 1
+    sort_index=0;
     for count, row in patient_1_rec.iterrows():
 
         rec = init_rec()
@@ -49,10 +50,11 @@ for i in ptids:
         rec['eventType'] = row['ORD_TYPE_CD'].strip( ' ' ).strip('.')
         rec['startDate'] = row['ORD_DAYS_SINCE_MRN_CREATE_DTE']
         rec['eventData'] = row['ORD_NAME'].strip( ' ' ).strip('.')
+        rec['sortIndex'] = sort_index
         rec['eventMon'] = row['ORD_MONTH']
         rec['eventYear'] = row['ORD_YEAR']
         #rec['summary'] = row['ORD_MONTH']+' '+str(row['ORD_YEAR'])+','+rec['eventData']+','+row['ORD_SET_HEADING'].strip(' ')+','+row['ORD_SET_NAME'].strip(' ')
-
+        sort_index+=1 
         data.append(rec) 
 
     patient_1_rec = emr_records[emr_records['EMR_PT_DEIDENTIFICATION_ID'] == i]
@@ -68,10 +70,13 @@ for i in ptids:
         rec['eventType'] = row['EMR_CATEGORY'].strip( ' ' ).strip('.')
         rec['startDate'] = row['EMR_DAYS_SINCE_MRN_CREATE_DTE']
         rec['eventData'] = rec['eventType']+row['EMR_DESC'].strip( ' ' )+row['EMR_DOCTYPE'].strip(' ')
+        rec['sortIndex'] = sort_index
         rec['eventMon'] = row['EMR_MONTH_NAME']
         rec['eventYear'] = row['EMR_YEAR']
         #rec['summary'] = row['EMR_MONTH_NAME']+' '+str(row['EMR_YEAR'])+','+rec['eventData']
 
+        sort_index+=1
+        
         data.append(rec) 
 
     json_data = json.dumps(data)
