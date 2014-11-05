@@ -6,6 +6,16 @@ clinical data from hdf5 form to json for displaying
 import json 
 import pandas as pd 
 
+def pretty(s):
+    s=list(str.lower(s))
+    for i in range(len(s)-1):
+        if s[i]==' ':
+            s[i]=str.lower(s[i])
+        if i==0:
+            s[i]=str.upper(s[i])
+
+    return str(s)
+
 def init_rec():
     
     rec_det = dict(eventId = None,
@@ -69,7 +79,7 @@ for i in ptids:
         rec['patientId'] = row['EMR_PT_DEIDENTIFICATION_ID']
         rec['eventType'] = row['EMR_CATEGORY'].strip( ' ' ).strip('.')
         rec['startDate'] = row['EMR_DAYS_SINCE_MRN_CREATE_DTE']
-        rec['eventData'] = rec['eventType']+row['EMR_DESC'].strip( ' ' )+row['EMR_DOCTYPE'].strip(' ')
+        rec['eventData'] = pretty(rec['eventType']+row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
         rec['sortIndex'] = sort_index
         rec['eventMon'] = row['EMR_MONTH_NAME']
         rec['eventYear'] = row['EMR_YEAR']
