@@ -10,7 +10,7 @@ def pretty(s):
     s=list(str.lower(s))
     for i in range(len(s)-1):
         if s[i]==' ':
-            s[i]=str.lower(s[i])
+            s[i+1]=str.lower(s[i+1])
         if i==0:
             s[i]=str.upper(s[i])
 
@@ -79,7 +79,7 @@ for i in ptids:
         rec['patientId'] = row['EMR_PT_DEIDENTIFICATION_ID']
         rec['eventType'] = row['EMR_CATEGORY'].strip( ' ' ).strip('.')
         rec['startDate'] = row['EMR_DAYS_SINCE_MRN_CREATE_DTE']
-        rec['eventData'] = pretty(rec['eventType']+row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
+        rec['eventData'] = rec['eventType'] + ' ' + pretty(rec['eventType']+row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
         rec['sortIndex'] = sort_index
         rec['eventMon'] = row['EMR_MONTH_NAME']
         rec['eventYear'] = row['EMR_YEAR']
