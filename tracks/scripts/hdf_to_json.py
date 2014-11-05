@@ -53,7 +53,7 @@ for i in ptids:
         rec['sortIndex'] = sort_index
         rec['eventMon'] = row['ORD_MONTH']
         rec['eventYear'] = row['ORD_YEAR']
-        #rec['summary'] = row['ORD_MONTH']+' '+str(row['ORD_YEAR'])+','+rec['eventData']+','+row['ORD_SET_HEADING'].strip(' ')+','+row['ORD_SET_NAME'].strip(' ')
+        rec['summary'] = row['ORD_MONTH']+' '+str(row['ORD_YEAR'])+','+rec['eventData']+','+row['ORD_SET_HEADING'].strip(' ')+','+row['ORD_SET_NAME'].strip(' ')
         sort_index+=1 
         data.append(rec) 
 
@@ -73,7 +73,7 @@ for i in ptids:
         rec['sortIndex'] = sort_index
         rec['eventMon'] = row['EMR_MONTH_NAME']
         rec['eventYear'] = row['EMR_YEAR']
-        #rec['summary'] = row['EMR_MONTH_NAME']+' '+str(row['EMR_YEAR'])+','+rec['eventData']
+        rec['summary'] = row['EMR_MONTH_NAME']+' '+str(row['EMR_YEAR'])+','+rec['eventData']
 
         sort_index+=1
         
