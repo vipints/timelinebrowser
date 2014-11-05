@@ -35,6 +35,27 @@ h5_fname = '/cbio/grlab/clinical/projects/BigData/sandbox_vipin/BREAST_TIMELINE_
 order_records = pd.read_hdf(h5_fname, "BR_ORDER_SAMPLE")
 emr_records = pd.read_hdf(h5_fname, "BR_EMR_SAMPLE")
 
+track_name_id=dict()
+ptids=set(order_records['ORD_PT_DEIDENTIFICATION_ID'])
+sort_index=0
+for i in ptids:
+
+    patient_1_rec = emr_records[emr_records['EMR_PT_DEIDENTIFICATION_ID'] == i]
+
+    for count, row in patient_1_rec.iterrows():
+        rec = init_rec()
+        rec['eventType'] = row['EMR_CATEGORY'].strip( ' ' ).strip('.')
+        tn=rec['eventType'] + ' ' + pretty(rec['eventType']+row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
+        track_name_id[tn]=sort_index
+        sort_index+1
+
+    patient_1_rec = order_records[order_records['ORD_PT_DEIDENTIFICATION_ID'] == i]
+
+    for count, row in patient_1_rec.iterrows():
+        tn=row['ORD_NAME'].strip( ' ' ).strip('.')
+        track_name_id[tn]=sort_index
+        sort_index+1
+
 ptids=set(order_records['ORD_PT_DEIDENTIFICATION_ID'])
 for i in ptids:
 
@@ -44,28 +65,9 @@ for i in ptids:
     # large order_records  
     #patient_1_rec = order_records[order_records['ORD_PT_DEIDENTIFICATION_ID'] == 993384]
 
-    patient_1_rec = order_records[order_records['ORD_PT_DEIDENTIFICATION_ID'] == i]
-
     data = [] 
     counter = 1
     sort_index=0;
-    for count, row in patient_1_rec.iterrows():
-
-        rec = init_rec()
-
-        rec['eventId'] = counter 
-        counter += 1 
-
-        rec['patientId'] = row['ORD_PT_DEIDENTIFICATION_ID']
-        rec['eventType'] = row['ORD_TYPE_CD'].strip( ' ' ).strip('.')
-        rec['startDate'] = row['ORD_DAYS_SINCE_MRN_CREATE_DTE']
-        rec['eventData'] = row['ORD_NAME'].strip( ' ' ).strip('.')
-        rec['sortIndex'] = sort_index
-        rec['eventMon'] = row['ORD_MONTH']
-        rec['eventYear'] = row['ORD_YEAR']
-        rec['summary'] = row['ORD_MONTH']+' '+str(row['ORD_YEAR'])+','+rec['eventData']+','+row['ORD_SET_HEADING'].strip(' ')+','+row['ORD_SET_NAME'].strip(' ')
-        sort_index+=1 
-        data.append(rec) 
 
     patient_1_rec = emr_records[emr_records['EMR_PT_DEIDENTIFICATION_ID'] == i]
 
@@ -80,7 +82,7 @@ for i in ptids:
         rec['eventType'] = row['EMR_CATEGORY'].strip( ' ' ).strip('.')
         rec['startDate'] = row['EMR_DAYS_SINCE_MRN_CREATE_DTE']
         rec['eventData'] = rec['eventType'] + ' ' + pretty(rec['eventType']+row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
-        rec['sortIndex'] = sort_index
+        rec['sortIndex'] = track_name_id[rec['eventData']]
         rec['eventMon'] = row['EMR_MONTH_NAME']
         rec['eventYear'] = row['EMR_YEAR']
         rec['summary'] = row['EMR_MONTH_NAME']+' '+str(row['EMR_YEAR'])+','+rec['eventData']
@@ -88,6 +90,27 @@ for i in ptids:
         sort_index+=1
         
         data.append(rec) 
+
+    patient_1_rec = order_records[order_records['ORD_PT_DEIDENTIFICATION_ID'] == i]
+
+    for count, row in patient_1_rec.iterrows():
+
+        rec = init_rec()
+
+        rec['eventId'] = counter 
+        counter += 1 
+
+        rec['patientId'] = row['ORD_PT_DEIDENTIFICATION_ID']
+        rec['eventType'] = row['ORD_TYPE_CD'].strip( ' ' ).strip('.')
+        rec['startDate'] = row['ORD_DAYS_SINCE_MRN_CREATE_DTE']
+        rec['eventData'] = row['ORD_NAME'].strip( ' ' ).strip('.')
+        rec['sortIndex'] = track_name_id[rec['eventData']]
+        rec['eventMon'] = row['ORD_MONTH']
+        rec['eventYear'] = row['ORD_YEAR']
+        rec['summary'] = row['ORD_MONTH']+' '+str(row['ORD_YEAR'])+','+rec['eventData']+','+row['ORD_SET_HEADING'].strip(' ')+','+row['ORD_SET_NAME'].strip(' ')
+        sort_index+=1 
+        data.append(rec) 
+
 
     json_data = json.dumps(data)
 
