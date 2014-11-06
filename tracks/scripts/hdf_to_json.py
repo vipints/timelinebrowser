@@ -46,15 +46,19 @@ for i in ptids:
         rec = init_rec()
         rec['eventType'] = row['EMR_CATEGORY'].strip( ' ' ).strip('.')
         tn=rec['eventType'] + ' ' + pretty(rec['eventType']+row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
-        track_name_id[tn]=sort_index
-        sort_index+1
+        if not track_name_id.has_key(tn):
+            track_name_id[tn]=sort_index
+            sort_index+=1
+last_emr=sort_index
 
+for i in ptids:
     patient_1_rec = order_records[order_records['ORD_PT_DEIDENTIFICATION_ID'] == i]
 
     for count, row in patient_1_rec.iterrows():
         tn=row['ORD_NAME'].strip( ' ' ).strip('.')
-        track_name_id[tn]=sort_index
-        sort_index+1
+        if not track_name_id.has_key(tn):
+            track_name_id[tn]=sort_index
+            sort_index+=1
 
 ptids=set(order_records['ORD_PT_DEIDENTIFICATION_ID'])
 for i in ptids:
@@ -121,3 +125,13 @@ for i in ptids:
     fd=open(json_fn, 'w+') ;
     fd.write(json_data)
     fd.close()
+
+emr_idx=(numpy.array(track_name_id.values())<=last_emr).nonzero()
+order_idx=(numpy.array(track_name_id.values())>last_emr).nonzero()
+
+A=list(set());
+A.sort()
+
+for i in A:
+    print '<input type="checkbox">%s</br>' % i
+                                              
