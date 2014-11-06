@@ -70,6 +70,7 @@
 		<script type="text/javascript">
     		$(document).ready(function(){
 
+                
 				var params = {};
         		$.post("{% static 'tracks/tmp/dataset_887695.json' %}", 
             		params,
@@ -86,6 +87,14 @@
             		,"json"
         		);
 			});
+        </script>
+
+        <script type="text/javascript">
+            $('#file_input').change(function getContents(event) {
+
+                var listOfFiles = event.target.files;
+                console.log("Test here");
+            });
         </script>
 
     </head>
@@ -105,13 +114,20 @@
 		<div data-options="region:'north'" style="height:30px;background-color: #eee">
         	<span class="appName">Patient Visualizer</span>
             <div align="right">
-                <input class="easyui-searchbox" data-options="prompt:'Quick Search: Patient ID',searcher:doSearch" style="width:250px"></input>
-                <!-- TODO searchbox with correct form submission to fetch the correct patient record--> 
+
+                <!--This is not a good way, don't allow to read the content of directory, security failure-->
+                <form id="psearch" method="get" action="" onsubmit="return getContents();">
+                    <input id="file_input" type="submit" value="next" class="tfbutton" webkitdirectory="" directory="{% static 'tracks/tmp/' %}">
+                </form>
+
+                
+                <!-- <input class="easyui-searchbox" data-options="prompt:'Quick Search: Patient ID',searcher:doSearch" style="width:250px"></input>
+                 TODO searchbox with correct form submission to fetch the correct patient record 
                 <script>
                     function doSearch(value){
                         alert('You input: ' + value);
                     }
-                </script>
+                </script -->
             </div>
 		</div>
         <!--header-->
@@ -135,12 +151,14 @@
         <!--description panel-->
 
         <!--configuration panel-->
-        <div data-options="region:'west',split:true" title="Configuration" style="width:200px;">
+        <div data-options="region:'west',split:true" title="Tracks" style="width:200px;">
             <div class="easyui-accordion" data-options="fit:true,border:false">
             <div title="Electronic Medical Record" style="padding:10px;">
-              <input type="checkbox">Asmpap/breast exam checklist</br>
-              <input type="checkbox">Asmpreadmit</br> 
-              <input type="checkbox">Pathology</br> 
+              <input type="checkbox" checked>NUR Nursing Notes</br>
+              <input type="checkbox" checked>PTH Pathology Notes</br> 
+              <input type="checkbox" checked>OCC Outside Correspondence</br> 
+              <input type="checkbox" checked>RES Consent/IRB</br> 
+              <input type="checkbox" checked>UCC Urgent Care Physician Notes</br> 
             </div>
             <div title="Diagnostics" style="padding:10px;">
                 <input type="checkbox">Mammogram, Unilateral</br>
@@ -164,7 +182,9 @@
         <div id="pt_display_panel" data-options="region:'center',title:'Overview'">
             <div id="timeline_display_panel" class="easyui-layout" data-options="fit:true">
                 <!--The region panel-->
-                <div id="timeline_overview_display" data-options="region:'north',split:true,border:false" style="height:100px"></div>
+                <div id="timeline_overview_display" data-options="region:'north',split:true,border:false" style="height:75px">
+                    <img src="{% static 'tracks/tmp/region_view.png' %}" style="height:66px">
+                </div>
                 <!--The region panel-->
 
                 <!--The display panel-->

@@ -48,7 +48,7 @@
 
                     $.ajax({
                       type: "POST",
-                      url: "python.py",
+                      url: "example_word_query.py",
                       data: { type: name, query: value}
                     })
                       .done(function( html ) {
@@ -64,6 +64,11 @@
             <p>Tips: Use the dropdown button to select the search category.</p>
         </div>
         <!--help message-->
+
+        <!--result page-->
+        <div id="results">
+        </div>
+        <!--result page-->
 
     </body>
 </html>

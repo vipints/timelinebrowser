@@ -37,11 +37,8 @@ h2 {
 	right: 0;
 }
 .tfbutton {
-        background-image: url('styles/img/find.png');
-        background-repeat: no-repeat;
         margin: 0;
         cursor: pointer;
-        border: none;
 }
 .tfclear{
     clear:both;
