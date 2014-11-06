@@ -15,7 +15,7 @@
         opacityPropertyName = null,
         beginning = 0,
         ending = 0,
-        margin = {left: 250, right:30, top: 20, bottom:6},
+        margin = {left: 250, right:30, top: 20, bottom:8},
         stacked = false,
         rotateTicks = false,
         itemHeight = 25,
@@ -62,8 +62,6 @@
 
         beginning = minTime;
         ending = maxTime;
-        console.log(beginning);
-        console.log(ending);
 
         setTickFormat();
 
@@ -460,7 +458,7 @@
                 tooltip : "<table class='timeline-tooltip-table uninitialized'><thead><tr><th>&nbsp;</th><th>&nbsp;</th></tr></thead><tr>" + tooltip.join("</tr><tr>") + "</tr></table>"
             };
             
-            var su2cSampleId = timePointData["eventData"]["SpecimenReferenceNumber"];
+            var su2cSampleId = timePointData["eventData"];
             
             if (su2cSampleId) 
                 ret['class'] = 'timeline-'+su2cSampleId;
@@ -473,7 +471,6 @@
             timePointsData.forEach(function(timePointData){
                 times.push(formatATimePoint(timePointData));
             });
-            console.log(times);
             return times;
         }
         
