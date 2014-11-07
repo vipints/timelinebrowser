@@ -70,7 +70,6 @@
 		<script type="text/javascript">
     		$(document).ready(function(){
 
-                
 				var params = {};
         		$.post("{% static 'tracks/tmp/dataset_887695.json' %}", 
             		params,
@@ -89,14 +88,6 @@
 			});
         </script>
 
-        <script type="text/javascript">
-            $('#file_input').change(function getContents(event) {
-
-                var listOfFiles = event.target.files;
-                console.log("Test here");
-            });
-        </script>
-
     </head>
 
     <body class="easyui-layout">
@@ -110,25 +101,19 @@
         --> 
         <!--PatientTracker header--> 
 
-        <!--header TODO: search box-->
+        <!--header TODO: search box action-->
 		<div data-options="region:'north'" style="height:30px;background-color: #eee">
         	<span class="appName">Patient Visualizer</span>
-            <div align="right">
 
-                <!--This is not a good way, don't allow to read the content of directory, security failure-->
-                <form id="psearch" method="get" action="" onsubmit="return getContents();">
-                    <input id="file_input" type="submit" value="next" class="tfbutton" webkitdirectory="" directory="{% static 'tracks/tmp/' %}">
-                </form>
-
-                
-                <!-- <input class="easyui-searchbox" data-options="prompt:'Quick Search: Patient ID',searcher:doSearch" style="width:250px"></input>
-                 TODO searchbox with correct form submission to fetch the correct patient record 
+				<div align="right" margin-right="50px">
+                 <!--TODO searchbox with correct form submission to fetch the correct patient record--> 
+                <input class="easyui-searchbox" data-options="prompt:'Quick Search: Patient ID',searcher:doSearch" style="width:250px"></input>
                 <script>
                     function doSearch(value){
                         alert('You input: ' + value);
                     }
-                </script -->
-            </div>
+                </script>
+            	</div>
 		</div>
         <!--header-->
 
@@ -179,6 +164,7 @@
         <!--display/overview panel-->
         <div id="pt_display_panel" data-options="region:'center',title:'Overview'">
             <div id="timeline_display_panel" class="easyui-layout" data-options="fit:true">
+
                 <!--The region panel-->
                 <div id="timeline_overview_display" data-options="region:'north',split:true,border:false" style="height:75px">
                     <img src="{% static 'tracks/tmp/region_view.png' %}" style="height:66px">
