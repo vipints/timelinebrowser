@@ -5,6 +5,7 @@ clinical data from hdf5 form to json for displaying
 
 import json 
 import pandas as pd 
+import numpy
 
 def pretty(s):
     s=list(str.lower(s))
@@ -36,6 +37,7 @@ order_records = pd.read_hdf(h5_fname, "BR_ORDER_SAMPLE")
 emr_records = pd.read_hdf(h5_fname, "BR_EMR_SAMPLE")
 
 track_name_id=dict()
+track_name_cnt=dict()
 ptids=set(order_records['ORD_PT_DEIDENTIFICATION_ID'])
 sort_index=0
 for i in ptids:
@@ -45,21 +47,31 @@ for i in ptids:
     for count, row in patient_1_rec.iterrows():
         rec = init_rec()
         rec['eventType'] = row['EMR_CATEGORY'].strip( ' ' ).strip('.')
-        tn=rec['eventType'] + ' ' + pretty(rec['eventType']+row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
+        tn=rec['eventType'] + ' ' + pretty(row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
         if not track_name_id.has_key(tn):
             track_name_id[tn]=sort_index
+            track_name_cnt[tn]=0
             sort_index+=1
+        track_name_cnt[tn]+=1
 last_emr=sort_index
 
 for i in ptids:
     patient_1_rec = order_records[order_records['ORD_PT_DEIDENTIFICATION_ID'] == i]
 
     for count, row in patient_1_rec.iterrows():
-        tn=row['ORD_NAME'].strip( ' ' ).strip('.')
+        tn=row['ORD_TYPE_CD'].strip(' ')+' '+row['ORD_NAME'].strip( ' ' ).strip('.')
         if not track_name_id.has_key(tn):
             track_name_id[tn]=sort_index
+            track_name_cnt[tn]=0
             sort_index+=1
+        track_name_cnt[tn]+=1
 
+for i in track_name_id:
+    if track_name_cnt[i]>=200:
+        print '<input type="checkbox" checked>%s</br>' % i
+
+        
+display_thresh=200
 ptids=set(order_records['ORD_PT_DEIDENTIFICATION_ID'])
 for i in ptids:
 
@@ -85,7 +97,7 @@ for i in ptids:
         rec['patientId'] = row['EMR_PT_DEIDENTIFICATION_ID']
         rec['eventType'] = row['EMR_CATEGORY'].strip( ' ' ).strip('.')
         rec['startDate'] = row['EMR_DAYS_SINCE_MRN_CREATE_DTE']
-        rec['eventData'] = rec['eventType'] + ' ' + pretty(rec['eventType']+row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
+        rec['eventData'] = rec['eventType'] + ' ' + pretty(row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
         rec['sortIndex'] = track_name_id[rec['eventData']]
         rec['eventMon'] = row['EMR_MONTH_NAME']
         rec['eventYear'] = row['EMR_YEAR']
@@ -107,7 +119,8 @@ for i in ptids:
         rec['patientId'] = row['ORD_PT_DEIDENTIFICATION_ID']
         rec['eventType'] = row['ORD_TYPE_CD'].strip( ' ' ).strip('.')
         rec['startDate'] = row['ORD_DAYS_SINCE_MRN_CREATE_DTE']
-        rec['eventData'] = row['ORD_NAME'].strip( ' ' ).strip('.')
+        tn=row['ORD_TYPE_CD'].strip(' ')+' '+row['ORD_NAME'].strip( ' ' ).strip('.')
+        rec['eventData'] = tn 
         rec['sortIndex'] = track_name_id[rec['eventData']]
         rec['eventMon'] = row['ORD_MONTH']
         rec['eventYear'] = row['ORD_YEAR']
