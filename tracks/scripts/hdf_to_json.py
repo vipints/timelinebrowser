@@ -17,6 +17,11 @@ def pretty(s):
 
     return ''.join(s)
 
+def shorten(s, maxlen):
+    if len(s)<=maxlen:
+        return s
+    return s[:(maxlen-4)/2]+'...'+s[-(maxlen-4)/2:]
+
 def init_rec():
     
     rec_det = dict(eventId = None,
@@ -97,13 +102,14 @@ for i in ptids:
         rec['patientId'] = row['EMR_PT_DEIDENTIFICATION_ID']
         rec['eventType'] = row['EMR_CATEGORY'].strip( ' ' ).strip('.')
         rec['startDate'] = row['EMR_DAYS_SINCE_MRN_CREATE_DTE']-100*30
-        rec['eventData'] = rec['eventType'] + ' ' + pretty(row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
-        rec['sortIndex'] = track_name_id[rec['eventData']]
+        tn=rec['eventType'] + ' ' + pretty(row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
+        rec['eventData'] = shorten(tn, 50)
+        rec['sortIndex'] = tn
         rec['eventMon'] = row['EMR_MONTH_NAME']
         rec['eventYear'] = row['EMR_YEAR']
         rec['summary'] = row['EMR_MONTH_NAME']+' '+str(row['EMR_YEAR'])+','+rec['eventData']
 
-        if track_name_cnt[rec['eventData']]>=display_thresh:
+        if track_name_cnt[tn]>=display_thresh:
             data.append(rec) 
 
     patient_1_rec = order_records[order_records['ORD_PT_DEIDENTIFICATION_ID'] == i]
@@ -119,13 +125,13 @@ for i in ptids:
         rec['eventType'] = row['ORD_TYPE_CD'].strip( ' ' ).strip('.')
         rec['startDate'] = row['ORD_DAYS_SINCE_MRN_CREATE_DTE']-100*30
         tn=row['ORD_TYPE_CD'].strip(' ')+' '+row['ORD_NAME'].strip( ' ' ).strip('.')
-        rec['eventData'] = tn 
-        rec['sortIndex'] = track_name_id[rec['eventData']]
+        rec['eventData'] = shorten(tn,50)
+        rec['sortIndex'] = track_name_id[tn]
         rec['eventMon'] = row['ORD_MONTH']
         rec['eventYear'] = row['ORD_YEAR']
         rec['summary'] = row['ORD_MONTH']+' '+str(row['ORD_YEAR'])+','+rec['eventData']+','+row['ORD_SET_HEADING'].strip(' ')+','+row['ORD_SET_NAME'].strip(' ')
 
-        if track_name_cnt[rec['eventData']]>=display_thresh:
+        if track_name_cnt[tn]>=display_thresh:
             data.append(rec) 
 
 
