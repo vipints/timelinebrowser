@@ -102,7 +102,7 @@ for i in ptids:
 
         rec['patientId'] = row['EMR_PT_DEIDENTIFICATION_ID']
         rec['eventType'] = row['EMR_CATEGORY'].strip( ' ' ).strip('.')
-        rec['startDate'] = row['EMR_DAYS_SINCE_MRN_CREATE_DTE']-140*30
+        rec['startDate'] = row['EMR_DAYS_SINCE_MRN_CREATE_DTE']-110*30
         tn=rec['eventType'] + ' ' + pretty(row['EMR_DESC'].strip( ' ' ))+' ('+row['EMR_DOCTYPE'].strip(' ')+')'
         rec['eventData'] = shorten(tn, 50)
         rec['sortIndex'] = tn
@@ -126,7 +126,7 @@ for i in ptids:
 
         rec['patientId'] = row['ORD_PT_DEIDENTIFICATION_ID']
         rec['eventType'] = row['ORD_TYPE_CD'].strip( ' ' ).strip('.')
-        rec['startDate'] = row['ORD_DAYS_SINCE_MRN_CREATE_DTE']-140*30
+        rec['startDate'] = row['ORD_DAYS_SINCE_MRN_CREATE_DTE']-110*30
         tn=row['ORD_TYPE_CD'].strip(' ')+' '+row['ORD_NAME'].strip( ' ' ).strip('.')
         rec['eventData'] = shorten(tn,50)
         rec['sortIndex'] = track_name_id[tn]
