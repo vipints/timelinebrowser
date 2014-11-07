@@ -87,6 +87,7 @@ for i in ptids:
     #patient_1_rec = order_records[order_records['ORD_PT_DEIDENTIFICATION_ID'] == 993384]
 
     data = [] 
+    data2 = [] 
     counter = 1
     sort_index=0;
 
@@ -110,7 +111,9 @@ for i in ptids:
         rec['summary'] = row['EMR_MONTH_NAME']+' '+str(row['EMR_YEAR'])+','+rec['eventData']
 
         if track_name_cnt[tn]>=display_thresh:
-            data.append(rec) 
+            data.append(rec)
+        else:
+            data2.append(rec)
 
     patient_1_rec = order_records[order_records['ORD_PT_DEIDENTIFICATION_ID'] == i]
 
@@ -132,9 +135,12 @@ for i in ptids:
         rec['summary'] = row['ORD_MONTH']+' '+str(row['ORD_YEAR'])+','+rec['eventData']+','+row['ORD_SET_HEADING'].strip(' ')+','+row['ORD_SET_NAME'].strip(' ')
 
         if track_name_cnt[tn]>=display_thresh:
-            data.append(rec) 
+            data.append(rec)
+        else:
+            data2.append(rec) 
 
-
+    data+=data2
+    
     json_data = json.dumps(data)
 
     #print json_data 
