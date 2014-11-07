@@ -103,9 +103,8 @@ for i in ptids:
         rec['eventYear'] = row['EMR_YEAR']
         rec['summary'] = row['EMR_MONTH_NAME']+' '+str(row['EMR_YEAR'])+','+rec['eventData']
 
-        sort_index+=1
-        
-        data.append(rec) 
+        if track_name_cnt[rec['eventData']]>=display_thresh:
+            data.append(rec) 
 
     patient_1_rec = order_records[order_records['ORD_PT_DEIDENTIFICATION_ID'] == i]
 
@@ -125,8 +124,9 @@ for i in ptids:
         rec['eventMon'] = row['ORD_MONTH']
         rec['eventYear'] = row['ORD_YEAR']
         rec['summary'] = row['ORD_MONTH']+' '+str(row['ORD_YEAR'])+','+rec['eventData']+','+row['ORD_SET_HEADING'].strip(' ')+','+row['ORD_SET_NAME'].strip(' ')
-        sort_index+=1 
-        data.append(rec) 
+
+        if track_name_cnt[rec['eventData']]>=display_thresh:
+            data.append(rec) 
 
 
     json_data = json.dumps(data)
