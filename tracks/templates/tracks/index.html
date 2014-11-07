@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -72,7 +71,7 @@
     		$(document).ready(function(){
 
 				var params = {};
-        		$.post("{% static 'tracks/tmp/dataset_887695.json' %}", 
+        		$.get("{% static 'tracks/tmp/dataset_887695.json' %}", 
             		params,
             		function(data){                
                 		var timeData = prepareTimeLineData.prepare(data);
@@ -87,6 +86,26 @@
             		,"json"
         		);
 			});
+
+            function doLoadSearchItem(recID){
+
+				var params = {};
+                var patientRecord = "{% static 'tracks/tmp/dataset_22228.json' %}"; 
+        		$.get(patientRecord, 
+            		params,
+            		function(data){                
+                		var timeData = prepareTimeLineData.prepare(data);
+                		if (timeData.length===0) return;
+
+                        //This width has to be set automatically
+                		var width = 1600;
+                		var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
+                		var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
+                		$("#pt_display_panel").show();
+            		}
+            		,"json"
+        		);
+            };
         </script>
 
     </head>
@@ -107,13 +126,19 @@
         	<span class="appName">Patient Visualizer</span>
 
 				<div align="right" margin-right="50px">
-                 <!--TODO searchbox with correct form submission to fetch the correct patient record--> 
-                <input class="easyui-searchbox" data-options="prompt:'Quick Search: Patient ID',searcher:doSearch" style="width:250px"></input>
-                <script>
+                     <!--TODO searchbox with correct form submission to fetch the correct patient record--> 
+                    <input class="easyui-searchbox" data-options="prompt:'Quick Search: Patient ID',searcher:doSearch" style="width:250px"></input>
+                    <script>
                     function doSearch(value){
-                        alert('You input: ' + value);
+                        var searchID = [1019993, 1020356, 1033138, 104857, 1064223, 1072593, 1076274]; 
+                        if (searchID.indexOf(parseInt(value)) != -1) {
+                            //alert('You input: present' + value);
+                            doLoadSearchItem(value);
+                        }else{
+                            alert('You input: ' + value + ' Patient ID NOT present in Database!');
+                        }
                     }
-                </script>
+                    </script>
             	</div>
 		</div>
         <!--header-->
