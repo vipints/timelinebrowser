@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>ClinSim Search Demo</title>
+        <title>Clinical Semantics Search Demo</title>
 
         {% load staticfiles %}
         <!--style sheets--> 
@@ -20,7 +20,7 @@
 
         <!--header-->
         <div data-options="region:'north'" style="height:30px;background-color: #eee">
-            <span class="appName">ClinSim Search</span>
+            <span class="appName">Clinical Semantic Search</span>
         </div>
         <!--header-->
         <div style="margin:40px 0;"></div>
@@ -33,6 +33,10 @@
     
         <!--search box-->
         <div style="height:100px" align="center">
+
+	  <figure> 
+	    <img src="{% static 'search/ClinSem.png' %}" alt="ClinSem Search" width="250" >
+	  </figure>
             <!--<form id="tfnewsearch" method="get" action="">
             </form>-->
             <input class="easyui-searchbox" data-options="prompt:'Quick Search',menu:'#mm',searcher:doSearch" style="width:400px;height:30px;"></input>
@@ -43,8 +47,8 @@
                 <div data-options="name:'patient'">Similar Patient</div>
             </div>
             <script>
-                function doSearch(value,name){
-                    //alert('You input: ' + value+'('+name+')');
+              function doSearch(value,name){
+<!--               alert('You input: ' + value+'('+name+')'); -->
 
                     $.ajax({
                       type: "POST",
@@ -61,6 +65,12 @@
 
         <!--help message-->
         <div align="center">
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
             <p>Tips: Use the dropdown button to select the search category.</p>
         </div>
         <!--help message-->
