@@ -130,7 +130,7 @@ for i in ptids:
         tn=row['ORD_TYPE_CD'].strip(' ')+' '+row['ORD_NAME'].strip( ' ' ).strip('.')
         rec['eventData'] = shorten(tn,50)
         rec['sortIndex'] = track_name_id[tn]
-        rec['eventMon'] = row['ORD_MONTH']
+        rec['eventMon'] = row['ORD_MONTH'].strip(' ')
         rec['eventYear'] = row['ORD_YEAR']
         rec['summary'] = row['ORD_MONTH']+' '+str(row['ORD_YEAR'])+','+rec['eventData']+','+row['ORD_SET_HEADING'].strip(' ')+','+row['ORD_SET_NAME'].strip(' ')
 
