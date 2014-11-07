@@ -153,117 +153,115 @@
 
         <!--configuration panel-->
         <div data-options="region:'west',split:true" title="Tracks" style="width:200px;">
-            <div class="easyui-accordion" data-options="fit:true,border:false">
-            <!-- <div title="Electronic Medical Record" style="padding:10px;" data-options="selected:true" >
-              <input type="checkbox" checked>AMS Anesthesiology Notes</br> 
-              <input type="checkbox" checked>LAB Laboratory Notes</br> 
-              <input type="checkbox" checked>NUR Nursing Notes</br>
-              <input type="checkbox" checked>OCC Outside Correspondence</br> 
-              <input type="checkbox" checked>ORD Order Notes</br> 
-              <input type="checkbox" checked>PTH Pathology Notes</br> 
-              <input type="checkbox" checked>RAO Radio Oncology Notes</br> 
-              <input type="checkbox" checked>REHB Rehabilitation Notes</br> 
-              <input type="checkbox" checked>RES Consent/IRB</br> 
-              <input type="checkbox" checked>RES Research Notes</br> 
-              <input type="checkbox" checked>UCC Urgent Care Physician Notes</br> 
-            </div> -->
-            <div title="Electronic Medical Record" style="padding:10px;" data-options="selected:true" >
-			  <input type="checkbox" checked>ADM Consent-dx/therap proc (A29)</br>
-			  <input type="checkbox" checked>ADM Question-contrast media (A35)</br>
-			  <input type="checkbox" checked>ASM Breast medicine treatment note (PG3)</br>
-			  <input type="checkbox" checked>ASM Fu breast medicine (PB3)</br>
-			  <input type="checkbox" checked>ASM Progress note (P32)</br>
-			  <input type="checkbox" checked>FLW Chemo administration record (E37)</br>
-			  <input type="checkbox" checked>FLW Ct / mri / ivp medication admin record (F63)</br>
-			  <input type="checkbox" checked>FLW Electronic medication administration record (emar) breast (F78)</br>
-			  <input type="checkbox" checked>FLW Med onc flow sheet (P47)</br>
-			  <input type="checkbox" checked>FLW Nuclear medicine medication administration record (F62)</br>
-			  <input type="checkbox" checked>FLW Vital signs (F01)</br>
-			  <input type="checkbox" checked>HML Home medication list (F69)</br>
-			  <input type="checkbox" checked>LAB Lab new data outpatient (T36)</br>
-			  <input type="checkbox" checked>MSK E-sig fax cover page (PQ6)</br>
-			  <input type="checkbox" checked>MSK Mskcc correspondence (P00)</br>
-			  <input type="checkbox" checked>NURS Nursing ongoing assessment (KP7)</br>
-			  <input type="checkbox" checked>NURS Telephone conv - amb nursing (M80)</br>
-			  <input type="checkbox" checked>NURS Telephone/electronic commun nursing (K84)</br>
-			  <input type="checkbox" checked>ORD Contrast & lab orders - iv-ct (O84)</br>
-			  <input type="checkbox" checked>ORD Dispo sheet - breast oncology (P57)</br>
-			  <input type="checkbox" checked>ORD Orders (O52)</br>
-			  <input type="checkbox" checked>ORD Orders - adult treatment (O53)</br>
-			  <input type="checkbox" checked>OUT Non-mskcc correspondence (P02)</br>
-			  <input type="checkbox" checked>OUT Outside insurance information (R37)</br>
-			  <input type="checkbox" checked>OUT Outside lab (R31)</br>
-			  <input type="checkbox" checked>OUT Outside md correspondence (R36)</br>
-			  <input type="checkbox" checked>OUT Outside pathology (R33)</br>
-			  <input type="checkbox" checked>OUT Outside radiology (R32)</br>
-			  <input type="checkbox" checked>POR Test results (G01)</br>
-			  <input type="checkbox" checked>RAD Ct scan (T11)</br>
-			  <input type="checkbox" checked>RAD Diagnostic radiology (T10)</br>
-			  <input type="checkbox" checked>RAD Mri (T12)</br>
-			  <input type="checkbox" checked>RAD Nuclear med (T14)</br>
-			  <input type="checkbox" checked>RAD Radiology pre-iv contrast procedure verification form (JP9)</br>
+          <div class="easyui-accordion" data-options="fit:true,border:false">
+            <div title="Clinical Notes" style="padding:10px;" data-options="selected:true">                   
+              <input type="checkbox" checked>AMS Anesthesiology Notes</br>       
+              <input type="checkbox" checked>LAB Laboratory Notes</br>           
+              <input type="checkbox" checked>NUR Nursing Notes</br>              
+              <input type="checkbox" checked>OCC Outside Correspondence</br>     
+              <input type="checkbox" checked>ORD Order Notes</br>                
+              <input type="checkbox" checked>PTH Pathology Notes</br>            
+              <input type="checkbox" checked>RAO Radio Oncology Notes</br>       
+              <input type="checkbox" checked>REHB Rehabilitation Notes</br>      
+              <input type="checkbox" checked>RES Research Consent/IRB</br>                
+              <input type="checkbox" checked>UCC Urgent Care Physician Notes</br>
+            </div> 
+            <div title="EMR Details" style="padding:10px;" data-options="selected:false" >
+	      <input type="checkbox" checked>ADM Consent-dx/therap proc (A29)</br>
+	      <input type="checkbox" checked>ADM Question-contrast media (A35)</br>
+	      <input type="checkbox" checked>ASM Breast medicine treatment note (PG3)</br>
+	      <input type="checkbox" checked>ASM Fu breast medicine (PB3)</br>
+	      <input type="checkbox" checked>ASM Progress note (P32)</br>
+	      <input type="checkbox" checked>FLW Chemo administration record (E37)</br>
+	      <input type="checkbox" checked>FLW Ct / mri / ivp medication admin record (F63)</br>
+	      <input type="checkbox" checked>FLW Electronic medication administration record (emar) breast (F78)</br>
+	      <input type="checkbox" checked>FLW Med onc flow sheet (P47)</br>
+	      <input type="checkbox" checked>FLW Nuclear medicine medication administration record (F62)</br>
+	      <input type="checkbox" checked>FLW Vital signs (F01)</br>
+	      <input type="checkbox" checked>HML Home medication list (F69)</br>
+	      <input type="checkbox" checked>LAB Lab new data outpatient (T36)</br>
+	      <input type="checkbox" checked>MSK E-sig fax cover page (PQ6)</br>
+	      <input type="checkbox" checked>MSK Mskcc correspondence (P00)</br>
+	      <input type="checkbox" checked>NURS Nursing ongoing assessment (KP7)</br>
+	      <input type="checkbox" checked>NURS Telephone conv - amb nursing (M80)</br>
+	      <input type="checkbox" checked>NURS Telephone/electronic commun nursing (K84)</br>
+	      <input type="checkbox" checked>ORD Contrast & lab orders - iv-ct (O84)</br>
+	      <input type="checkbox" checked>ORD Dispo sheet - breast oncology (P57)</br>
+	      <input type="checkbox" checked>ORD Orders (O52)</br>
+	      <input type="checkbox" checked>ORD Orders - adult treatment (O53)</br>
+	      <input type="checkbox" checked>OUT Non-mskcc correspondence (P02)</br>
+	      <input type="checkbox" checked>OUT Outside insurance information (R37)</br>
+	      <input type="checkbox" checked>OUT Outside lab (R31)</br>
+	      <input type="checkbox" checked>OUT Outside md correspondence (R36)</br>
+	      <input type="checkbox" checked>OUT Outside pathology (R33)</br>
+	      <input type="checkbox" checked>OUT Outside radiology (R32)</br>
+	      <input type="checkbox" checked>POR Test results (G01)</br>
+	      <input type="checkbox" checked>RAD Ct scan (T11)</br>
+	      <input type="checkbox" checked>RAD Diagnostic radiology (T10)</br>
+	      <input type="checkbox" checked>RAD Mri (T12)</br>
+	      <input type="checkbox" checked>RAD Nuclear med (T14)</br>
+	      <input type="checkbox" checked>RAD Radiology pre-iv contrast procedure verification form (JP9)</br>
             </div>
             <div title="Diagnostics" style="padding:10px;">
-			  <input type="checkbox" checked>Diagnostic Bacterial/Fungal Culture, Urine</br>
-			  <input type="checkbox" checked>Diagnostic Basic Metabolic Panel</br>
-			  <input type="checkbox" checked>Diagnostic Breast Medicine Visit</br>
-			  <input type="checkbox" checked>Diagnostic CBC with Automated Diff</br>
-			  <input type="checkbox" checked>Diagnostic CEA</br>
-			  <input type="checkbox" checked>Diagnostic CT:Chest/Abdomen/Pelvis w/ Contrast</br>
-			  <input type="checkbox" checked>Diagnostic CT</br>
-			  <input type="checkbox" checked>Diagnostic Cancer Antigen 125</br>
-			  <input type="checkbox" checked>Diagnostic Cancer Antigen 15-3</br>
-			  <input type="checkbox" checked>Diagnostic Complete Blood Count</br>
-			  <input type="checkbox" checked>Diagnostic Comprehensive Metabolic Panel</br>
-			  <input type="checkbox" checked>Diagnostic Glucose (BEDSIDE)</br>
-			  <input type="checkbox" checked>Diagnostic LDH</br>
-			  <input type="checkbox" checked>Diagnostic Lab64</br>
-			  <input type="checkbox" checked>Diagnostic MR</br>
-			  <input type="checkbox" checked>Diagnostic Magnesium</br>
-			  <input type="checkbox" checked>Diagnostic NM:Bone Scan</br>
-			  <input type="checkbox" checked>Diagnostic PET</br>
-			  <input type="checkbox" checked>Diagnostic PT&APTT</br>
-			  <input type="checkbox" checked>Diagnostic Phosphorus</br>
-			  <input type="checkbox" checked>Diagnostic Resting ECG - 12 Lead</br>
-			  <input type="checkbox" checked>Diagnostic Submitted Films</br>
-			  <input type="checkbox" checked>Diagnostic Surgical Pathology</br>
-			  <input type="checkbox" checked>Diagnostic TSH</br>
-			  <input type="checkbox" checked>Diagnostic Tx Parameters</br>
-			  <input type="checkbox" checked>Diagnostic Type And Screen</br>
-			  <input type="checkbox" checked>Diagnostic Urinalysis, Routine</br>
-			  <input type="checkbox" checked>Diagnostic XR</br>
+	      <input type="checkbox" checked>Diagnostic Bacterial/Fungal Culture, Urine</br>
+	      <input type="checkbox" checked>Diagnostic Basic Metabolic Panel</br>
+	      <input type="checkbox" checked>Diagnostic Breast Medicine Visit</br>
+	      <input type="checkbox" checked>Diagnostic CBC with Automated Diff</br>
+	      <input type="checkbox" checked>Diagnostic CEA</br>
+	      <input type="checkbox" checked>Diagnostic CT:Chest/Abdomen/Pelvis w/ Contrast</br>
+	      <input type="checkbox" checked>Diagnostic CT</br>
+	      <input type="checkbox" checked>Diagnostic Cancer Antigen 125</br>
+	      <input type="checkbox" checked>Diagnostic Cancer Antigen 15-3</br>
+	      <input type="checkbox" checked>Diagnostic Complete Blood Count</br>
+	      <input type="checkbox" checked>Diagnostic Comprehensive Metabolic Panel</br>
+	      <input type="checkbox" checked>Diagnostic Glucose (BEDSIDE)</br>
+	      <input type="checkbox" checked>Diagnostic LDH</br>
+	      <input type="checkbox" checked>Diagnostic Lab64</br>
+	      <input type="checkbox" checked>Diagnostic MR</br>
+	      <input type="checkbox" checked>Diagnostic Magnesium</br>
+	      <input type="checkbox" checked>Diagnostic NM:Bone Scan</br>
+	      <input type="checkbox" checked>Diagnostic PET</br>
+	      <input type="checkbox" checked>Diagnostic PT&APTT</br>
+	      <input type="checkbox" checked>Diagnostic Phosphorus</br>
+	      <input type="checkbox" checked>Diagnostic Resting ECG - 12 Lead</br>
+	      <input type="checkbox" checked>Diagnostic Submitted Films</br>
+	      <input type="checkbox" checked>Diagnostic Surgical Pathology</br>
+	      <input type="checkbox" checked>Diagnostic TSH</br>
+	      <input type="checkbox" checked>Diagnostic Tx Parameters</br>
+	      <input type="checkbox" checked>Diagnostic Type And Screen</br>
+	      <input type="checkbox" checked>Diagnostic Urinalysis, Routine</br>
+	      <input type="checkbox" checked>Diagnostic XR</br>
             </div>
-            <div title="Treatments" id="treatment_tag" data-options="selected:False" style="padding:10px;">
-                <input id="trtrack1" type="checkbox">Breast Medicine Visit</br> 
-				<input type="checkbox" checked>Medication Acetaminophen</br>
-				<input type="checkbox" checked>Medication Dexamethasone INJ</br>
-				<input type="checkbox" checked>Medication Dexamethasone</br>
-				<input type="checkbox" checked>Medication Fulvestrant INJ</br>
-				<input type="checkbox" checked>Medication Gemcitabine INJ</br>
-				<input type="checkbox" checked>Medication Letrozole</br>
-				<input type="checkbox" checked>Medication Non-Formulary Medication</br>
-				<input type="checkbox" checked>Medication Normal Saline</br>
-				<input type="checkbox" checked>Medication PACLItaxel INJ</br>
-				<input type="checkbox" checked>Medication TRASTUZUmab INJ</br>
-				<input type="checkbox" checked>Medication VinORELbine INJ</br>
-				<input type="checkbox" checked>Medication diphenhydrAMINE INJ</br>
+            <div title="Treatments" style="padding:10px;">
+                <input type="checkbox" checked>Medication Acetaminophen</br>
+                <input type="checkbox" checked>Medication Dexamethasone INJ</br>
+                <input type="checkbox" checked>Medication Dexamethasone</br>
+                <input type="checkbox" checked>Medication Fulvestrant INJ</br>
+                <input type="checkbox" checked>Medication Gemcitabine INJ</br>
+                <input type="checkbox" checked>Medication Letrozole</br>
+                <input type="checkbox" checked>Medication Non-Formulary Medication</br>
+                <input type="checkbox" checked>Medication Normal Saline</br>
+                <input type="checkbox" checked>Medication PACLItaxel INJ</br>
+                <input type="checkbox" checked>Medication TRASTUZUmab INJ</br>
+                <input type="checkbox" checked>Medication VinORELbine INJ</br>
+                <input type="checkbox" checked>Medication diphenhydrAMINE INJ</br>
             </div>
-                <div title="Other" style="padding:10px">
-				  <input type="checkbox" checked>Other Chemo Nursing Order</br>
-				  <input type="checkbox" checked>Other Chemo Protocol</br>
-				  <input type="checkbox" checked>Other Chemo Tx</br>
-				  <input type="checkbox" checked>Other Current Tx Note</br>
-				  <input type="checkbox" checked>Other Diet</br>
-				  <input type="checkbox" checked>Other Discharge Symptoms to Report</br>
-				  <input type="checkbox" checked>Other Follow Up Visit After Discharge</br>
-				  <input type="checkbox" checked>Other Orders Sign Off Outpatient</br>
-				  <input type="checkbox" checked>Other Orders Signoff</br>
-				  <input type="checkbox" checked>Other Regimen Note</br>
-				  <input type="checkbox" checked>Other Standard Antiemetics & Supportive Meds</br>
-				  <input type="checkbox" checked>Other Standard Hydration</br>
-				  <input type="checkbox" checked>Other Vital Signs</br>
-                </div>
+            <div title="Other" style="padding:10px">
+              <input type="checkbox" checked>Other Chemo Nursing Order</br>
+              <input type="checkbox" checked>Other Chemo Protocol</br>
+              <input type="checkbox" checked>Other Chemo Tx</br>
+              <input type="checkbox" checked>Other Current Tx Note</br>
+              <input type="checkbox" checked>Other Diet</br>
+              <input type="checkbox" checked>Other Discharge Symptoms to Report</br>
+              <input type="checkbox" checked>Other Follow Up Visit After Discharge</br>
+              <input type="checkbox" checked>Other Orders Sign Off Outpatient</br>
+              <input type="checkbox" checked>Other Orders Signoff</br>
+              <input type="checkbox" checked>Other Regimen Note</br>
+              <input type="checkbox" checked>Other Standard Antiemetics & Supportive Meds</br>
+              <input type="checkbox" checked>Other Standard Hydration</br>
+              <input type="checkbox" checked>Other Vital Signs</br>
             </div>
+          </div>
         </div>
         <!--configuration panel-->
 
