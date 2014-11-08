@@ -70,10 +70,16 @@
 		<script type="text/javascript">
     		$(document).ready(function(){
 
-				var params = {};
-        		$.get("{% static 'tracks/tmp/dataset_887695.json' %}", 
-            		params,
-            		function(data){                
+                var patientRecord = "{% static 'tracks/tmp/dataset_887695.json' %}";
+                doLoadSearchItem(patientRecord);
+
+                function doLoadSearchItem(patientRecord){
+                    console.log(patientRecord);
+				    var params = {};
+        		    
+                    $.get(patientRecord, 
+            		    params,
+            		    function(data){                
                 		var timeData = prepareTimeLineData.prepare(data);
                 		if (timeData.length===0) return;
 
@@ -82,30 +88,11 @@
                 		var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
                 		var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
                 		$("#pt_display_panel").show();
-            		}
-            		,"json"
-        		);
+            		    }
+            		    ,"json"
+        		    );
+                }
 			});
-
-            function doLoadSearchItem(recID){
-
-				var params = {};
-                var patientRecord = "{% static 'tracks/tmp/dataset_22228.json' %}"; 
-        		$.get(patientRecord, 
-            		params,
-            		function(data){                
-                		var timeData = prepareTimeLineData.prepare(data);
-                		if (timeData.length===0) return;
-
-                        //This width has to be set automatically
-                		var width = 1600;
-                		var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
-                		var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
-                		$("#pt_display_panel").show();
-            		}
-            		,"json"
-        		);
-            };
         </script>
 
     </head>
@@ -133,7 +120,8 @@
                         var searchID = [1019993, 1020356, 1033138, 104857, 1064223, 1072593, 1076274]; 
                         if (searchID.indexOf(parseInt(value)) != -1) {
                             //alert('You input: present' + value);
-                            doLoadSearchItem(value);
+                            var fileNamePath="{% static 'tracks/tmp/dataset_17.json' %}";
+                            doLoadSearchItem(fileNamePath);
                         }else{
                             alert('You input: ' + value + ' Patient ID NOT present in Database!');
                         }
