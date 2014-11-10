@@ -23,18 +23,6 @@
         <link href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.css" type="text/css" rel="stylesheet" />
         <script src="http://cdn.jsdelivr.net/qtip2/2.2.0/jquery.qtip.js"></script>
         
-        <!-- 
-        <script type="text/javascript">
-        $(function() {
-            $("#tfq2b").click(function() {
-                if ($("#tfq2b").val() == "Quick search"){
-                    $("#tfq2b").val(""); 
-                }
-            });
-        });
-        </script>
-		-->
-
 		<style type="text/css">
 			.axis path,
 			.axis line {
@@ -96,37 +84,38 @@
                 });
 			});
 
-                function doLoadSearchItem(patientRecord){
-                    // console.log(patientRecord);
-                    var params = {};
-                    $('#timeline_container').html('');
-                    $.get(patientRecord, 
-                        params,
-                        function(data){                
-                        var timeData = prepareTimeLineData.prepare(data);
-                        if (timeData.length===0) return;
+            function doLoadSearchItem(patientRecord){
+                // console.log(patientRecord);
+                var params = {};
+                $('#timeline_container').html('');
+                $.get(patientRecord, 
+                    params,
+                    function(data){                
+                    var timeData = prepareTimeLineData.prepare(data);
+                    if (timeData.length===0) return;
 
-                        //This width has to be set automatically
-                        var width = 1600;
-                        var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
-                        var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
-                        $("#pt_display_panel").show();
-                            // alert('Load completed');
-                        }
-                        ,"json"
-                    );
-                }
-
-                    function doSearch(value){
-                        var searchID = [17, 1019993, 1020356, 1033138, 104857, 1064223, 1072593, 1076274]; 
-                        if (searchID.indexOf(parseInt(value)) != -1 || 1) {
-                            //alert('You input: present' + value);
-                            var fileNamePath="/static/tracks/tmp/dataset_"+value+".json";
-                            doLoadSearchItem(fileNamePath);
-                        }else{
-                            alert('You input: ' + value + ' Patient ID NOT present in Database!');
-                        }
+                    //This width has to be set automatically
+                    var width = 1600;
+                    var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
+                    var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
+                    $("#pt_display_panel").show();
+                        // alert('Load completed');
                     }
+                    ,"json"
+                );
+            }
+
+            function doSearch(value){
+                // Search ID include the complete patient records
+                var searchID = [17, 1019993, 1020356, 1033138, 104857, 1064223, 1072593, 1076274]; 
+                if (searchID.indexOf(parseInt(value)) != -1 ) {
+                    //alert('You input: present' + value);
+                    var fileNamePath="/static/tracks/tmp/dataset_"+value+".json";
+                    doLoadSearchItem(fileNamePath);
+                }else{
+                    alert('You input: ' + value + ' Patient ID NOT present in Database!');
+                }
+            }
         </script>
 
     </head>
@@ -142,12 +131,12 @@
         --> 
         <!--PatientTracker header--> 
 
-        <!--header TODO: search box action-->
+        <!--header -->
 		<div data-options="region:'north'" style="height:30px;background-color: #eee">
         	<span class="appName">Patient Visualizer</span>
 
 				<div align="right" margin-right="50px">
-                     <!--TODO searchbox with correct form submission to fetch the correct patient record--> 
+                     <!--TODO implementing the backend call for records in a better way--> 
                     <input class="easyui-searchbox" data-options="prompt:'Quick Search: Patient ID',searcher:doSearch" style="width:250px"></input>
                     <script>
 
@@ -166,10 +155,10 @@
         <div data-options="region:'east',split:true" title="Description" style="width:250px;">
             <div id="summary_div">
                 <table id="summary_table" style="width:100%" border="0" text-align="left">
-                    <tr>
+                    <!--<tr>
                         <td>GUID</td>
                         <td>4000107106068001</td>
-                    </tr>
+                    </tr>-->
                 </table>
             </div>
         </div>
@@ -294,15 +283,13 @@
             <div id="timeline_display_panel" class="easyui-layout" data-options="fit:true">
 
                 <!--The region panel-->
-                <div id="timeline_overview_display" data-options="region:'north',split:true,border:false" style="height:75px">
-                    <!-- <img src="{% static 'tracks/tmp/region_view.png' %}" style="height:66px"> -->
+                <div id="timeline_overview_display" data-options="region:'north',split:true,border:false" style="height:79px">
                     <p>
-                        <label for="amount"> Month range:</label>
+                        <label for="amount"> Time since admission (days) :</label>
                         <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
                     </p>
 
                     <div id="slider-range"></div>
-
                 </div>
                 <!--The region panel-->
 
