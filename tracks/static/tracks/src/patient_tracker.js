@@ -541,7 +541,7 @@ var timeline_original_data;
             
         var prepare = function(timelineData) {
             var timelineDataByType = {};
-            var i=0;
+            //var i=0;
             timelineData.forEach(function(data) {
                 var type = data["eventData"];
                 if (!(type in timelineDataByType)) timelineDataByType[type] = [];
@@ -551,27 +551,27 @@ var timeline_original_data;
             var ret = [];
             var minTime = maxTime = 0;
                 
-      			for (var eventCode in timelineDataByType) { 
-      				var eventGroup = sortByDate(timelineDataByType[eventCode]);
-              var times_calculated = combineTimePointsByTime(formatTimePoints(eventGroup));
-              times_calculated.forEach(function (time, i) {
-                if (time.starting_time < minTime)
-                  minTime = time.starting_time;
-                if (time.ending_time > maxTime)
-                  maxTime = time.ending_time;
-                if (time.starting_time > maxTime)
-                  maxTime = time.starting_time;
-              });
+            for (var eventCode in timelineDataByType) { 
+                var eventGroup = sortByDate(timelineDataByType[eventCode]);
+                var times_calculated = combineTimePointsByTime(formatTimePoints(eventGroup));
+                times_calculated.forEach(function (time, i) {
+                    if (time.starting_time < minTime)
+                      minTime = time.starting_time;
+                    if (time.ending_time > maxTime)
+                      maxTime = time.ending_time;
+                    if (time.starting_time > maxTime)
+                      maxTime = time.starting_time;
+                });
 
-      				ret.push({
-      					label:eventCode,
-      					display:"circle",
-      					class:"timeline-eventcode",
-      					times: times_calculated
-              })
-              if(++i == 20)
-                break;
-      			}
+                ret.push({
+                    label:eventCode,
+                    display:"circle",
+                    class:"timeline-eventcode",
+                    times: times_calculated
+                })
+                //if(++i == 20)
+                //  break;
+      		}
             /*if ("Medication" in timelineDataByType) {
                 var eventGroup = sortByDate(timelineDataByType["Medication"]);
                 ret.push({
@@ -601,18 +601,18 @@ var timeline_original_data;
 })();
 
 
-    // Filter Timeline data for slider
-    function filterRet(start, end) {
-      var json_filtered = JSON.parse(JSON.stringify(timeline_original_data));
-      var times_filtered = new Array();
-      for(var i=0; i<timeline_original_data.length; i++) {
+// Filter Timeline data for slider
+function filterRet(start, end) {
+    var json_filtered = JSON.parse(JSON.stringify(timeline_original_data));
+    var times_filtered = new Array();
+    for(var i=0; i<timeline_original_data.length; i++) {
         times_filtered = [];
         for(var j=0; j<timeline_original_data[i].times.length; j++) {
-          if(start <= timeline_original_data[i].times[j].starting_time && timeline_original_data[i].times[j].starting_time <= end) {
+            if(start <= timeline_original_data[i].times[j].starting_time && timeline_original_data[i].times[j].starting_time <= end) {
             times_filtered.push(timeline_original_data[i].times[j]);
-          }
+            }
         }
         json_filtered[i].times = times_filtered;        
-      }
-      return json_filtered;
     }
+    return json_filtered;
+}
