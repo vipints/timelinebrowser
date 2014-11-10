@@ -469,9 +469,16 @@ var timeline_original_data;
             if ("eventData" in timePointData) {
                 var eventData = timePointData["eventData"];
                 tooltip.push("<td><b>Key</b></td><td>"+eventData+"</td>");
-                //for (var key in eventData) {
-                //    tooltip.push("<td>"+key+"</td><td>"+eventData[key]+"</td>");
-                //}
+            }
+
+            if ("summary" in timePointData) {
+                var summaryInfo = timePointData["summary"].split(",");
+                tooltip.push("<td><b>Summary</b></td><td></td>");
+                for(var xq=0; xq<summaryInfo.length; xq++) {
+                   if (summaryInfo[xq]){
+                        tooltip.push("<td></td><td>"+summaryInfo[xq]+"</td>");
+                   } 
+                }
             }
             
             var ret = {
