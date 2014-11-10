@@ -113,17 +113,16 @@ var timeline_original_data;
                 return ret;
             })
             .on("mouseover", function(d, i){
-/******** Remove ****/
               $('.timeline-viz-elem').tooltip({
                  content: d.tooltip,
+                 position: 'absolute',
                   onShow: function(){
                     $(this).tooltip('tip').css({
                       backgroundColor: '#666',
-                      borderColor: '#666'
+                      borderColor: '#666' 
                     });
                   }
               });
-/******** Remove till here ****/
 
               // showTip(d.tooltip);
               $('#summary_div').html(d.tooltip)
