@@ -39,6 +39,7 @@ var timeline_original_data;
       // check how many stacks we're gonna need
       // do this here so that we can draw the axis before the graph
         g.each(function (d, i) {
+           
           d.forEach(function (datum, index) {
 
             // create y mapping for stacked graph
@@ -117,17 +118,20 @@ var timeline_original_data;
             .on("mouseover", function(d, i){
               $('.timeline-viz-elem').tooltip({
                  content: d.tooltip,
-                 position: 'absolute',
+                 position: 'relative',
                  track: true,
-                  onShow: function(){
+                 onShow: function(){
                     $(this).tooltip('tip').css({
                       backgroundColor: '#666',
                       borderColor: '#666' 
                     });
-                  }
+                  },
+                onPosition: function(){
+                    $(this).tooltip('tip').css('left', $(this).offset().left);
+                    $(this).tooltip('arrow').css('left', 20);
+                }
               });
 
-              // showTip(d.tooltip);
               $('#summary_div').html(d.tooltip)
               // addToolTip(d.tooltip);
             });
@@ -233,10 +237,6 @@ var timeline_original_data;
           };
       }
 
-      function showTip(html){
-
-      }
-      
       function addToolTip() {
             var params = {
                 content: {attr:"tip"},
@@ -367,7 +367,7 @@ var timeline_original_data;
       opacityPropertyName = opacityProp;
       return timeline;
     };
-    
+
     return timeline;
   };
 })();
@@ -563,6 +563,7 @@ var timeline_original_data;
             for (var eventCode in timelineDataByType) { 
                 var eventGroup = sortByDate(timelineDataByType[eventCode]);
                 var times_calculated = combineTimePointsByTime(formatTimePoints(eventGroup));
+
                 times_calculated.forEach(function (time, i) {
                     if (time.starting_time < minTime)
                       minTime = time.starting_time;
@@ -591,7 +592,7 @@ var timeline_original_data;
             }*/
             timeline_original_data = ret;
             $( "#amount" ).val( "" + Math.round(minTime) + " - " + Math.round(maxTime) );
-            $("#slider-range").slider({min: Math.round(minTime), max: Math.round(maxTime), values: [ Math.round(minTime), Math.round(maxTime) ]});
+            $("#slider-range").slider({min: minTime, max: maxTime, values: [ minTime, maxTime ]});
 
             return ret;
 //            return [
