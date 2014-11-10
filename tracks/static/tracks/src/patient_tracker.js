@@ -623,7 +623,7 @@ function filterRet(start, end) {
             }
         }
         //TODO if times_filtered.length == 0 then return, eventually remove the track  
-        if (times_filtered.length===0) continue;
+        //if (times_filtered.length===0) continue;
             
         json_filtered[i].times = times_filtered;        
     }
