@@ -74,47 +74,8 @@
  
         <!--patient_tracker.js --> 
 		<script type="text/javascript">
-
-<<<<<<< HEAD
     		$(document).ready(function(){
-                var patientRecord = "{% static 'tracks/tmp/dataset_887695.json' %}";
-                //var patientRecord = "{% static 'tracks/tmp/dataset_1064223.json' %}";
-                doLoadSearchItem(patientRecord);
-			});
 
-            function doLoadSearchItem(patientRecord){
-                console.log(patientRecord);
-                var params = {};
-                
-                $("#timeline_container").html(patientRecord); 
-
-                $.get(patientRecord, 
-                    params,
-                    function(data){                
-                    var timeData = prepareTimeLineData.prepare(data);
-                    if (timeData.length===0) return;
-
-                    //This width has to be set automatically
-                    var width = 1600;
-                    var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
-                    var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
-                    $("#pt_display_panel").show();
-                    }
-                    ,"json"
-                );
-            }
-
-            function doSearch(value){
-                var searchID = [17, 1033138, 104857, 1064223, 1072593, 1076274]; 
-                if (searchID.indexOf(parseInt(value)) != -1) {
-                    //alert('You input: present' + value);
-                    var fileNamePath="/static/tracks/tmp/dataset_"+value+".json";
-                    doLoadSearchItem(fileNamePath);
-                }else{
-                    alert('You input: ' + value + ' Patient ID NOT present in Database!');
-                }
-            }
-=======
                 var patientRecord = "/static/tracks/tmp/dataset_887695.json";
                 doLoadSearchItem(patientRecord);
                 $( "#slider-range" ).slider({
@@ -166,7 +127,6 @@
                             alert('You input: ' + value + ' Patient ID NOT present in Database!');
                         }
                     }
->>>>>>> fa60bff27bf72d27dce0314aadc3461d8497f907
         </script>
 
     </head>
@@ -189,12 +149,9 @@
 				<div align="right" margin-right="50px">
                      <!--TODO searchbox with correct form submission to fetch the correct patient record--> 
                     <input class="easyui-searchbox" data-options="prompt:'Quick Search: Patient ID',searcher:doSearch" style="width:250px"></input>
-<<<<<<< HEAD
-=======
                     <script>
 
                     </script>
->>>>>>> fa60bff27bf72d27dce0314aadc3461d8497f907
             	</div>
 		</div>
         <!--header-->
