@@ -64,6 +64,8 @@ var timeline_original_data;
         beginning = minTime;
         ending = maxTime;
 
+        //console.log(beginning, ending);
+
         setTickFormat();
 
       var scaleFactor = (1/(ending - beginning)) * (width - margin.left - margin.right);
@@ -116,6 +118,7 @@ var timeline_original_data;
               $('.timeline-viz-elem').tooltip({
                  content: d.tooltip,
                  position: 'absolute',
+                 track: true,
                   onShow: function(){
                     $(this).tooltip('tip').css({
                       backgroundColor: '#666',
@@ -602,6 +605,7 @@ var timeline_original_data;
 
 // Filter Timeline data for slider
 function filterRet(start, end) {
+
     var json_filtered = JSON.parse(JSON.stringify(timeline_original_data));
     var times_filtered = new Array();
     for(var i=0; i<timeline_original_data.length; i++) {
@@ -611,6 +615,9 @@ function filterRet(start, end) {
             times_filtered.push(timeline_original_data[i].times[j]);
             }
         }
+        //TODO if times_filtered.length == 0 then return, eventually remove the track  
+        if (times_filtered.length===0) continue;
+            
         json_filtered[i].times = times_filtered;        
     }
     return json_filtered;
