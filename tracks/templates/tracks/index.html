@@ -62,18 +62,21 @@
         <!--patient_tracker.js --> 
 		<script type="text/javascript">
     		$(document).ready(function(){
-
+                
                 var patientRecord = "/static/tracks/tmp/dataset_887695.json";
                 doLoadSearchItem(patientRecord);
+                
                 $( "#slider-range" ).slider({
                     range: true,
                     slide: function( event, ui ) {
-                        $( "#amount" ).val( "" + Math.round(ui.values[ 0 ]) + " - " + Math.round(ui.values[ 1 ]) );
+                        $( "#amount" ).val( "" + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
                     },
                     stop: function( event, ui ) {
                         var timeData_filtered = filterRet( ui.values[ 0 ],  ui.values[ 1 ] );
-                        // console.log(timeData_filtered)
                         if (timeData_filtered.length===0) return;
+
+                        //TODO left side timeline axis are not rendering properly when using the Zoom button.  
+
                         var width = 1600;
                         $('#timeline_container').html('');
                         var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
@@ -84,7 +87,7 @@
 			});
 
             function doLoadSearchItem(patientRecord){
-                // console.log(patientRecord);
+
                 var params = {};
                 $('#timeline_container').html("");
                 $.get(patientRecord, 
@@ -105,6 +108,7 @@
             }
 
             function doSearch(value){
+
                 // Search ID include the complete patient records
                 var searchID = [17, 1019993, 1020356, 1033138, 104857, 1064223, 1072593, 1076274]; 
                 if (searchID.indexOf(parseInt(value)) != -1 ) {
@@ -121,25 +125,13 @@
 
     <body class="easyui-layout">
     
-        <!--PatientTracker header--> 
-        <!--
-            <form id="tfnewsearch" method="get" action="">
-                <input type="text" id="tfq2b" class="tftextinput" name="q" size="20" maxlength="60" placeholder="Quick search">
-                <input type="submit" value="&nbsp;" class="tfbutton">
-            </form>
-        --> 
-        <!--PatientTracker header--> 
-
         <!--header -->
 		<div data-options="region:'north'" style="height:30px;background-color: #eee">
         	<span class="appName">Patient Visualizer</span>
 
 				<div align="right" margin-right="50px">
-                     <!--TODO implementing the backend call for records in a better way--> 
+                     <!--TODO implementing the backend call for records in an effective way, currently reaching in an infinity loop--> 
                     <input class="easyui-searchbox" data-options="prompt:'Quick Search: Patient ID',searcher:doSearch" style="width:250px"></input>
-                    <script>
-
-                    </script>
             	</div>
 		</div>
         <!--header-->
