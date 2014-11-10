@@ -1,5 +1,6 @@
+var timeline_original_data;
+
 (function() {
-  
   patientTimeline = function() {
     var orient = "top",
         daysPerMonth = 365.242199/12,
@@ -110,6 +111,23 @@
                 if (datum.class) ret += " "+datum.class;
                 if (d.class) ret += " "+d.class;
                 return ret;
+            })
+            .on("mouseover", function(d, i){
+/******** Remove ****/
+              $('.timeline-viz-elem').tooltip({
+                 content: d.tooltip,
+                  onShow: function(){
+                    $(this).tooltip('tip').css({
+                      backgroundColor: '#666',
+                      borderColor: '#666'
+                    });
+                  }
+              });
+/******** Remove till here ****/
+
+              // showTip(d.tooltip);
+              $('#summary_div').html(d.tooltip)
+              // addToolTip(d.tooltip);
             });
 
             sg.append(datum.display)
@@ -166,7 +184,7 @@
       var gSize = g[0][0].getBoundingClientRect();
       setHeight();
           
-      addToolTip();
+      // addToolTip();
 
       function sumCharCodes(str) {
           if (!str) return 0;
@@ -187,7 +205,7 @@
 		  var num_months=0 ;
 		  
           for (var i=0; i*1*daysPerMonth<=ending; i++) {
-			  num_months+=1 ;
+		        num_months+=1 ;
           } ;
 		  step=1
 		  if (num_months>=100) {
@@ -211,6 +229,10 @@
             tickValues: tickValues, 
             tickSize: 8
           };
+      }
+
+      function showTip(html){
+
       }
       
       function addToolTip() {
@@ -440,11 +462,11 @@
             var dates = getStartStopDates(timePointData);
 
             var tooltip = [];
-            tooltip.push("<td>date</td><td>"+dates[0]+", "+dates[2]+", "+dates[3]+(dates[1]===dates[0]?"":" - "+dates[1] + ", "+dates[2] +", "+dates[3])+"</td>");
+            tooltip.push("<td><b>Date</b></td><td>"+dates[0]+  ", "+dates[2]+", "+dates[3]+(dates[1]===dates[0]?"":" - "+dates[1] + ", "+dates[2] +", "+dates[3])+"</td>");
 
             if ("eventData" in timePointData) {
                 var eventData = timePointData["eventData"];
-                tooltip.push("<td>key</td><td>"+eventData+"</td>");
+                tooltip.push("<td><b>Key</b></td><td>"+eventData+"</td>");
                 //for (var key in eventData) {
                 //    tooltip.push("<td>"+key+"</td><td>"+eventData[key]+"</td>");
                 //}
@@ -519,7 +541,7 @@
             
         var prepare = function(timelineData) {
             var timelineDataByType = {};
-            
+            var i=0;
             timelineData.forEach(function(data) {
                 var type = data["eventData"];
                 if (!(type in timelineDataByType)) timelineDataByType[type] = [];
@@ -527,16 +549,29 @@
             });
 
             var ret = [];
+            var minTime = maxTime = 0;
                 
-			for (var eventCode in timelineDataByType) { 
-				var eventGroup = sortByDate(timelineDataByType[eventCode]);
-				ret.push({
-					label:eventCode,
-					display:"circle",
-					class:"timeline-eventcode",
-					times:combineTimePointsByTime(formatTimePoints(eventGroup))});
-			}
+      			for (var eventCode in timelineDataByType) { 
+      				var eventGroup = sortByDate(timelineDataByType[eventCode]);
+              var times_calculated = combineTimePointsByTime(formatTimePoints(eventGroup));
+              times_calculated.forEach(function (time, i) {
+                if (time.starting_time < minTime)
+                  minTime = time.starting_time;
+                if (time.ending_time > maxTime)
+                  maxTime = time.ending_time;
+                if (time.starting_time > maxTime)
+                  maxTime = time.starting_time;
+              });
 
+      				ret.push({
+      					label:eventCode,
+      					display:"circle",
+      					class:"timeline-eventcode",
+      					times: times_calculated
+              })
+              if(++i == 20)
+                break;
+      			}
             /*if ("Medication" in timelineDataByType) {
                 var eventGroup = sortByDate(timelineDataByType["Medication"]);
                 ret.push({
@@ -545,17 +580,39 @@
                     class:"timeline-medication",
                     times:combineTimePointsByTime(formatTimePoints(eventGroup))});
             }*/
+            timeline_original_data = ret;
+            $( "#amount" ).val( "" + minTime + " - " + maxTime );
+            $("#slider-range").slider({min: minTime, max: maxTime, values: [ minTime, maxTime ]});
 
             return ret;
 //            return [
-//                    {label:"Diagnostics", display:"circle", times: [{"starting_time": 0, "tooltip":"First diagonosis"},{"starting_time": 200}, {"starting_time": 500}]},
+//                    {label:"Diagnostics", display:"circle", times: [{"starting_time": 0, "tooltip":"First diagonosis"},{"starting_time": 200}, {"ending_time": 500}]},
 //                    {label:"Lab Tests", display:"circle", times: [{"starting_time": -10}, ]},
 //                    {label:"Therapy", display:"rect", times: [{"starting_time": 140, "ending_time": 360, "tooltip":"Chemo"}]},
-//                  ];
-        };
+    //                  ];
+
+              };
         
-        return {
+          return {
             prepare: prepare
-        };
+          };
+
     })();
 })();
+
+
+    // Filter Timeline data for slider
+    function filterRet(start, end) {
+      var json_filtered = JSON.parse(JSON.stringify(timeline_original_data));
+      var times_filtered = new Array();
+      for(var i=0; i<timeline_original_data.length; i++) {
+        times_filtered = [];
+        for(var j=0; j<timeline_original_data[i].times.length; j++) {
+          if(start <= timeline_original_data[i].times[j].starting_time && timeline_original_data[i].times[j].starting_time <= end) {
+            times_filtered.push(timeline_original_data[i].times[j]);
+          }
+        }
+        json_filtered[i].times = times_filtered;        
+      }
+      return json_filtered;
+    }

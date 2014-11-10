@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -15,6 +16,9 @@
         <script type="text/javascript" src="{% static 'tracks/jquery/jquery.easyui.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'tracks/d3/d3.v3.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'tracks/src/patient_tracker.js' %}"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 
         <link href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.css" type="text/css" rel="stylesheet" />
         <script src="http://cdn.jsdelivr.net/qtip2/2.2.0/jquery.qtip.js"></script>
@@ -38,7 +42,7 @@
 			  stroke: black;
 			  shape-rendering: crispEdges;
 			}
-
+            
 			.axis text {
 			  font-family: sans-serif;
 			  font-size: 10px;
@@ -48,7 +52,9 @@
 			  font-family: sans-serif;
 			  font-size: 12px;
 			}
-			
+			#timeline_container, #timeline_overview_display {
+                padding: 10px;
+            }
 			#timeline_container .axis {
 			  transform: translate(0px,20px);
 			  -ms-transform: translate(0px,20px); /* IE 9 */
@@ -69,6 +75,7 @@
         <!--patient_tracker.js --> 
 		<script type="text/javascript">
 
+<<<<<<< HEAD
     		$(document).ready(function(){
                 var patientRecord = "{% static 'tracks/tmp/dataset_887695.json' %}";
                 //var patientRecord = "{% static 'tracks/tmp/dataset_1064223.json' %}";
@@ -107,6 +114,59 @@
                     alert('You input: ' + value + ' Patient ID NOT present in Database!');
                 }
             }
+=======
+                var patientRecord = "/static/tracks/tmp/dataset_887695.json";
+                doLoadSearchItem(patientRecord);
+                $( "#slider-range" ).slider({
+                    range: true,
+                    slide: function( event, ui ) {
+                        $( "#amount" ).val( "" + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+                    },
+                    stop: function( event, ui ) {
+                        var timeData_filtered = filterRet( ui.values[ 0 ],  ui.values[ 1 ] );
+                        // console.log(timeData_filtered)
+                        if (timeData_filtered.length===0) return;
+                        var width = 1600;
+                        $('#timeline_container').html('');
+                        var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
+                        var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData_filtered).call(timeline);
+                        $("#pt_display_panel").show();
+                    }
+                });
+			});
+
+                function doLoadSearchItem(patientRecord){
+                    // console.log(patientRecord);
+                    var params = {};
+                    $('#timeline_container').html('');
+                    $.get(patientRecord, 
+                        params,
+                        function(data){                
+                        var timeData = prepareTimeLineData.prepare(data);
+                        if (timeData.length===0) return;
+
+                        //This width has to be set automatically
+                        var width = 1600;
+                        var timeline = patientTimeline().itemHeight(12).width(width).colorProperty('color').opacityProperty('opacity').stack();
+                        var svg = d3.select("#timeline_container").append("svg").attr("width", width).datum(timeData).call(timeline);
+                        $("#pt_display_panel").show();
+                            // alert('Load completed');
+                        }
+                        ,"json"
+                    );
+                }
+
+                    function doSearch(value){
+                        var searchID = [17, 1019993, 1020356, 1033138, 104857, 1064223, 1072593, 1076274]; 
+                        if (searchID.indexOf(parseInt(value)) != -1 || 1) {
+                            //alert('You input: present' + value);
+                            var fileNamePath="/static/tracks/tmp/dataset_"+value+".json";
+                            doLoadSearchItem(fileNamePath);
+                        }else{
+                            alert('You input: ' + value + ' Patient ID NOT present in Database!');
+                        }
+                    }
+>>>>>>> fa60bff27bf72d27dce0314aadc3461d8497f907
         </script>
 
     </head>
@@ -129,6 +189,12 @@
 				<div align="right" margin-right="50px">
                      <!--TODO searchbox with correct form submission to fetch the correct patient record--> 
                     <input class="easyui-searchbox" data-options="prompt:'Quick Search: Patient ID',searcher:doSearch" style="width:250px"></input>
+<<<<<<< HEAD
+=======
+                    <script>
+
+                    </script>
+>>>>>>> fa60bff27bf72d27dce0314aadc3461d8497f907
             	</div>
 		</div>
         <!--header-->
@@ -141,13 +207,14 @@
 
         <!--description panel-->
         <div data-options="region:'east',split:true" title="Description" style="width:250px;">
-            <table style="width:100%" border="0" text-align="left">
-                <tr></tr>
-                <tr>
-                    <td>GUID</td>
-                    <td>4000107106068001</td>
-                </tr>
-            </table>
+            <div id="summary_div">
+                <table id="summary_table" style="width:100%" border="0" text-align="left">
+                    <tr>
+                        <td>GUID</td>
+                        <td>4000107106068001</td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <!--description panel-->
 
@@ -271,7 +338,14 @@
 
                 <!--The region panel-->
                 <div id="timeline_overview_display" data-options="region:'north',split:true,border:false" style="height:75px">
-                    <img src="{% static 'tracks/tmp/region_view.png' %}" style="height:66px">
+                    <!-- <img src="{% static 'tracks/tmp/region_view.png' %}" style="height:66px"> -->
+                    <p>
+                        <label for="amount"> Month range:</label>
+                        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    </p>
+
+                    <div id="slider-range"></div>
+
                 </div>
                 <!--The region panel-->
 
