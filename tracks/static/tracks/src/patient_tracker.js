@@ -461,7 +461,7 @@ var timeline_original_data;
             var dates = getStartStopDates(timePointData);
 
             var tooltip = [];
-            tooltip.push("<td><b>Date</b></td><td>"+dates[0]+  ", "+dates[2]+", "+dates[3]+(dates[1]===dates[0]?"":" - "+dates[1] + ", "+dates[2] +", "+dates[3])+"</td>");
+            tooltip.push("<td><b>Date</b></td><td>"+Math.round(dates[0])+  ", "+dates[2]+", "+dates[3]+(dates[1]===dates[0]?"":" - "+dates[1] + ", "+dates[2] +", "+dates[3])+"</td>");
 
             if ("eventData" in timePointData) {
                 var eventData = timePointData["eventData"];
@@ -580,8 +580,8 @@ var timeline_original_data;
                     times:combineTimePointsByTime(formatTimePoints(eventGroup))});
             }*/
             timeline_original_data = ret;
-            $( "#amount" ).val( "" + minTime + " - " + maxTime );
-            $("#slider-range").slider({min: minTime, max: maxTime, values: [ minTime, maxTime ]});
+            $( "#amount" ).val( "" + Math.round(minTime) + " - " + Math.round(maxTime) );
+            $("#slider-range").slider({min: Math.round(minTime), max: Math.round(maxTime), values: [ Math.round(minTime), Math.round(maxTime) ]});
 
             return ret;
 //            return [

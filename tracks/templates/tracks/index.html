@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -16,7 +15,7 @@
         <script type="text/javascript" src="{% static 'tracks/jquery/jquery.easyui.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'tracks/d3/d3.v3.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'tracks/src/patient_tracker.js' %}"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 
@@ -69,7 +68,7 @@
                 $( "#slider-range" ).slider({
                     range: true,
                     slide: function( event, ui ) {
-                        $( "#amount" ).val( "" + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+                        $( "#amount" ).val( "" + Math.round(ui.values[ 0 ]) + " - " + Math.round(ui.values[ 1 ]) );
                     },
                     stop: function( event, ui ) {
                         var timeData_filtered = filterRet( ui.values[ 0 ],  ui.values[ 1 ] );
@@ -87,7 +86,7 @@
             function doLoadSearchItem(patientRecord){
                 // console.log(patientRecord);
                 var params = {};
-                $('#timeline_container').html('');
+                $('#timeline_container').html("");
                 $.get(patientRecord, 
                     params,
                     function(data){                
